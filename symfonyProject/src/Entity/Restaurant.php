@@ -28,12 +28,12 @@ class Restaurant
     private $numTel;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="datetime")
      */
     private $horraire_ouverture;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="datetime")
      */
     private $horraire_fermeture;
 
@@ -41,6 +41,11 @@ class Restaurant
      * @ORM\ManyToOne(targetEntity=Region::class, inversedBy="restaurants")
      */
     private $idRegion;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -103,6 +108,18 @@ class Restaurant
     public function setIdRegion(?Region $idRegion): self
     {
         $this->idRegion = $idRegion;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

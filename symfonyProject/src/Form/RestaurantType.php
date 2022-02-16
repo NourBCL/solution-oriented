@@ -16,7 +16,6 @@ class RestaurantType extends AbstractType
             ->add('numTel')
             ->add('horraire_ouverture')
             ->add('horraire_fermeture')
-            ->add('idRegion')
         ;
     }
 
