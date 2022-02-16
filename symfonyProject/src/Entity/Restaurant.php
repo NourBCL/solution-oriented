@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RestaurantRepository::class)
@@ -19,11 +20,13 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank (message="Veuillez remplir ce champs")
      */
     private $nom_resto;
 
     /**
      * @ORM\Column(type="bigint")
+     * @Assert\NotBlank (message="Veuillez remplir ce champs")
      */
     private $numTel;
 
