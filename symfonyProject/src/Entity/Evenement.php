@@ -47,11 +47,6 @@ class Evenement
      */
     private $prix_e;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=CategorieE::class, inversedBy="evenements")
-     */
-    private $idCat_e;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -129,15 +124,4 @@ class Evenement
         return $this;
     }
 
-    public function getIdCatE(): ?CategorieE
-    {
-        return $this->idCat_e;
-    }
-
-    public function setIdCatE(?CategorieE $idCat_e): self
-    {
-        $this->idCat_e = $idCat_e;
-
-        return $this;
-    }
 }
