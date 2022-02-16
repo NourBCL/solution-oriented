@@ -1,4 +1,14 @@
+{% block body %}
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+ {{ form_errors(form.date_commande)}}
+    {{ form_widget(form.date_commande) }}
+    {{ form_errors(form.adresse_destination)}}
+    {{ form_widget(form.adresse_destination) }}
+    {{ form_errors(form.idArticle)}}
+    {{ form_widget(form.idArticle) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+
+{% endblock %}

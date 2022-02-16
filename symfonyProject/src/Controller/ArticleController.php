@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Commande;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,21 +13,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article")
+ *  * @Route("/article")
  */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="article_index", methods={"GET"})
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     * @Route("/index", name="article_index", )
      */
     public function index(ArticleRepository $articleRepository): Response
-    {
+    {$list_article =$articleRepository->findAll();
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $list_article ,
         ]);
     }
 
     /**
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      * @Route("/new", name="article_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -49,6 +55,8 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @param Article $article
+     * @return Response
      * @Route("/{id}", name="article_show", methods={"GET"})
      */
     public function show(Article $article): Response
@@ -59,6 +67,10 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param Article $article
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      * @Route("/{id}/edit", name="article_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
@@ -79,6 +91,10 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param Article $article
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      * @Route("/{id}", name="article_delete", methods={"POST"})
      */
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
@@ -90,4 +106,13 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
     }
+    function map_idArticle_other_id()
+    {
+        //get the id of the  artical to mapped with the command
+        return 0 ;
+    }
+function add_to_commande(Commande $commande,Article $article)
+{
+    //add article to commande
+}
 }
