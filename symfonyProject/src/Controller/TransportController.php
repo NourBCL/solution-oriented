@@ -10,84 +10,91 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-/**
- * @Route("/transport")
- */
+
 class TransportController extends AbstractController
 {
     /**
-     * @Route("/", name="transport_index", methods={"GET"})
+     * @Route("/transport", name="transport")
      */
-    public function index(TransportRepository $transportRepository): Response
+    public function index(): Response
     {
         return $this->render('transport/index.html.twig', [
-            'transports' => $transportRepository->findAll(),
+            'transports_name' => 'TransportRepository',
         ]);
     }
-
     /**
-     * @Route("/new", name="transport_new", methods={"GET", "POST"})
+     *
+     * @Route("/add", name="addTransport")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function addTransport (Request $request)
     {
         $transport = new Transport();
         $form = $this->createForm(TransportType::class, $transport);
+        $form->add('ajouter',SubmitType::class);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted()&& $form->isValid())
+        {
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($transport);
             $entityManager->flush();
-
-            return $this->redirectToRoute('transport_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('afficheS');
         }
-
-        return $this->render('transport/new.html.twig', [
-            'transport' => $transport,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('transport/_form.html.twig',['form' => $form->createView()]);
     }
 
     /**
-     * @Route("/{id}", name="transport_show", methods={"GET"})
-     */
-    public function show(Transport $transport): Response
-    {
-        return $this->render('transport/show.html.twig', [
-            'transport' => $transport,
-        ]);
-    }
+     * @param TransportRepository $rep
+     * @Route("/transport/edit/{id}", name="edittransport")
 
-    /**
-     * @Route("/{id}/edit", name="transport_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Transport $transport, EntityManagerInterface $entityManager): Response
+
+    public function edit ($id,TransportRepository $rep, Request $request)
     {
+        $transport = $rep->find($id);
         $form = $this->createForm(TransportType::class, $transport);
+        $form->add('edit',SubmitType::class);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted()&& $form->isValid())
+        {
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-
-            return $this->redirectToRoute('transport_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'transport a été updates');
+            return $this->redirectToRoute('afficheS');
         }
+        return $this->render('transport/edit.html.twig',['form' => $form->createView()]);
+    }
+    /**
+     * @param TransportRepository $rep
+     * @return Response
+     * @Route("/transportshow", name="afficheS")
+     */
+    public function Afficher(TransportRepository $rep):Response
+    {
 
-        return $this->render('transport/edit.html.twig', [
-            'transport' => $transport,
-            'form' => $form->createView(),
+        $transports= $this->getDoctrine()->getRepository(Transport::class)->findAll();
+        return $this->render('transport/show.html.twig',[
+            'transports'=>$transports
         ]);
+
     }
 
     /**
-     * @Route("/{id}", name="transport_delete", methods={"POST"})
+     * @Route("/transportd/{id}", name="transportd") * @Method({"DELETE"})
      */
-    public function delete(Request $request, Transport $transport, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, $id)
     {
-        if ($this->isCsrfTokenValid('delete'.$transport->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($transport);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('transport_index', [], Response::HTTP_SEE_OTHER);
+        $transport = $this->getDoctrine()->getRepository(Transport::class)->findOneById($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($transport);
+        $entityManager->flush();
+        return $this->redirectToRoute('afficheS');
     }
+
+
 }
+
+
+

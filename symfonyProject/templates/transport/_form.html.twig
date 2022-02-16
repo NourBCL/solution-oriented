@@ -1,4 +1,253 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% extends 'base_front.html.twig' %}
+{% block body %}
+    <!--start section-->
+    <section id="nicdark_parallax_title" class="nicdark_section nicdark_imgparallax nicdark_parallaxx_img5">
+
+        <div class="nicdark_filter greydark">
+
+            <!--start nicdark_container-->
+            <div class="nicdark_container nicdark_clearfix">
+
+                <div class="nicdark_space100"></div>
+                <div class="nicdark_space100"></div>
+
+                <div class="nicdark_space70"></div> <!--for header 1-->
+
+                <div class="grid grid_6">
+                   {#  <h1 class="white subtitle">Ajouter Transport</h1>#}
+                </div>
+
+
+                <div class="nicdark_space40"></div>
+                <div class="nicdark_space40"></div>
+
+            </div>
+            <!--end nicdark_container-->
+
+        </div>
+
+    </section>
+    <!--end section-->
+    <center>
+    <div class="nicdark_archive1 nicdark_bg_white nicdark_border_grey nicdark_sizing  ">
+        <div class="nicdark_textevidence nicdark_bg_yellow">
+            <h4 class="white nicdark_margin20">Ajouter Transport</h4>
+        </div>
+        <div class="nicdark_margin20">
+            <p>Lieu Depart:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_start(form) }}
+            {{ form_errors(form.lieu_depart) }}
+            {{ form_widget(form.lieu_depart, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+            <div class="nicdark_space20"></div>
+            <p>Lieu Arrivee:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.lieu_arrivee) }}
+            {{ form_widget(form.lieu_arrivee, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+            <div class="nicdark_space20"></div>
+            <p>Date Depart:</p>
+            <div class="nicdark_space5"></div>
+
+            {{ form_errors(form.date_dep) }}
+            {{ form_widget(form.date_dep, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Date Arrivee:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.date_arrivee) }}
+            {{ form_widget(form.date_arrivee, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Date Retour:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.date_retour) }}
+            {{ form_widget(form.date_retour, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Heure Depart:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.heure_depart) }}
+            {{ form_widget(form.heure_depart, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Heure Arrivee:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.heure_arrivee) }}
+            {{ form_widget(form.heure_arrivee, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+            <div class="nicdark_space20"></div>
+            <p>Heure Retour:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.heure_retour) }}
+            {{ form_widget(form.heure_retour, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Nombre De Place:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.nb_place) }}
+            {{ form_widget(form.nb_place, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Nombre De Bagage:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.nb_bagage) }}
+            {{ form_widget(form.nb_bagage, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Prix De Transport:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.prix_t) }}
+            {{ form_widget(form.prix_t, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+            <div class="nicdark_space20"></div>
+            <p>Disponibilite:</p>
+            <div class="nicdark_space5"></div>
+            {{ form_errors(form.disponibilite) }}
+            {{ form_widget(form.disponibilite, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+        </div>
+
+        {{ form_end(form) }}
+        </center>
+    </div>
+
+{% endblock %}
+
+{#
+    </div>
+
+    <!--start section-->
+    <section id="nicdark_parallax_title" class="nicdark_section nicdark_imgparallax nicdark_parallaxx_img5">
+
+        <div class="nicdark_filter greydark">
+
+            <!--start nicdark_container-->
+            <div class="nicdark_container nicdark_clearfix">
+
+                <div class="nicdark_space100"></div>
+                <div class="nicdark_space100"></div>
+
+                <div class="nicdark_space70"></div> <!--for header 1-->
+
+                <div class="grid grid_6">
+                    <h1 class="white subtitle">Ajouter Transport</h1>
+                </div>
+
+
+                <div class="nicdark_space40"></div>
+                <div class="nicdark_space40"></div>
+
+            </div>
+            <!--end nicdark_container-->
+
+        </div>
+
+    </section>
+    <!--end section-->
+
+    <div class="grid grid_12">
+        <h3 class="subtitle greydark">transport</h3>
+        <div class="nicdark_space20"></div>
+        <div class="nicdark_divider left small"><span class="nicdark_bg_grey2 "></span></div>
+    </div>
+
+
+    <div class="grid grid_12">
+
+        <!--start nicdark_tabs-->
+        <div class="nicdark_tab">
+
+
+
+            <div class="nicdark_tabs nicdark_border_grey nicdark_bg_white nicdark_sizing  ">
+
+                <div class="nicdark_margin20" id="tabs-7">
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        {{ form_start(form) }}
+                            {{ form_errors(form.lieu_depart) }}
+                            {{ form_label(form.lieu_depart,"lieu_depart") }}
+
+                        {{ form_widget(form.lieu_depart, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+                    </div>
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        <div class="nicdark_marginleft20 nicdark_disable_marginleft_iphoneland nicdark_disable_marginleft_iphonepotr">
+                            {{ form_errors(form.nb_place) }}
+                            {{ form_label(form.nb_place,"nb_place") }}
+
+                                {{ form_widget(form.nb_place, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+
+                        </div>
+                    </div>
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        <div class="nicdark_marginleft20 nicdark_disable_marginleft_iphoneland nicdark_disable_marginleft_iphonepotr">
+                            {{ form_errors(form.date_dep) }}
+                            {{ form_label(form.date_dep,"date_dep") }}
+                            <div class="nicdark_focus nicdark_relative nicdark_icon_date">
+                                {{ form_widget(form.date_dep, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="nicdark_margin20" id="tabs-8">
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        {{ form_errors(form.lieu_arrivee) }}
+                        {{ form_label(form.lieu_arrivee,"lieu_arrivee") }}
+
+                            {{ form_widget(form.lieu_arrivee, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+
+                    </div>
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        <div class="nicdark_marginleft20 nicdark_disable_marginleft_iphoneland nicdark_disable_marginleft_iphonepotr">
+                            {{ form_errors(form.nb_bagage) }}
+                            {{ form_label(form.nb_bagage,"nb_bagage") }}
+
+                                {{ form_widget(form.nb_bagage, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+
+                        </div>
+                    </div>
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        <div class="nicdark_marginleft20 nicdark_disable_marginleft_iphoneland nicdark_disable_marginleft_iphonepotr">
+                            {{ form_errors(form.date_arrivee) }}
+                            {{ form_label(form.date_arrivee,"date_arrivee") }}
+                            <div class="nicdark_focus nicdark_relative nicdark_icon_date">
+                                {{ form_widget(form.date_arrivee, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="nicdark_margin20" id="tabs-9">
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        {{ form_errors(form.prix_t) }}
+                        {{ form_label(form.prix_t,"prix_t") }}
+
+                            {{ form_widget(form.prix_t, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+
+                    </div>
+                    <div class="nicdark_focus nicdark_width_percentage25">
+                        <div class="nicdark_marginleft20 nicdark_disable_marginleft_iphoneland nicdark_disable_marginleft_iphonepotr">
+                            {{ form_errors(form.date_retour) }}
+                            {{ form_label(form.date_retour,"date_retour") }}
+
+                                {{ form_widget(form.date_retour, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
+
+                            {{ form_row(form.save) }}
+                            {{ form_end(form) }}
+
+
+                        </div>
+                    </div>
+                    </div> </div>
+        </div>
+
+
+
+    <!--end nicdark_tabs-->
+
+#}
+
+

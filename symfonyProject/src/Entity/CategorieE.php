@@ -21,6 +21,7 @@ class CategorieE
 
     /**
      * @ORM\Column(type="string", length=25)
+     *
      */
     private $nomCat_e;
 
