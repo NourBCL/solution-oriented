@@ -1,0 +1,77 @@
+{% extends 'base-back.html.twig' %}
+
+
+{% block title %}Modifier le restaurant {% endblock %}
+
+{% block body %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="page-titles">
+			<h4>Restaurant</h4>
+	    	<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Modifier</a></li>
+			</ol>
+        </div>
+        <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Vertical Forms with icon</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    
+									
+									{{ form_start(form,{'attr':{
+                                        'class':'form-valide-with-icon'
+                                    }}) }}
+                                        <div id="wizard_Service" class="tab-pane" role="tabpanel">
+											<div class="row">
+												<div class="col-lg-6 mb-2">
+													<div class="form-group">
+														<label class="text-label">Nom du restaurant</label>
+                                                        {{ form_widget(form.nom_resto,{'attr':{'class': 'form-control','placeholder':'Nom du restaurant' }}) }}
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="form-group">
+														<label class="text-label">Numéro de telephone</label>
+                                                        {{ form_widget(form.numTel,{'attr':{'class': 'form-control','placeholder':'Numero de telephone' }}) }}
+													</div>
+												</div>
+                                                <div class="col-lg-6 mb-2">
+													<div class="form-group">
+														<label class="text-label">Horraire d'ouverture</label>
+                                                        {{ form_widget(form.horraire_ouverture,{'attr':{'class': 'form-control' }}) }}
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="form-group">
+														<label class="text-label">Horraire de fermeture</label>
+                                                        {{ form_widget(form.horraire_fermeture,{'attr':{'class': 'form-control' }}) }}
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="form-group">
+														<label class="text-label">Region </label>
+														{{ form_widget(form.idRegion,{'attr':{'class': 'form-control' }}) }}
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									<img style="width:100px;height:100px;" src="{{ asset('uploads/restaurant/' ~ image) }}" class="img-fluid rounded-circle" alt="">
+
+									{{ form_widget(form.image,{'attr':{'class': 'btn mr-2 btn-success' }}) }}
+                                        <button type="submit" class="btn mr-2 btn-primary">Modifier</button>
+                                    {{ form_end(form) }}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+    </div>
+</div>
+{% endblock %}

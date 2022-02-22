@@ -14,13 +14,11 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-/**
- * @Route("/restaurant")
- */
+
 class RestaurantController extends AbstractController
 {
     /**
-     * @Route("/", name="restaurant_index", methods={"GET"})
+     * @Route("/afficherrestaurant", name="restaurant_index", methods={"GET"})
      */
     public function showBack(RestaurantRepository $restaurantRepository): Response
     {
@@ -45,19 +43,8 @@ class RestaurantController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $restaurant = new Restaurant();
-        $form = $this->createForm(RestaurantType::class, $restaurant)
-        ->add('image', FileType::class, [
-            'mapped' => false,
+        $form = $this->createForm(RestaurantType::class, $restaurant);
 
-            'constraints' => [
-                new File([
-                    'mimeTypes' => [
-                        'image/*',
-                    ],
-                    'mimeTypesMessage' => 'vérifier votre fichier',
-                ])
-            ],
-        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,7 +66,7 @@ class RestaurantController extends AbstractController
             $entityManager->persist($restaurant);
             $entityManager->flush();
 
-            return $this->redirectToRoute('restaurant_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('restaurant_index');
         }
 
         return $this->render('restaurant/new.html.twig', [
@@ -97,6 +84,8 @@ class RestaurantController extends AbstractController
     //         'restaurant' => $restaurant,
     //     ]);
     // }
+
+
 
     /**
      * @Route("/{id}/edit", name="restaurant_edit", methods={"GET", "POST"})
@@ -140,6 +129,7 @@ class RestaurantController extends AbstractController
         }
 
         return $this->render('restaurant/edit.html.twig', [
+            'image' => $restaurant->getImage(),
             'restaurant' => $restaurant,
             'form' => $form->createView(),
         ]);

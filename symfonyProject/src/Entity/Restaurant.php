@@ -26,17 +26,27 @@ class Restaurant
 
     /**
      * @ORM\Column(type="bigint")
-     * @Assert\NotBlank (message="Veuillez remplir ce champs")
+     *  @Assert\NotBlank (message="Veuillez remplir ce champs")
+     *  @Assert\Length(min=8  )
+     *
      */
     private $numTel;
 
     /**
      * @ORM\Column(type="datetime")
+     * * @Assert\NotBlank
+     * @Assert\Range(
+     *      min = "now"
+     * )
      */
     private $horraire_ouverture;
 
     /**
      * @ORM\Column(type="datetime")
+     *  * @Assert\NotBlank
+     * @Assert\Range(
+     *      min = "now"
+     * )
      */
     private $horraire_fermeture;
 
@@ -47,6 +57,7 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $image;
 
