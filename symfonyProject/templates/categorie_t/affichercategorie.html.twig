@@ -1,0 +1,53 @@
+{% extends 'base-back.html.twig' %}
+
+
+{% block title %}Listes des Categorie de transport{% endblock %}
+
+{% block body %}
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="page-titles">
+                <h4>La liste des catégories</h4>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{{ path("ajoutercategorie") }}">Ajouter une nouvelle catégorie</a></li>
+                </ol>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-responsive-sm">
+                                <thead>
+                                <tr>
+
+                                    <th class="text-center">Type de transport</th>
+                                    <th class="text-center">image</th>
+
+
+                                    <th class="text-center">Modifier</th>
+                                    <th class="text-center">Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in tablecategorie %}
+                                    <tr>
+                                        <td class="text-center">{{ i.TypeTransport }}</td>
+                                        <td class="text-center"><img style="width:100px;height:100px;" src="{{ asset('uploads/region/' ~ i.imageTransport) }}" class="img-fluid rounded-circle" alt=""></td>
+
+
+                                        <td class="text-center"><a type="button" href="{{ path('modifiercategorie', {'id': i.id}) }}" class="btn btn-rounded btn-outline-warning">Modifier</a></td>
+                                        <td class="text-center"><a type="button" href="{{ path('supprimercategorie', {'id': i.id}) }}" class="btn btn-rounded btn-outline-danger">Supprimer</a></td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# card -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
