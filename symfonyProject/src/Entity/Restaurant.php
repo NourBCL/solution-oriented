@@ -27,14 +27,14 @@ class Restaurant
     /**
      * @ORM\Column(type="bigint")
      *  @Assert\NotBlank (message="Veuillez remplir ce champs")
-     *  @Assert\Length(min=8  )
+     *  @Assert\Length(min=8  ) 
      *
      */
     private $numTel;
 
     /**
      * @ORM\Column(type="datetime")
-     * * @Assert\NotBlank
+     * * @Assert\NotBlank 
      * @Assert\Range(
      *      min = "now"
      * )
@@ -47,6 +47,7 @@ class Restaurant
      * @Assert\Range(
      *      min = "now"
      * )
+     *  @Assert\GreaterThanOrEqual(propertyPath="horraire_ouverture", message="La date du fin doit être supérieure à la date début")
      */
     private $horraire_fermeture;
 
@@ -71,7 +72,7 @@ class Restaurant
         return $this->nom_resto;
     }
 
-    public function setNomResto(string $nom_resto): self
+    public function setNomResto(?string $nom_resto): self
     {
         $this->nom_resto = $nom_resto;
 
@@ -83,7 +84,7 @@ class Restaurant
         return $this->numTel;
     }
 
-    public function setNumTel(string $numTel): self
+    public function setNumTel(?string $numTel): self
     {
         $this->numTel = $numTel;
 
@@ -95,7 +96,7 @@ class Restaurant
         return $this->horraire_ouverture;
     }
 
-    public function setHorraireOuverture(\DateTimeInterface $horraire_ouverture): self
+    public function setHorraireOuverture(?\DateTimeInterface $horraire_ouverture): self
     {
         $this->horraire_ouverture = $horraire_ouverture;
 
@@ -107,7 +108,7 @@ class Restaurant
         return $this->horraire_fermeture;
     }
 
-    public function setHorraireFermeture(\DateTimeInterface $horraire_fermeture): self
+    public function setHorraireFermeture(?\DateTimeInterface $horraire_fermeture): self
     {
         $this->horraire_fermeture = $horraire_fermeture;
 

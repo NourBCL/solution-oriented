@@ -20,33 +20,36 @@
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    {{ form_start(form,{'attr':{
-                                        'class':'form-valide-with-icon'
-                                    }}) }}
+								{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                                    
                                         <div id="wizard_Service" class="tab-pane" role="tabpanel">
 											<div class="row">
 												<div class="col-lg-6 mb-2">
 													<div class="form-group">
 														<label class="text-label">Nom du restaurant</label>
                                                         {{ form_widget(form.nom_resto,{'attr':{'class': 'form-control','placeholder':'Nom du restaurant' }}) }}
+														{{ form_errors(form.nom_resto) }}
 													</div>
 												</div>
 												<div class="col-lg-6 mb-2">
 													<div class="form-group">
 														<label class="text-label">Numéro de telephone</label>
                                                         {{ form_widget(form.numTel,{'attr':{'class': 'form-control','placeholder':'Numero de telephone' }}) }}
+														{{ form_errors(form.numTel) }}
 													</div>
 												</div>
                                                 <div class="col-lg-6 mb-2">
 													<div class="form-group">
 														<label class="text-label">Horraire d'ouverture</label>
                                                         {{ form_widget(form.horraire_ouverture,{'attr':{'class': 'form-control' }}) }}
+														{{ form_errors(form.horraire_ouverture) }}
 													</div>
 												</div>
 												<div class="col-lg-6 mb-2">
 													<div class="form-group">
 														<label class="text-label">Horraire de fermeture</label>
                                                         {{ form_widget(form.horraire_fermeture,{'attr':{'class': 'form-control' }}) }}
+														{{ form_errors(form.horraire_fermeture) }}
 													</div>
 												</div>
 												<div class="col-lg-6 mb-2">

@@ -6,6 +6,8 @@ use App\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=RegionRepository::class)
@@ -21,11 +23,13 @@ class Region
 
     /**
      * @ORM\Column(type="string", length=25)
+     * * @Assert\NotBlank (message="Veuillez remplir ce champs")
      */
     private $nomregion;
     /**
      * @ORM\Column(type="string", length=255)
-     *
+
+     
      */
     private $image;
 
@@ -47,7 +51,7 @@ class Region
         return $this->nomregion;
     }
 
-    public function setNomregion(string $nomregion): self
+    public function setNomregion(?string $nomregion): self
     {
         $this->nomregion = $nomregion;
 
@@ -94,6 +98,14 @@ class Region
     {
         return $this->getNomregion();
     }
+
+   
+
+    
+
+
+
+
     public function getImage(): ?string
     {
         return $this->image;
