@@ -1,0 +1,10 @@
+
+{% block title %}New CommandeT{% endblock %}
+
+{% block body %}
+    <h1>Create new CommandeT</h1>
+
+    {{ include('commande_t/back/_form.html.twig') }}
+
+    <a href="{{ path('commande_t_index_admin') }}">back to list</a>
+{% endblock %}

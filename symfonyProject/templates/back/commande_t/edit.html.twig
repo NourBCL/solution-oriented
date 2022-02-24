@@ -1,0 +1,12 @@
+
+{% block title %}Edit CommandeT{% endblock %}
+
+{% block body %}
+    <h1>Edit CommandeT</h1>
+
+    {{ include('commande_t/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('commande_t_index') }}">back to list</a>
+
+    {{ include('commande_t/_delete_form.html.twig') }}
+{% endblock %}

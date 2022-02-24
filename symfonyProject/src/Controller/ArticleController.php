@@ -20,7 +20,7 @@ class ArticleController extends AbstractController
     /**
      * @param ArticleRepository $articleRepository
      * @return Response
-     * @Route("/index", name="article_index", )
+     * @Route("/Article_list", name="article_index", )
      */
     public function index(ArticleRepository $articleRepository): Response
     {$list_article =$articleRepository->findAll();
@@ -95,7 +95,7 @@ class ArticleController extends AbstractController
      * @param Article $article
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @Route("/{id}", name="article_delete", methods={"POST"})
+     * @Route("/{id}", name="article_delete")
      */
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
@@ -111,8 +111,19 @@ class ArticleController extends AbstractController
         //get the id of the  artical to mapped with the command
         return 0 ;
     }
-function add_to_commande(Commande $commande,Article $article)
-{
-    //add article to commande
+
+
+    function add_to_commande(Article $article,Request $request,$id )
+    {
+    $em = $this->getDoctrine()->getManager();
+    $article = $em->getRepository(Article::class)->find($id);
+    $commande = new Commande();
+    $commande =$this->addcommande($article);
+    $em = $this->getDoctrine()->getManager();
+    $em->persist($commande);
+    $em->flush();
+    return $this->redirectToRoute('index_c');
+
+
 }
 }

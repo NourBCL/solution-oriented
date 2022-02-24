@@ -1,0 +1,22 @@
+
+{% block title %}New CommandeE{% endblock %}
+
+{% block body %}
+<section class="nicdark_section">
+
+    <!--start nicdark_container-->
+    <div class="nicdark_container nicdark_clearfix">
+
+
+        <div class="nicdark_space50"></div>
+        <div class="grid grid_12">
+        <h3 class="subtitle greydark">Ajouer Commande  événement</h3>
+        <div class="nicdark_space20"></div>
+        <div class="nicdark_divider left small"><span class="nicdark_bg_grey2 "></span></div>
+    </div>
+
+        <div class="grid grid_12">
+    {{ include('commande_e/_form.html.twig') }}
+
+    <a href="{{ path('commande_e_index') }}">back to list</a>
+{% endblock %}

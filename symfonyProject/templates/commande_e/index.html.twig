@@ -1,0 +1,38 @@
+
+{% block title %}CommandeE index{% endblock %}
+
+{% block body %}
+    <h1>CommandeE index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_creation</th>
+                <th>Address_destination</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande_e in commande_es %}
+            <tr>
+                <td>{{ commande_e.id }}</td>
+                <td>{{ commande_e.dateCreation ? commande_e.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande_e.addressDestination }}</td>
+                <td>
+                    <a href="{{ path('commande_e_show', {'id': commande_e.id}) }}">show</a>
+                    <a href="{{ path('commande_e_edit', {'id': commande_e.id}) }}">edit</a>
+                    <a href="{{ path('commande_e_delete', {'id': commande_e.id}) }}">delete</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('commande_e_new') }}">Create new</a>
+{% endblock %}

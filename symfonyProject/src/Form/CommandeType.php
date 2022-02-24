@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Article;
 use App\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CommandeType extends AbstractType
 {
@@ -14,7 +16,12 @@ class CommandeType extends AbstractType
         $builder
             ->add('date_commande')
             ->add('adresse_destination')
-            ->add('idArticle')
+            ->add('idArticle',EntityType::class, [
+                'class'=> Article::class,
+                'choice_label'=>'id',
+                'expanded' => 'true',
+                'multiple'=> 'true'
+            ])
         ;
     }
 

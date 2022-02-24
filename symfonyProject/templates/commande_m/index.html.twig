@@ -1,0 +1,54 @@
+{% block title %}List Commande Materie{% endblock %}
+
+{% block body %}
+<section id="nicdark_parallax_title" class="nicdark_section nicdark_imgparallax nicdark_parallaxx_img5">
+
+    <div class="nicdark_filter greydark">
+
+        <!--start nicdark_container-->
+        <div class="nicdark_container nicdark_clearfix">
+
+            <div class="nicdark_space100"></div>
+            <div class="nicdark_space100"></div>
+            <div class="nicdark_space100"></div>
+
+        </div>
+        <!--end nicdark_container-->
+
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_creation</th>
+                <th>Address_destination</th>
+                <th>Total</th>
+                <th>Quantite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande_m in commande_ms %}
+            <tr>
+                <td>{{ commande_m.id }}</td>
+                <td>{{ commande_m.dateCreation ? commande_m.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande_m.addressDestination }}</td>
+                <td>{{ commande_m.total }}</td>
+                <td>{{ commande_m.Quantite }}</td>
+                <td>
+                    <a href="{{ path('commande_m_show', {'id': commande_m.id}) }}">show</a>
+                    <a href="{{ path('commande_m_edit', {'id': commande_m.id}) }}">edit</a>
+                    <a href="{{ path('commande_m_delete', {'id': commande_m.id}) }}">delete</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('commande_m_new') }}">Create new</a>
+{% endblock %}
