@@ -34,6 +34,11 @@ class Commande
      */
     private $idArticle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeE::class, inversedBy="commandes")
+     */
+    private $commandeE_c;
+
     public function __construct()
     {
         $this->idArticle = new ArrayCollection();
@@ -88,6 +93,26 @@ class Commande
     public function removeIdArticle(Article $idArticle): self
     {
         $this->idArticle->removeElement($idArticle);
+
+        return $this;
+    }
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get();
+    }
+
+    public function getCommandeEC(): ?CommandeE
+    {
+        return $this->commandeE_c;
+    }
+
+    public function setCommandeEC(?CommandeE $commandeE_c): self
+    {
+        $this->commandeE_c = $commandeE_c;
 
         return $this;
     }

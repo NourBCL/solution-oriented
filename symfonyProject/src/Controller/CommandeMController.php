@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -120,9 +121,9 @@ class CommandeMController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em>flush();
 
-            return $this->redirectToRoute('commande_m_index', [id=>$id]);
         }
 
         return $this->render('commande_m/edit.html.twig', [
@@ -139,13 +140,15 @@ class CommandeMController extends AbstractController
         $commandeM = $em->getRepository(CommandeM::class)->find($id);
 
         $form = $this->createForm(CommandeMType::class, $commandeM);
+
+        $form->add('Modifier', SubmitType::class);
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em>flush();
 
-            return $this->redirectToRoute('commande_m_index_admin',[ id=>$id]);
+            return $this->redirectToRoute('commande_m_index_admin', ['id'=>$id]);
         }
 
         return $this->render('commande_m/back/edit.html.twig', [

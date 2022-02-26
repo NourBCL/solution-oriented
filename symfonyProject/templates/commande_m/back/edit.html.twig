@@ -44,8 +44,8 @@
                             </div>
                         </div>
                     </div>
-
-                    {{ include('commande_m/back/_form.html.twig', {'button_label': 'Update', 'class':'btn btn-rounded btn-outline-warning'}) }}
+                    {{ form(form.modifier, {'button_label': 'Update', 'class':'btn btn-rounded btn-outline-warning'}) }}
+                   {#  {{ include('commande_m/back/_form.html.twig', {'button_label': 'Update', 'class':'btn btn-rounded btn-outline-warning'}) }}#}
                     {{ form_end(form) }}
                     <a type="button" href="{{ path('commande_m_index_admin') }}"  class="btn btn-rounded btn-outline-warning">back to list</a>
 

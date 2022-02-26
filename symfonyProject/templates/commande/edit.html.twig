@@ -1,10 +1,12 @@
-
 {% block title %}Edit Commande{% endblock %}
 
 {% block body %}
     <h1>Edit Commande</h1>
 
     {{ include('commande/_form.html.twig', {'button_label': 'Update'}) }}
+    <div style="margin:auto">
+    {{ form(form) }}
+        </div>
 
     <a href="{{ path('index_c') }}">back to list</a>
 

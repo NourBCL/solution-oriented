@@ -2,36 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
-use App\Entity\Commande;
-use App\Entity\CommandeE;
-
+use App\Entity\Panier;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-
-
-class CommandeType extends AbstractType
+class PanierType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date_commande')
-            ->add('adresse_destination')
-            ->add('CommandeE_c',EntityType::class,[
-                'class'=>CommandeE::class,'choice_label'=>'id'
-
-
-            ])
+            ->add('list_article')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Commande::class,
+            'data_class' => Panier::class,
         ]);
     }
 }

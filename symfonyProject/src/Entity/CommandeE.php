@@ -17,7 +17,6 @@ class CommandeE
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-
      */
     private $id;
 
@@ -33,13 +32,19 @@ class CommandeE
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank
+     * @Assert\NotBlank (message="a remplir")
      */
     private $address_destination;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="commandeE_c")
+     */
+    private $commandes;
 
     public function __construct()
     {
         $this->id_e = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,6 +102,36 @@ class CommandeE
     public function setAddressDestination(string $address_destination): self
     {
         $this->address_destination = $address_destination;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setCommandeEC($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getCommandeEC() === $this) {
+                $commande->setCommandeEC(null);
+            }
+        }
 
         return $this;
     }

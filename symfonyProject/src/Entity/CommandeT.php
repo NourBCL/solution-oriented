@@ -33,7 +33,7 @@ class CommandeT
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank
+     * @Assert\NotBlank (message="a remplir")
      */
     private $address_destination;
 
