@@ -1,0 +1,51 @@
+
+
+
+    <br>
+    <br>
+    <br>
+   
+
+
+   <div class="content-body">
+    <div class="container-fluid">
+        <div class="page-titles">
+		<center> <h4>Liste Des Restaurants </h4>
+	    	
+        </div>
+        <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-responsive-sm">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">image</th>
+                                                <th class="text-center">Nom du restaurant</th>
+                                                <th class="text-center">Numéro</th>
+                                                <th class="text-center">Horraire d'ouverture</th>
+                                                <th class="text-center">Horraire d'fermeture</th>
+                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for restaurant in restaurants %}
+                                            <tr>
+                                                <td class="text-center"><img class="mx-auto" style="width:100px;height:100px;" src="{{ asset('uploads/restaurant/' ~ restaurant.image) }}" class="img-fluid rounded-circle" alt=""></td>
+                                                <td class="text-center">{{ restaurant.nomResto }}</td>
+                                                <td class="text-center">{{ restaurant.numTel }}</td>
+                                                <td class="text-center">{{ restaurant.horraireOuverture ? restaurant.horraireOuverture|date('d/m/y H:m') : '' }}</td>
+                                                <td class="text-center">{{ restaurant.horraireFermeture ? restaurant.horraireFermeture|date('d/m/y H:m') : '' }}</td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /# card -->
+                    </div>
+    </div>
+</div>
+
