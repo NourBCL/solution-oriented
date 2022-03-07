@@ -783,27 +783,32 @@
         <div class="deznav-scroll">
             <ul class="metismenu" id="menu">
 
-                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                        <i class="flaticon-381-networking"></i>
-                        <span class="nav-text">Gestion des utilisateurs</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li>
-                            <a href="{{ path('utilisateur_showALL') }}">Membres</a></li>
-                    </ul>
-                </li>
 
 
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-381-controls-3"></i>
-                        <span class="nav-text">Gestion des Regions & Restaurants</span>
+                        <span class="nav-text"> Utilisateur</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="">Gestion des restaurants</a></li>
-                        <li><a href="">Gestions des regions</a></li>
 
+                        <li>
+                            <a href="{{ path('utilisateur_showALL') }}">Membre</a></li>
+                        <li><a href="{{ path('admin_show',{'id':app.user.id}) }}">Profile</a></li>
                     </ul>
                 </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-networking"></i>
+                        <span class="nav-text">Restaurant & Région</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li>
+                            <a href="">Gestion des restaurants</a></li>
+                        <li><a href="">Gestions des regions</a></li>
+                    </ul>
+                </li>
+
+
+
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-381-internet"></i>
                         <span class="nav-text">Gestion des evénements</span>

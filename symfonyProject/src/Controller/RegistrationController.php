@@ -21,6 +21,9 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 class RegistrationController extends AbstractController
@@ -41,7 +44,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, GuardAuthenticatorHandler $guardHandler, UtilisateurAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, GuardAuthenticatorHandler $guardHandler, UtilisateurAuthenticator $authenticator, EntityManagerInterface $entityManager, NormalizerInterface $Normalizer): Response
     {
         $user = new Utilisateur();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -83,11 +86,11 @@ class RegistrationController extends AbstractController
                 $user->setImage($newFilename);
             }
 
-
-
-      // $user->setRoles(['ROLE_USER']);
+     //  $user->setRoles(['ROLE_ADMIN']);
             $entityManager->persist($user);
             $entityManager->flush();
+
+          //  $jsonContent=$Normalizer->normalize($user, 'json',['groups'=>'POST:read']);
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,

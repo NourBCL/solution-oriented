@@ -4,12 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
+use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
+
 
 class AdminController extends AbstractController
 {
@@ -34,24 +41,90 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_edit", methods={"GET", "POST"})
+     * @Route("/modifier/{id}",name="modifierUtilisateur")
+     * Method({"GET", "POST"})
      */
-    public function edit(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
+    public function update($id, Request $request) : Response
     {
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+        $utilisateur = new utilisateur();
+        $utilisateur = $this->getDoctrine()
+            ->getRepository(utilisateur::class)
+            ->find($id);
+
+
+        $form = $this->createformbuilder($utilisateur)
+            ->add('nom',TextType::class)
+            ->add('prenom',TextType::class)
+            ->add('email',TextType::class)
+            ->add('num_tel',IntegerType::class)
+
+            ->add('image',FileType::class,[
+                'mapped'=> false,
+                'label'=>' Télécharger une image'
+
+            ])
+            ->add('Modifier',SubmitType::class, [
+                "label_format"=>" modifier ",
+                "attr" => [
+                    "class" => "btn btn-primary"
+
+                ]]
+            )
+
+            ->getForm();
         $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('image_directory'),$filename);
+            $utilisateur->setImage($filename);
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-
-            return $this->redirectToRoute('utilisateur', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('utilisateur_showALL');
         }
-//else { dd($form);}
-        return $this->render('admin/profileAdmin.html.twig', [
-            'utilisateur' => $this->getUser(),
+        return $this->render('utilisateur/EditMembreAdmin.html.twig', [
             'form' => $form->createView(),
+
+
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/Delete/{id}" ,name="delete_admin")
+     *
+     */
+    public function Deleteadmin(Request $request,$id)
+    {
+        $utilisateur = $this->getDoctrine()
+            ->getRepository(utilisateur::class)
+            ->find($id);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($utilisateur);
+        $entityManager->flush();
+
+
+        return $this->redirectToRoute('utilisateur_showALL');
+
+    }
+
+
+
+
+
+
+
+
 
 
 }

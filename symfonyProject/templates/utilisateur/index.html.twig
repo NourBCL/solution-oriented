@@ -33,7 +33,7 @@
                             <th>Date_naissance</th>
                             <th>Email</th>
                             <th>NumTel</th>
-                            <th>actions</th>
+                            <th>Action</th>
                         </tr>
                         </tr>
                         </thead>
@@ -41,7 +41,7 @@
 
                         {% for utilisateur in utilisateurs %}
 
-                            <td><img class="rounded-circle" width="35" src="{{ asset('uploads/image/' ~ app.user.image) }}" alt=""></td>
+                            <td><img class="rounded-circle" width="35" src="{{ asset('uploads/image/' ~ utilisateur.image) }}" alt=""></td>
 
                             <td>{{ utilisateur.nom }}</td>
                             <td>{{ utilisateur.prenom }}</td>
@@ -50,8 +50,8 @@
                             <td><a href="javascript:void(0);"><strong>{{ utilisateur.numTel }}</strong></a></td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                <a href="{{ path('modifierUtilisateur', {'id': utilisateur.id}) }}" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ path('delete_admin', {'id': utilisateur.id}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

@@ -16,7 +16,7 @@ class MessagesController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('messages/index.html.twig', [
+        return $this->render('messages/received.html.twig', [
             'controller_name' => 'MessagesController',
         ]);
     }
@@ -39,7 +39,7 @@ class MessagesController extends AbstractController
             $em->flush();
 
             $this->addFlash("message", "Message envoyé avec succès.");
-            return $this->redirectToRoute("messages");
+            return $this->redirectToRoute("sent");
         }
 
         return $this->render("messages/send.html.twig", [

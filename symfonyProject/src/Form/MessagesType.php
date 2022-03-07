@@ -19,7 +19,7 @@ class MessagesType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 "attr" => [
-                    "class" => "form-control"
+                    "class" => "form-control "
                 ]
             ])
             ->add('message', TextareaType::class, [
@@ -31,7 +31,8 @@ class MessagesType extends AbstractType
                 "class" => Utilisateur::class,
                 "choice_label" => "email",
                 "attr" => [
-                    "class" => "form-control"
+                    "class" => "form-control",
+                    "rows"=>"15"
                 ]
             ])
             ->add('envoyer', SubmitType::class, [

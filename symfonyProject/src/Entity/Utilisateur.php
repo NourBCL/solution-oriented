@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
@@ -21,12 +21,14 @@ class Utilisateur implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * Groups("POST:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank(message="ce champs est obligatoire")
+     *  Groups("POST:read")
      */
     private $email;
 
@@ -38,18 +40,21 @@ class Utilisateur implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     *  Groups("POST:read")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=25)
      * @Assert\NotBlank(message="Veuilliez saisir votre nom")
+     *  Groups("POST:read")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=25)
      * @Assert\NotBlank(message="Veuilliez saisir votre prénom")
+     *  Groups("POST:read")
 
      */
     private $prenom;
@@ -57,6 +62,7 @@ class Utilisateur implements UserInterface
     /**
      * @ORM\Column(type="date")
      * @Assert\Date
+     *  Groups("POST:read")
      */
     private $date_naissance;
 
@@ -64,11 +70,13 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="bigint",length=8)
      * @Assert\Positive(message="le numéro téléphone doit etre positif")
      * @Assert\NotBlank()
+     *  Groups("POST:read")
      */
     private $numTel;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  Groups("POST:read")
      */
     private $image;
 
@@ -79,11 +87,13 @@ class Utilisateur implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="sender", orphanRemoval=true)
+     *  @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $sent;
 
     /**
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="recipient", orphanRemoval=true)
+     *  @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $received;
 

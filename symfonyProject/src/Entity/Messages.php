@@ -39,13 +39,13 @@ class Messages
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="sent")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $sender;
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="received")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $recipient;
 

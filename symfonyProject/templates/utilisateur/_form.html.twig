@@ -28,38 +28,42 @@
 
 
                     </div>
+                <form name="utilisateur" method="post" enctype="multipart/form-data">
+                    <div id="utilisateur">
+                        <div class="mb-3  nicdark_focus nicdark_relative nicdark">
+                            <label for="utilisateur_nom" class="required">Nom</label>
+                            <input type="textType" id="utilisateur_nom" name="utilisateur[nom]"  class=" form-control " required="required" maxlength="25" value="{{ utilisateur.nom }}">
+                        </div>
+
+
+                        <div class="mb-3  nicdark_focus nicdark_relative nicdark">
+                            <label for="utilisateur_prenom" class="required">Prenom</label>
+                            <input type="textType" id="utilisateur_prenom" name="utilisateur[prenom]"   class=" form-control " required="required" maxlength="25" value="{{ utilisateur.prenom }}">
+                        </div>
 
 
 
-                    <form name="utilisateur" method="post">
+                        <div class="mb-3  nicdark_focus nicdark_relative nicdark">
+                            <label for="utilisateur_email" class="required">Email</label>
+                            <input type="textType" id="utilisateur_email" name="utilisateur[email]"  class=" form-control " required="required" maxlength="180" value="{{ utilisateur.email }}">
+                        </div>
 
-    <div id="utilisateur">
-        <div class="mb-3  nicdark_focus nicdark_relative nicdark_icon_text">
-            <label for="utilisateur_nom" class="required">Nom</label>
-            <input type="textType" id="utilisateur_nom" class=" form-control " name="utilisateur[nom]" required="required"  value="{{ utilisateur.nom }}">
-        </div>
-        <div class="mb-3 nicdark_focus nicdark_relative nicdark_icon_text">
-            <label for="utilisateur_prenom" class="required">Prénom</label>
-            <input type="textType" id="utilisateur_prenom" name="utilisateur[prenom]"class="form-control" required="required"  value="{{ utilisateur.prenom }}">
-        </div>
-        <div class="mb-3 nicdark_focus nicdark_relative nicdark_icon_mail">
-            <label for="utilisateur_email" class="required">Email</label>
-            <input type="email" id="utilisateur_email" name="utilisateur[email]" class=" form-control"   required="required" value="{{ utilisateur.email }}">
-        </div>
-        <div class="mb-3 nicdark_focus nicdark_relative nicdark_text">
-            <label for="utilisateur_numTel" class="required">Téléphone</label>
-            <input type="TelType" id="utilisateur_numTel" name="utilisateur[numTel]"  class="form-control"   required="required" value="{{ utilisateur.numTel }}">
-        </div>
-        <div class="mb-3 mb-3 nicdark_focus nicdark_relative nicdark_text">
-            <label for="utilisateur_image" class="required">Image</label>
-            <input type="image" id="utilisateur_image" name="utilisateur[image]" class="form-control" required="required" value="{{ utilisateur.image }}" disabled>
-        </div>
 
-        {{ form_row(form._token) }}
+                        <div class="mb-3  nicdark_focus nicdark_relative nicdark">
+                            <label for="utilisateur_numTel" class="required">Téléphone</label>
+                            <input type="number" id="utilisateur_numTel" name="utilisateur[numTel]"  class=" form-control " required="required" maxlength="8" value="{{ utilisateur.numTel }}">
+                        </div>
+                        <div class="mb-3  nicdark_focus nicdark_relative nicdark">
 
-        <button class="btn bouton">Modifier</button>
-    </div>
-                    </form>
+                            <label for="utilisateur_image" class="required">Changer photo de profile</label>
+                            <input type="file" id="utilisateur_image" name="utilisateur[image]"  class=" form-control " required="required"></div>
+
+
+                        <input type="hidden" id="utilisateur__token" name="utilisateur[_token]"  value="_48fNC5GvbSaxIxk5SM9NonzVv_hmaidnUnXlHg0fwQ"></div>
+
+
+                    <button class="btn bouton">Modifier</button>
+                </form>
 
             </div>
         </div>

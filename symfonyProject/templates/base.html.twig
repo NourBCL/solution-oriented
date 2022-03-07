@@ -84,15 +84,15 @@
                                                                               &nbsp;&nbsp;&nbsp;&nbsp;<span
                                                         class="grey2">|</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <i class="greydark icon-lock"></i>&nbsp;&nbsp;<a
-                                                        class="grey nicdark_mpopup_ajax nicdark_outline"
+                                                        class="grey nicdark_mpopup nicdark_outline"
                                                         href="{{ path('app_logout') }}">DECONNEXION</a>
 
                                                 {% else %}
                                                     <i class="greydark icon-plus"></i>&nbsp;&nbsp;<a
-                                                        class="grey nicdark_mpopup_ajax nicdark_outline"
+                                                        class="grey nicdark_mpopup nicdark_outline"
                                                         href="{{ path('app_register') }}">INSCRIPTION</a>
                                                     <i class="greydark icon-lock"></i>&nbsp;&nbsp;<a
-                                                        class="grey nicdark_mpopup_ajax nicdark_outline"
+                                                        class="grey nicdark_mpopup nicdark_outline"
                                                         href="{{ path('app_login') }}">CONNEXION</a>
                                                 {% endif %}
                                             </h6>
@@ -170,7 +170,7 @@
                                                         class="icon-user"></i></a>
 
                                             <a class="nicdark_btn_icon nicdark_displaynone_responsive nicdark_zoom nicdark_bg_blue_hover  nicdark_marginright10 nicdark_bg_greendark extrasmall  white right"
-                                               href="{{ path('messages',{'id':app.user.id}) }}">Messagerie<i
+                                               href="{{ path('messages',{'id':app.user.id}) }} " >Messagerie<i
                                                         class="icon-user"></i></a>
 
 

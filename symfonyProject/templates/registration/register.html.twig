@@ -54,41 +54,41 @@
 						INSCRIPTION
 					</span>
                     {{ form_start(registrationForm,{'attr': {'novalidate': 'novalidate'}} ) }}
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_text " >
+                    <div class="mb-3 nicdark_focus nicdark_relative nicdark " >
                         {{ form_errors(registrationForm.nom) }}
 
-                        {{ form_widget(registrationForm.nom, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Nom'}})}}
+                        {{ form_widget(registrationForm.nom, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey large subtitle', 'placeholder':'Nom'}})}}
                         <span class="focus-input100"></span>
                     </div>
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_text ">
+                    <div class="mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.prenom) }}
 
-                        {{ form_widget(registrationForm.prenom, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Prénom'}})}}
+                        {{ form_widget(registrationForm.prenom, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey large subtitle', 'placeholder':'Prénom'}})}}
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_mail ">
+                    <div class="mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.email) }}
 
-                        {{ form_widget(registrationForm.email, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Email'}})}}
+                        {{ form_widget(registrationForm.email, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey large subtitle', 'placeholder':'Email'}})}}
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="nicdark_focus nicdark_relative nicdark_icon ">
+                    <div class="mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.date_naissance) }}
 
-                        {{ form_widget(registrationForm.date_naissance, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Date de naissance'}})}}
+                        {{ form_widget(registrationForm.date_naissance, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey medium subtitle'}})}}
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_phone ">
+                    <div class="mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.num_tel) }}
 
-                        {{ form_widget(registrationForm.num_tel, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Téléphone'}})}}
+                        {{ form_widget(registrationForm.num_tel, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey large subtitle', 'placeholder':'Téléphone'}})}}
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_image ">
+                    <div class=" mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.image) }}
 
                         {{ form_widget(registrationForm.image, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Image'}})}}
@@ -97,21 +97,22 @@
 
 
 
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_text ">
+                    <div class="mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.plainPassword)}}
 
-                        {{ form_widget(registrationForm.plainPassword, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle', 'placeholder':'Mot de passe'}})}}
+                        {{ form_widget(registrationForm.plainPassword, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey medium subtitle', 'placeholder':'Mot de passe'}})}}
                         <span class="focus-input100"></span>
                     </div>
 
 
-                    <div class="nicdark_focus nicdark_relative nicdark_icon_text ">
+                    <div class=" mb-3 nicdark_focus nicdark_relative nicdark ">
                         {{ form_errors(registrationForm.agreeTerms)}}
 
                         {{ form_widget(registrationForm.agreeTerms, {'attr':{'class':'form-control nicdark_bg_grey nicdark_border_grey   grey small subtitle'}})}}
                         <span class="focus-input100">
                     </span>
                     </div>
+                    <div></div>
 
 
 
