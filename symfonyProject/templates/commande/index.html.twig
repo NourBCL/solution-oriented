@@ -1,14 +1,25 @@
 
+{% extends 'base.html.twig' %}
 {% block title %}Commande index{% endblock %}
 
 {% block body %}
 
 
     <div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
+
+
+
+
+
 
         <div class="nicdark_textevidence  left overflow_scroll">
-    <table class="table">
-        <thead>
+    <table class="nicdark_table extrabig nicdark_bg_yellow ">
+
+        <thead class="nicdark_border_yellow">
             <tr>
                 <th>Id</th>
                 <th>Date_commande</th>
@@ -16,18 +27,21 @@
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody  class="nicdark_bg_grey nicdark_border_grey">
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
                 <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.adresseDestination }}</td>
                 <td>
-                    <a href="{{ path('show_c', {'id': commande.id}) }}">show</a>
-                    <a href="{{ path('edit_c', {'id': commande.id}) }}">edit</a>
-                    <a href="{{ path('delete_c', {'id': commande.id}) }}">delete</a>
+                    <a href="{{ path('show_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_green small _circle white">show</a>
+                    <a href="{{ path('edit_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_red small _circle white">edit</a>
+                    <a href="{{ path('delete_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_blue small _circle white">delete</a>
+                    <a href="{{ path('checkout') }}" class="nicdark_btn_icon nicdark_bg_blue small _circle white">Checkout</a>
+
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
@@ -38,7 +52,10 @@
 
 
     <a href="{{ path('add_c') }}">Create new</a>
-{#
+    {# <form action="/checkout" method="POST">
+        <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
+    </form> #}
+    {#
 
 
             <table class="nicdark_table extrabig nicdark_bg_orange ">
@@ -99,4 +116,3 @@
 
     </div> #}
         {% endblock %}
-

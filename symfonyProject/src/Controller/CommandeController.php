@@ -1,16 +1,21 @@
 <?php
 
 namespace App\Controller;
-
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 use App\Entity\Article;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+
 
 /**
  * @Route("/commande")
@@ -23,8 +28,9 @@ class CommandeController extends AbstractController
      */
 
     public function index(CommandeRepository $commandeRepository): Response
-    {$list_commande = $commandeRepository->findAll();
-        return $this->render('commande/index.html.twig',[ 'commandes' => $list_commande,
+    {
+        $list_commande = $commandeRepository->findAll();
+        return $this->render('commande/index.html.twig', ['commandes' => $list_commande,
         ]);
 
     }
@@ -58,7 +64,7 @@ class CommandeController extends AbstractController
     ]);
 }*/
 
-    public function add_commande (Request $req): Response
+    public function add_commande(Request $req): Response
     {
         //Etape 1 : Préparation d'un objet vide.
         $commande = new Commande();
@@ -67,29 +73,32 @@ class CommandeController extends AbstractController
         //Etape 2 : Création de formulaire
         $form = $this->createForm(CommandeType::class, $commande);
         //Etape 4 : Récuperation des données.
+        $form->add('Ajouter', SubmitType::class);
+
         $form = $form->handleRequest($req);
         //Etape 5 : Validation du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             //Etape 6 : Création de l'entity manager
-                $em = $this->getDoctrine()->getManager();
-                //Etape 7 : Persister les données dans l'ORM
-                $em->persist($commande);
-                //Etape 8 : Sauvegarde des données dans la base des données
-                $em->flush();
-                return $this->redirectToRoute('index_c');
-            }
+            $em = $this->getDoctrine()->getManager();
+            //Etape 7 : Persister les données dans l'ORM
+            $em->persist($commande);
+            //Etape 8 : Sauvegarde des données dans la base des données
+            $em->flush();
+            return $this->redirectToRoute('index_c');
+        }
         //Etape 3 : Envoi du formulaire.
         return $this->render('commande/new.html.twig', array(
             "form" => $form->createView()
         ));
 
     }
+
     /**
      * @param Commande $commande
      * @return Response
      * @Route("/{id}", name="show_c")
      */
-    public function show($id,Commande $commande): Response
+    public function show($id, Commande $commande): Response
     {
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
@@ -98,37 +107,37 @@ class CommandeController extends AbstractController
 
 
 
-/*
-    public function edit($id,Commande $commande, Request $request,EntityManagerInterface $em): Response
-    {
+    /*
+        public function edit($id,Commande $commande, Request $request,EntityManagerInterface $em): Response
+        {
 
-        $entityManager= $this->getDoctrine()->getManager();
-        $commande = $em->getRepository(Commande::class)->find($id);
-        //$commande->setDateCommande($request->request->get('date_commande'));
-        $em = $this->getDoctrine()->getManager();
-        //$entityManager->persist($commande);
-        //$entityManager->flush();
+            $entityManager= $this->getDoctrine()->getManager();
+            $commande = $em->getRepository(Commande::class)->find($id);
+            //$commande->setDateCommande($request->request->get('date_commande'));
+            $em = $this->getDoctrine()->getManager();
+            //$entityManager->persist($commande);
+            //$entityManager->flush();
 
-        //$com=$rep->find($commande.getId())
-        $form = $this->createForm(CommandeType::class, $commande);
-        //$form->add('edit',SubmitType::class);
-        $form->handleRequest($request);
+            //$com=$rep->find($commande.getId())
+            $form = $this->createForm(CommandeType::class, $commande);
+            //$form->add('edit',SubmitType::class);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $commande = $form->getData();
-            $em->persist($commande);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $commande = $form->getData();
+                $em->persist($commande);
+                $em->flush();
 
-            $this->addFlash('success', 'Commande is updated');
+                $this->addFlash('success', 'Commande is updated');
 
-            return $this->redirectToRoute('index_c', [], Response::HTTP_SEE_OTHER);
-        }
+                return $this->redirectToRoute('index_c', [], Response::HTTP_SEE_OTHER);
+            }
 
-        return $this->render('commande/edit.html.twig', ['commande' => $commande, 'form' => $form->createView(),]);
-        /*return $this->render('commande/edit.html.twig', [
-            'commande' => $commande,
-        ]);
-    }*/
+            return $this->render('commande/edit.html.twig', ['commande' => $commande, 'form' => $form->createView(),]);
+            /*return $this->render('commande/edit.html.twig', [
+                'commande' => $commande,
+            ]);
+        }*/
 
     /**
      * @param Request $request
@@ -137,7 +146,7 @@ class CommandeController extends AbstractController
      * @Route("/{id}/edit", name="edit_c")
      */
 
-    public function edit($id,Commande $commande, Request $request): Response
+    public function edit($id, Commande $commande, Request $request): Response
     {
         //Etape 1 : Prépartion de l'entity manager
         $em = $this->getDoctrine()->getManager();
@@ -146,6 +155,11 @@ class CommandeController extends AbstractController
         //Etape 3 : Préparation de notre form
         $form = $this->createForm(CommandeType::class, $commande);
         //Etape 5 : Récupération du formulaire
+        $form->add('save', SubmitType::class, array(
+            'label' => 'Update',
+            'attr' => array('class' => 'btn btn-primary mt-3')
+        ));
+
         $form = $form->handleRequest($request);
 
         //Etape 6 : Validation du formulaire :
@@ -162,6 +176,7 @@ class CommandeController extends AbstractController
         ));
 
     }
+
     /**
      * @param Request $request
      * @param Article $article
@@ -182,4 +197,53 @@ class CommandeController extends AbstractController
         return $this->redirectToRoute('index_c');
     }
 
+    /**
+     * @return Response
+     * @throws \Stripe\Exception\ApiErrorException
+     * @Route ("/", name="checkout")
+     */
+    public function checkout(): Response
+    {
+
+        Stripe::setApiKey('sk_test_51KYa6PLo1XxC5WhZyg2Otw67MjDhJDnpHNl8xkmxy1NWrSfruIFMnyikQJFh4upAkIrCaISvyV7jlZy8vOEJBlte00MXskCbZg');
+
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => 'Commandeslis',
+                        ],
+                        'unit_amount' => 2000,
+                    ],
+                    'quantity' => 1,
+                ]
+            ],
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl('success_url', [],UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        ]);
+        return $this->redirect($session->url, 303);
+    }
+
+    /**
+     * @return Response
+     * @Route ("/success-url", name="success_url")
+     */
+
+    public function successUrl(): Response
+    {
+        return $this->render('commande/success.html.twig', []);
+    }
+
+    /**
+     * @return Response
+     * @Route ("/cancel-url", name="cancel_url")
+     */
+    public function cancelUrl(): Response
+    {
+        return $this->render('commande/cancel.html.twig', []);
+    }
 }

@@ -37,9 +37,15 @@ class CommandeT
      */
     private $address_destination;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="commmandeT_c")
+     */
+    private $commandesT;
+
     public function __construct()
     {
         $this->id_t = new ArrayCollection();
+        $this->commandesT = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,6 +103,36 @@ class CommandeT
     public function setAddressDestination(string $address_destination): self
     {
         $this->address_destination = $address_destination;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandesT(): Collection
+    {
+        return $this->commandesT;
+    }
+
+    public function addCommandesT(Commande $commandesT): self
+    {
+        if (!$this->commandesT->contains($commandesT)) {
+            $this->commandesT[] = $commandesT;
+            $commandesT->setCommmandeTC($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandesT(Commande $commandesT): self
+    {
+        if ($this->commandesT->removeElement($commandesT)) {
+            // set the owning side to null (unless already changed)
+            if ($commandesT->getCommmandeTC() === $this) {
+                $commandesT->setCommmandeTC(null);
+            }
+        }
 
         return $this;
     }

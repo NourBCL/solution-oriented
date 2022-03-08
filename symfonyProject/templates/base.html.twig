@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="/FRONT/css/nicdark_style.css"> <!--style-->
         <link rel="stylesheet" href="/FRONT/css/nicdark_responsive.css"> <!--nicdark_responsive-->
 
-                                                                  <!--revslider-->
+                                                                         <!--revslider-->
         <link rel="stylesheet" href="/FRONT/css/revslider/settings.css"> <!--revslider-->
     {% endblock %}
     <!--END CSS-->
@@ -162,16 +162,17 @@
                                             </li>
 
                                             <li class="greydark">
-                                                <a href="#">Transport</a>
+                                                <a href="/ajoutertransportuser">Transport</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href=" ">Trouver un transport</a></li>
-                                                    <li>
+                                                    <li><a href="/affichercategorieuser ">Categorie</a></li>
+                                                    {#   <li>
                                                         <a href="#">Covoiturage</a>
                                                         <ul class="sub-menu">
                                                             <li><a href="">Je cherche un covoiturage</a></li>
                                                             <li><a href="">Je propose un covoiturage </a></li>
                                                         </ul>
                                                     </li>
+                                                    #}
                                                 </ul>
                                             </li>
                                             <li class="greydark">
@@ -183,16 +184,6 @@
                                             </li>
                                             <li class="greydark">
                                                 <a href=" ">Contacts</a>
-                                            </li>
-                                            </li>
-                                            <li class="greydark">
-                                                <span class="nicdark_space20">Commandes</span>
-                                                    <ul class="sub-menu" >
-                                                        <li><a href="{{ path('commande_m_index') }}">Commande Materiel</a></li>
-                                                        <li><a href="{{ path('commande_e_index') }}">Commande Evenement</a></li>
-                                                        <li><a href="{{ path('commande_t_index') }}">Commande Transport</a></li>
-
-                                                    </ul>
                                             </li>
                                         </ul>
                                     </nav>
@@ -229,6 +220,7 @@
 
             <div class="nicdark_space50"></div>
 
+
             <!--end-->
         {% endblock %}
         <!--<div class="nicdark_space3 nicdark_bg_gradient"></div>-->
@@ -236,7 +228,8 @@
         <!--start section-->
         <div class="nicdark_section nicdark_bg_greydark">
 
-            <!--start nicdark_container-->
+
+            {#  <!--start nicdark_container-->
             <div class="nicdark_container nicdark_clearfix">
 
                 <div class="nicdark_space30"></div>
@@ -359,7 +352,7 @@
                 <div class="nicdark_space50"></div>
 
             </div>
-            <!--end nicdark_container-->
+            <!--end nicdark_container-->#}
 
         </div>
         <!--end section-->
@@ -368,11 +361,11 @@
         <!--start section-->
         <div class="nicdark_section nicdark_bg_greydark2 ">
 
-            <!--start nicdark_container-->
+            {#  <!--start nicdark_container-->
             <div class="nicdark_container nicdark_clearfix">
 
                 <div class="grid grid_6 nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
-                    <div class="nicdark_space20"></div>
+                   <div class="nicdark_space20"></div>
                     <p class="white">© Copyright 2022 by <span class="grey">GoCamp</span></p>
                 </div>
 
@@ -396,7 +389,7 @@
 
             </div>
             <!--end nicdark_container-->
-
+            #}
         </div>
         <!--end section-->        </div>
 </div>
@@ -407,15 +400,15 @@
     <script src="/FRONT/js/main/jquery-ui.js"></script> <!--Jquery UI-->
     <script src="/FRONT/js/main/excanvas.js"></script> <!--canvas need for ie-->
 
-                                                <!--plugins-->
+                                                       <!--plugins-->
     <script src="/FRONT/FRONT/js/plugins/revslider/jquery.themepunch.tools.min.js"></script> <!--revslider-->
     <script src="/FRONT/FRONT/js/plugins/revslider/jquery.themepunch.revolution.min.js"></script> <!--revslider-->
 
-                                                                                     <!--menu-->
+                                                                                                  <!--menu-->
     <script src="/FRONT/js/plugins/menu/superfish.min.js"></script> <!--superfish-->
     <script src="/FRONTjs/plugins/menu/tinynav.min.js"></script> <!--tinynav-->
 
-                                                           <!--other-->
+                                                                 <!--other-->
     <script src="/FRONT/js/plugins/isotope/isotope.pkgd.min.js"></script> <!--isotope-->
     <script src="/FRONT/js/plugins/mpopup/jquery.magnific-popup.min.js"></script> <!--mpopup-->
     <script src="/FRONT/js/plugins/scroolto/scroolto.js"></script> <!--Scrool To-->
@@ -425,10 +418,10 @@
     <script src="/FRONT/js/plugins/countto/jquery.countTo.js"></script> <!--jquery.countTo-->
     <script src="/FRONT/js/plugins/countdown/jquery.countdown.js"></script> <!--countdown-->
 
-                                                                     <!--settings-->
+                                                                            <!--settings-->
     <script src="/FRONT/js/settings.js"></script> <!--settings-->
     <script src="/FRONT/js/cost-calculator.js"></script> <!--settings-->
-                                                  <!--custom js-->
+                                                         <!--custom js-->
     <script type="text/javascript">
         jQuery(document).ready(function() {
 

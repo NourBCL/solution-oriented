@@ -53,9 +53,15 @@ class CommandeM
      */
     private $id_m;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="CommandeM_c")
+     */
+    private $commandesM;
+
     public function __construct()
     {
         $this->id_m = new ArrayCollection();
+        $this->commandesM = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,4 +152,34 @@ class CommandeM
 
         return $this->$materiel.getPrixM() ;
     }*/
+
+   /**
+    * @return Collection|Commande[]
+    */
+   public function getCommandesM(): Collection
+   {
+       return $this->commandesM;
+   }
+
+   public function addCommandesM(Commande $commandesM): self
+   {
+       if (!$this->commandesM->contains($commandesM)) {
+           $this->commandesM[] = $commandesM;
+           $commandesM->setCommandeMC($this);
+       }
+
+       return $this;
+   }
+
+   public function removeCommandesM(Commande $commandesM): self
+   {
+       if ($this->commandesM->removeElement($commandesM)) {
+           // set the owning side to null (unless already changed)
+           if ($commandesM->getCommandeMC() === $this) {
+               $commandesM->setCommandeMC(null);
+           }
+       }
+
+       return $this;
+   }
 }
