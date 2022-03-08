@@ -22,9 +22,9 @@
                 <td>{{ commande_t.dateCreation ? commande_t.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande_t.addressDestination }}</td>
                 <td>
-                    <a href="{{ path('commande_t_show_admin', {'id': commande_t.id}) }}">show</a>
-                    <a href="{{ path('commande_t_edit_admin', {'id': commande_t.id}) }}">edit</a>
-                    <a href="{{ path('commande_t_delete_admin', {'id': commande_t.id}) }}">delete</a>
+                    <a href="{{ path('commande_t_show', {'id': commande_t.id}) }}">show</a>
+                    <a href="{{ path('commande_t_edit', {'id': commande_t.id}) }}">edit</a>
+                    <a href="{{ path('commande_t_delete', {'id': commande_t.id}) }}">delete</a>
 
                 </td>
             </tr>

@@ -193,7 +193,7 @@ class Commande
   //     //            $totalItem = $itemT['produit']->getPrixT();
   //     //            $totalT += $totalItem ;
   //     //        }
-  //     //        $total = $totalE +$totalM +$totalM ;
+  //     //        $total = $totalE +$totalM +$totalT ;
   //     //        return $total;
   // }
 

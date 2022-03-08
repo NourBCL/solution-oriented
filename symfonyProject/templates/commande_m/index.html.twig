@@ -1,23 +1,16 @@
+{% extends 'base.html.twig' %}
+
 {% block title %}List Commande Materie{% endblock %}
 
 {% block body %}
-<section id="nicdark_parallax_title" class="nicdark_section nicdark_imgparallax nicdark_parallaxx_img5">
-
-    <div class="nicdark_filter greydark">
-
-        <!--start nicdark_container-->
-        <div class="nicdark_container nicdark_clearfix">
-
-            <div class="nicdark_space100"></div>
-            <div class="nicdark_space100"></div>
-            <div class="nicdark_space100"></div>
-
-        </div>
-        <!--end nicdark_container-->
-
-    </div>
-    <table class="table">
-        <thead>
+<div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
+    <div class="nicdark_textevidence  left overflow_scroll">
+    <table class="nicdark_table extrabig nicdark_bg_yellow ">
+        <thead class="nicdark_border_yellow">
             <tr>
                 <th>Id</th>
                 <th>Date_creation</th>
@@ -27,7 +20,7 @@
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody  class="nicdark_bg_grey nicdark_border_grey">
         {% for commande_m in commande_ms %}
             <tr>
                 <td>{{ commande_m.id }}</td>
@@ -36,9 +29,9 @@
                 <td>{{ commande_m.total }}</td>
                 <td>{{ commande_m.Quantite }}</td>
                 <td>
-                    <a href="{{ path('commande_m_show', {'id': commande_m.id}) }}">show</a>
-                    <a href="{{ path('commande_m_edit', {'id': commande_m.id}) }}">edit</a>
-                    <a href="{{ path('commande_m_delete', {'id': commande_m.id}) }}">delete</a>
+                    <a href="{{ path('commande_m_show', {'id': commande_m.id}) }}" class="nicdark_btn_icon nicdark_bg_green small _circle white">show</a>
+                    <a href="{{ path('commande_m_edit', {'id': commande_m.id}) }}" class="nicdark_btn_icon nicdark_bg_red small _circle white">edit</a>
+                    <a href="{{ path('commande_m_delete', {'id': commande_m.id}) }}" class="nicdark_btn_icon nicdark_bg_blue small _circle white">delete</a>
 
                 </td>
             </tr>
@@ -49,6 +42,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
     <a href="{{ path('commande_m_new') }}">Create new</a>
 {% endblock %}

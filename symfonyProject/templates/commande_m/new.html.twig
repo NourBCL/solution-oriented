@@ -1,83 +1,55 @@
-{% extends "base_.html.twig" %}
+{% extends "base.html.twig" %}
 {% block title %}New CommandeM{% endblock %}
 
 {% block body %}
     <h1>Create new Materiel</h1>
 
-    <section id="nicdark_parallax_title" class="nicdark_section nicdark_imgparallax nicdark_parallaxx_img5">
-
-        <div class="nicdark_filter greydark">
-
-            <!--start nicdark_container-->
-            <div class="nicdark_container nicdark_clearfix">
-
-                <div class="nicdark_space100"></div>
-                <div class="nicdark_space100"></div>
-                <div class="nicdark_space100"></div>
-
-            </div>
-            <!--end nicdark_container-->
-
-        </div>
-
-    </section>
-    <!--end section-->
-    <!--start nicdark_container-->
-    <div class="nicdark_container nicdark_clearfix">
-
-
-        <div class="nicdark_space40"></div>
-
-
-        <!--title-->
-        <div class="nicdark_archive1 nicdark_bg_white nicdark_border_grey nicdark_sizing  ">
-            <div class="nicdark_textevidence nicdark_bg_yellow">
-                <h3 class="subtitle greydark"> Modifier commande Materiel </h3>
-                <div class="nicdark_space20"></div>
-                <div class="nicdark_divider left small"><span class="nicdark_bg_grey2 "></span></div>
-            </div>
+    <div class="grid grid_12">
+        <div class="nicdark_space50"></div>
+        <div class="nicdark_space50"></div>
+        <div class="nicdark_space50"></div>
+        <div class="nicdark_space30"></div>
+        <h4>Commande Materiel</h4>
+        <table class="table">
+            <tbody class="nicdark_border_yellow">
             <!--title-->
             {{ form_start(form) }}
-            <div class="nicdark_margin20">
+            <tr>
 
-                <p>date :</p>
-                <div class="nicdark_space5"></div>
+                <th>date_commande  </th>
+                <td>
+
                 {{ form_errors(form.date_creation)}}
                 {{ form_widget(form.date_creation, {'attr':{'class':'nicdark_space5'}}) }}
-                <div class="nicdark_space20"></div>
+                </td>
+            </tr>
 
-
-                <div class="nicdark_space20"></div>
-
-
-                <div class="nicdark_space20"></div>
-                <p>Adresse Destination :</p>
-                <div class="nicdark_space5"></div>
-                <input class="nicdark_bg_grey nicdark_border_grey   grey small subtitle" type="text" value="" size="200">
-                <div class="nicdark_space20"></div>
+            <tr>
+                <th>adresse_destination  </th>
+                <td>
                 {{ form_errors(form.address_destination)}}
                 {{ form_widget(form.address_destination) }}
-                <div class="nicdark_space20"></div>
+                </td>
+            </tr>
 
-
-                <div class="nicdark_space20"></div>
-                <p>Quantite :</p>
-                <div class="nicdark_space20"></div>
+            <tr>
+                <th>Quantite  </th>
+                <td>
                 {{ form_errors(form.quantite)}}
                 {{ form_widget(form.quantite) }}
-                <div class="nicdark_space20"></div>
+                </td>
+            </tr>
+            {{ form_end(form) }}
 
+            </tbody>
+        </table>
 
                 {{ include('commande_m/_form.html.twig') }}
 
                 <a href="{{ path('commande_m_index') }}">back to list</a>
 
-            </div>
-        </div>
-    </div>
-    <h1>Create new CommandeM</h1>
 
-    {{ include('commande_m/_form.html.twig') }}
-    {{ form_end(form) }}
+
+    </div>
 
 {% endblock %}
