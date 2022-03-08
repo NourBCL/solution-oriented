@@ -29,7 +29,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for i in tableregions %}
+                                {% for i in region %}
                                     <tr>
                                         <td class="text-center">{{ i.nomregion }}</td>
                                         <td class="text-center"><img style="width:100px;height:100px;" src="{{ asset('uploads/region/' ~ i.image) }}" class="img-fluid rounded-circle" alt=""></td>
@@ -43,6 +43,10 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+                            <div class="navigation">
+                                                {{ knp_pagination_render(region,'@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',{'rounded': true,'size': 'small' }) }}
+                                                
+                                                </div>
                         </div>
                     </div>
                 </div>
@@ -52,3 +56,42 @@
     </div>
 {% endblock %}
 
+
+
+{% block js %}
+<script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+<script src="/BACK/vendor/global/global.min.js"></script>
+<script src="/BACK/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="/BACK/vendor/chart.js/Chart.bundle.min.js"></script>
+<script src="/BACK/js/custom.min.js"></script>
+<script src="/BACK/js/deznav-init.js"></script>
+<script src="/BACK/vendor/bootstrap-datetimepicker/js/moment.js"></script>
+<script src="/BACK/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<!-- Chart piety plugin files -->
+<script src="/BACK/vendor/peity/jquery.peity.min.js"></script>
+<script src="//code.jquery.com/jquery.js"></script>
+
+
+<!-- Apex Chart -->
+<script src="/BACK/vendor/apexchart/apexchart.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Dashboard 1 -->
+<script src="/BACK/js/dashboard/dashboard-1.js"></script>
+
+<script>
+toastr.options = {
+  
+  "positionClass": "toast-bottom-left"
+  
+}
+{% if msg != "" %}
+    var currenturl = new URL(window.location);
+    console.log(currenturl);
+    currenturl.searchParams.delete("actions");
+    window.history.replaceState({}, "", currenturl);
+    toastr.info("{{msg}}");
+{% endif %}
+</script>
+
+{% endblock %}

@@ -47,4 +47,14 @@ class RegionRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findEntitiesByString($str)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT p
+            FROM App:Region p
+        WHERE p.nomregion LIKE :str'
+
+            )->setParameter('str', '%'.$str.'%')->getResult();
+    }
+
 }

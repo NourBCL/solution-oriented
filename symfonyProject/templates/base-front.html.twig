@@ -14,6 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--meta responsive-->
     {% block css %}
         <!--START CSS-->
+        <link rel="icon" type="image/png" sizes="16x16" href="/BACK/images/favicon.png">
+    <link href="/BACK/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BACK/vendor/chartist/css/chartist.min.css">
+    <link href="/BACK/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/BACK/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="/BACK/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+          <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
         <link rel="stylesheet" href="/FRONT/css/nicdark_style.css"> <!--style-->
         <link rel="stylesheet" href="/FRONT/css/nicdark_responsive.css"> <!--nicdark_responsive-->
 
@@ -30,6 +38,8 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 
     <!--FAVICONS-->
     <link rel="shortcut icon" href="/FRONT/img/favicon/favicon.ico">
@@ -44,9 +54,7 @@
 
 
 <!--start preloader-->
-<div class="nicdark_preloader">
-    <i class="icon-cog green"></i>
-</div>
+
 <!--end preloader-->
 
 <div class="nicdark_site">
@@ -188,7 +196,7 @@
                                     </nav>
 
                                     <div class="nicdark_space20"></div>
-
+  
                                 </div>
 
                             </div>

@@ -18,6 +18,56 @@ class RestaurantRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Restaurant::class);
     }
+    function SearchByRegion($nsc)
+
+    {
+        return $this->createQueryBuilder('o')
+            ->where ('o.idRegion = :idRegion')
+            ->setParameter('idRegion',$nsc)
+            ->getQuery()->getResult();
+        ;
+
+    }
+
+    function SearchNom($nsc)
+
+    {
+        return $this->createQueryBuilder('o')
+            ->where ('o.nom_resto LIKE :nom_restaurant')
+            ->setParameter('nom_restaurant','%'.$nsc.'%')
+            ->getQuery()->getResult();
+        ;
+
+    }
+
+    public function findEntitiesByString($str)
+    {
+
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Restaurant p
+            WHERE p.nom_resto LIKE :str'
+
+        )->setParameter('str', $str);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
+    function tri_asc()
+    {
+        return $this->createQueryBuilder('restaurant')
+            ->orderBy('restaurant.nom_resto ','ASC')
+            ->getQuery()->getResult();
+    }
+    function tri_desc()
+    {
+        return $this->createQueryBuilder('restaurant')
+            ->orderBy('restaurant.nom_resto ','DESC')
+            ->getQuery()->getResult();
+    }
 
     // /**
     //  * @return Restaurant[] Returns an array of Restaurant objects
@@ -47,4 +97,5 @@ class RestaurantRepository extends ServiceEntityRepository
         ;
     }
     */
+    
 }

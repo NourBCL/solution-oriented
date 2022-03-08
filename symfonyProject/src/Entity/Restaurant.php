@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RestaurantRepository::class)
@@ -27,7 +28,7 @@ class Restaurant
     /**
      * @ORM\Column(type="bigint")
      *  @Assert\NotBlank (message="Veuillez remplir ce champs")
-     *  @Assert\Length(min=8  ) 
+     *  @Assert\Length(min=8 ) 
      *
      */
     private $numTel;
@@ -58,9 +59,12 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
+     
+     
      */
     private $image;
+
+    
 
     public function getId(): ?int
     {
@@ -132,10 +136,12 @@ class Restaurant
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
+    
+    
 }
