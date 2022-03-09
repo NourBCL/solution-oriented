@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CommandeM;
 use App\Form\CommandeMType;
 use App\Repository\CommandeMRepository;
+use ContainerOKqm40m\PaginatorInterface_82dac15;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
 use phpDocumentor\Reflection\Types\Integer;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/commandem")
@@ -24,6 +26,7 @@ class CommandeMController extends AbstractController
      */
     public function index(CommandeMRepository $commandeMRepository): Response
     {$list_commandeM = $commandeMRepository->findAll();
+
         return $this->render('commande_m/index.html.twig', [
             'commande_ms' => $list_commandeM,
         ]);
@@ -31,8 +34,13 @@ class CommandeMController extends AbstractController
     /**
      * @Route("/back/list_commandem", name="commande_m_index_admin")
      */
-    public function index_Admin (CommandeMRepository $commandeMRepository): Response
+    public function index_Admin (CommandeMRepository $commandeMRepository,Request $request, PaginatorInterface $paginator): Response
     {$list_commandeM = $commandeMRepository->findAll();
+        $list_commandeM = $paginator->paginate(
+            $list_commandeM,
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 3)/*limit per page*/
+        );
         return $this->render('/commande_m/back/index.html.twig', [
             'commande_ms' => $list_commandeM,
         ]);

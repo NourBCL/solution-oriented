@@ -14,15 +14,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-
-
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
- * @Route("/commande")
+ * @Route ("/commande")
  */
 class CommandeController extends AbstractController
 {
     /**
+     * @param CommandeRepository $commandeRepository
      * @return Response
      * @Route("/list_commande",name="index_c")
      */
@@ -32,8 +34,8 @@ class CommandeController extends AbstractController
         $list_commande = $commandeRepository->findAll();
         return $this->render('commande/index.html.twig', ['commandes' => $list_commande,
         ]);
-
     }
+
 
     /**
      * @param Request $req
@@ -94,11 +96,10 @@ class CommandeController extends AbstractController
     }
 
     /**
-     * @param Commande $commande
      * @return Response
-     * @Route("/{id}", name="show_c")
+     * @Route("/commande/{id}", name="show_c")
      */
-    public function show($id, Commande $commande): Response
+    public function show( Commande $commande): Response
     {
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
@@ -155,10 +156,6 @@ class CommandeController extends AbstractController
         //Etape 3 : Préparation de notre form
         $form = $this->createForm(CommandeType::class, $commande);
         //Etape 5 : Récupération du formulaire
-        $form->add('save', SubmitType::class, array(
-            'label' => 'Update',
-            'attr' => array('class' => 'btn btn-primary mt-3')
-        ));
 
         $form = $form->handleRequest($request);
 
@@ -182,7 +179,7 @@ class CommandeController extends AbstractController
      * @param Article $article
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @Route("/delete/{id}", name="delete_c")
+     * @Route("/commande/delete/{id}", name="delete_c")
      */
 
     public function delete($id, Request $request)
@@ -228,22 +225,58 @@ class CommandeController extends AbstractController
         return $this->redirect($session->url, 303);
     }
 
+
     /**
      * @return Response
-     * @Route ("/success-url", name="success_url")
+     * @Route ("/accueil/success_url", name="success_url")
      */
 
-    public function successUrl(): Response
+    public function successUrl( ): Response
     {
-        return $this->render('commande/success.html.twig', []);
+      // $pdfOptions->set('defaultFont', 'Arial');
+      // $pdfOptions = new Options();
+
+      // // Instantiate Dompdf with our options
+      // $dompdf = new Dompdf($pdfOptions);
+
+      // // Retrieve the HTML generated in our twig file
+      // $html = $this->renderView('commande/success.html.twig', [
+      //     'title' => "Welcome to our PDF Test"
+      // ]);
+
+      // // Load HTML to Dompdf
+      // $dompdf->loadHtml($html);
+
+      // // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+      // $dompdf->setPaper('A4', 'portrait');
+
+      // // Render the HTML as PDF
+      // $dompdf->render();
+
+      // // Output the generated PDF to Browser (force download)
+      // $dompdf->stream("mypdf.pdf", [
+      //     "Attachment" => true
+      // ]);
+        return $this->render('accueil/success.html.twig', []);
     }
 
     /**
      * @return Response
-     * @Route ("/cancel-url", name="cancel_url")
+     * @Route ("/accueil/cancel_url", name="cancel_url")
      */
     public function cancelUrl(): Response
     {
-        return $this->render('commande/cancel.html.twig', []);
+        return $this->render('accueil/cancel.html.twig', []);
     }
+    /**
+     * @return Response
+     * @Route ("/facture", name="facture")
+     */
+    public function facture(): Response
+    {
+        return $this->render('accueil/facture.html.twig', [
+        'controller_name' => 'CommandeController',
+        ]);
+    }
+
 }

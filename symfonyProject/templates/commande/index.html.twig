@@ -14,7 +14,16 @@
 
 
 
+    <div class="nicdark_textevidence">
+    <div class="nicdark_margin1820 nicdark_marginleft100 nicdark_marginleft20_iphoneland nicdark_marginleft20_iphonepotr">
+        <div class="nicdark_focus nicdark_width_percentage25">
 
+            <div class="nicdark_focus nicdark_relative nicdark_icon_text">
+                <input  id="search" class="nicdark_bg_white nicdark_border_grey   grey medium subtitle" type="text" placeholder="search.." value="" size="200">
+            </div>
+
+        </div>
+        <br><br>        <br><br>
 
         <div class="nicdark_textevidence  left overflow_scroll">
     <table class="nicdark_table extrabig nicdark_bg_yellow ">
@@ -27,7 +36,7 @@
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody  class="nicdark_bg_grey nicdark_border_grey">
+        <tbody  id="tabcom" class="nicdark_bg_grey nicdark_border_grey">
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
@@ -52,7 +61,25 @@
 
 
     <a href="{{ path('add_c') }}">Create new</a>
+            <a href="{{ path('facture') }}">facture</a>
+
         </div>
+        {#  <div class="nicdark_container nicdark_clearfix">
+
+        <div class="nicdark_space40"></div>
+    <div class="grid grid_6 nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+       {{ knp_pagination_render(commandes,'@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',{'rounded': true,'size': 'small' }) }}
+
+            <a class="nicdark_disable_floatright_iphoneland nicdark_disable_floatright_iphonepotr nicdark_btn nicdark_bg_green medium right   white nicdark_press"><i class="icon-angle-left"></i>&nbsp;&nbsp;&nbsp;PREV</a>
+        </div>
+        <div class="grid grid_6 nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+            <a class=" nicdark_btn nicdark_bg_green medium   white nicdark_press">NEXT&nbsp;&nbsp;&nbsp;<i class="icon-angle-right"></i></a>
+        </div>
+
+        <div class="nicdark_space50"></div>
+        #}
+    </div>
+
     {# <form action="/checkout" method="POST">
         <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
     </form> #}
@@ -116,6 +143,23 @@
         </div>
 
     </div> #}
+
+    {% block javascripts %}
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#tabcom tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+    {% endblock %}
 
 
 {% endblock %}

@@ -29,7 +29,6 @@
         {% for commande_m in commande_ms %}
             <tr>
             <tr>
-                <td class="text-center">
 
                  <td class="text-center">{{ commande_m.id }}</td>
                  <td class="text-center">{{ commande_m.dateCreation ? commande_m.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
@@ -52,6 +51,10 @@
 
         </tbody>
     </table>
+                        <div class="navigation">
+                            {{ knp_pagination_render(commande_ms,'@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',{'rounded': true,'size': 'small' }) }}
+
+                        </div>
                     </div>
                 </div>
             </div>

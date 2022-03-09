@@ -26,4 +26,14 @@ class  AccueilController extends AbstractController
             'controller_name' => 'AccueilController',
         ]);
     }
+    /**
+     * @return Response
+     * @Route ("/facture", name="facturee")
+     */
+    public function facture(): Response
+    {
+        return $this->render('accueil/facture.html.twig');
+    }
+
 }
+

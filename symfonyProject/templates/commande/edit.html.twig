@@ -1,8 +1,8 @@
+{% use 'bootstrap_4_layout.html.twig' %}
 {% extends 'base.html.twig' %}
-{% block title %}Edit Commande{% endblock %}
+{% block title %}Modifier Commande{% endblock %}
 
 {% block body %}
-
 
 
 
@@ -18,7 +18,7 @@
     <div class="nicdark_space30"></div>
 
 
-    <h1>Edit Commande</h1>
+    <h1>Modifier Commande</h1>
 
 
 
@@ -27,7 +27,6 @@
 
 
     {{ form_start(form) }}
-
     <tr>
 
         <th>date_commande  </th>
@@ -90,15 +89,19 @@
         <th> numero commande transport</th>
         <td>
             {{ form_widget(form.commmandeT_c) }}
+        </td>
     </tr>
 
     {#    {{ include('commande/_form.html.twig', {'button_label': 'add', 'class':'btn btn-rounded btn-outline-warning'}) }}#}
 
-    {{ form_end(form) }}
  {#   {{ include('commande/_form.html.twig', {'button_label': 'Update'}) }}#}
 
     </tbody>
     </table>
+        {{ form_row(form.save,{'attr':{'class':"nicdark_btn_icon nicdark_bg_green small _circle white"}}) }}
+
+        {{ form_end(form) }}
+
         <a href="{{ path('index_c') }}">back to list</a>
 
     </div>
