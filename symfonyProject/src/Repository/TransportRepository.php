@@ -19,6 +19,28 @@ class TransportRepository extends ServiceEntityRepository
         parent::__construct($registry, Transport::class);
     }
 
+
+
+    /**
+     *
+     * Requête QueryBuilder
+     */
+    public function listTransportParDateDepart(){
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.date_dep','DESC')
+            ->getQuery()
+            ->getResult()
+
+            ;
+
+    }
+
+
+
+
+
+
+
     // /**
     //  * @return Transport[] Returns an array of Transport objects
     //  */

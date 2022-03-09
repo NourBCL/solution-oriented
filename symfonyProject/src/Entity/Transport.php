@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TransportRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,61 +15,82 @@ class Transport
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=25)
+     *@Assert\NotBlank(message="Lieu depart is required")
      */
     private $lieu_depart;
 
+
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(message="Lieu arrivee is required")
      */
     private $lieu_arrivee;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
+     *   * @Assert\Range(
+     *      min = "now"
+     * )
      */
     private $date_dep;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="date arrivée is required")
+     * @Assert\GreaterThanOrEqual(propertyPath="date_dep",message="La date du fin doit être supérieure à la date début")
      */
     private $date_arrivee;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank(message="heure d'arrivée is required")
      */
     private $heure_arrivee;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank(message="heure de départ is required")
      */
     private $heure_depart;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="date retour is required")
+     *   * @Assert\Range(
+     *      min = "now"
+     * )
+     * @Assert\GreaterThanOrEqual(propertyPath="date_arrivee",message="La date du fin doit être supérieure à la date début")
      */
     private $date_retour;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank(message="heure retour is required")
      */
     private $heure_retour;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="nombres places is required")
      */
     private $nb_place;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="nombres bagages is required")
      */
     private $nb_bagage;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="Prix is required")
      */
     private $prix_t;
 
@@ -78,9 +100,13 @@ class Transport
     private $disponibilite;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieT::class, inversedBy="transports")
+     * @ORM\ManyToOne(targetEntity=CategorieT::class, inversedBy="transport")
      */
-    private $idCat_t;
+    private $categorieT;
+
+
+
+
 
     public function getId(): ?int
     {
@@ -231,15 +257,22 @@ class Transport
         return $this;
     }
 
-    public function getIdCatT(): ?CategorieT
+    public function getCategorieT(): ?CategorieT
     {
-        return $this->idCat_t;
+        return $this->categorieT;
     }
 
-    public function setIdCatT(?CategorieT $idCat_t): self
+    public function setCategorieT(?CategorieT $categorieT): self
     {
-        $this->idCat_t = $idCat_t;
+        $this->categorieT = $categorieT;
 
         return $this;
     }
+
+
+
+
+
+
+
 }

@@ -19,6 +19,22 @@ class CategorieTRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieT::class);
     }
 
+
+    /**
+     *
+     * Requête QueryBuilder
+     */
+    public function listCategorieParType(){
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.type_transport','DESC')
+            ->getQuery()
+            ->getResult()
+
+            ;
+
+    }
+
+
     // /**
     //  * @return CategorieT[] Returns an array of CategorieT objects
     //  */

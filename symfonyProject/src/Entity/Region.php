@@ -6,6 +6,8 @@ use App\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=RegionRepository::class)
@@ -21,26 +23,19 @@ class Region
 
     /**
      * @ORM\Column(type="string", length=25)
+     * * @Assert\NotBlank (message="Veuillez remplir ce champs")
      */
-    private $ville;
+    private $nomregion;
+    /**
+     * @ORM\Column(type="string", length=255)
+
+     
+     */
+    private $image;
+
 
     /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $rue;
-
-    /**
-     * @ORM\Column(type="bigint")
-     */
-    private $code_postal;
-
-    /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $gouvernerat;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="idRegion")
+     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="idRegion",orphanRemoval=true)
      */
     private $restaurants;
 
@@ -49,58 +44,20 @@ class Region
         $this->restaurants = new ArrayCollection();
     }
 
-    public function getId(): ?int
+
+
+    public function getNomregion(): ?string
     {
-        return $this->id;
+        return $this->nomregion;
     }
 
-    public function getVille(): ?string
+    public function setNomregion(?string $nomregion): self
     {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): self
-    {
-        $this->ville = $ville;
+        $this->nomregion = $nomregion;
 
         return $this;
     }
 
-    public function getRue(): ?string
-    {
-        return $this->rue;
-    }
-
-    public function setRue(string $rue): self
-    {
-        $this->rue = $rue;
-
-        return $this;
-    }
-
-    public function getCodePostal(): ?string
-    {
-        return $this->code_postal;
-    }
-
-    public function setCodePostal(string $code_postal): self
-    {
-        $this->code_postal = $code_postal;
-
-        return $this;
-    }
-
-    public function getGouvernerat(): ?string
-    {
-        return $this->gouvernerat;
-    }
-
-    public function setGouvernerat(string $gouvernerat): self
-    {
-        $this->gouvernerat = $gouvernerat;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Restaurant[]
@@ -131,4 +88,35 @@ class Region
 
         return $this;
     }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+
+    public function __toString()
+    {
+        return $this->getNomregion();
+    }
+
+   
+
+    
+
+
+
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+
 }

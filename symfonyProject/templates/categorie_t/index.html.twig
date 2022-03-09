@@ -1,37 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CategorieT index{% endblock %}
+{% block title %}Hello CategorieTController!{% endblock %}
 
 {% block body %}
-    <h1>CategorieT index</h1>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type_transport</th>
-                <th>Image_transport</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorie_t in categorie_ts %}
-            <tr>
-                <td>{{ categorie_t.id }}</td>
-                <td>{{ categorie_t.typeTransport }}</td>
-                <td>{{ categorie_t.imageTransport }}</td>
-                <td>
-                    <a href="{{ path('categorie_t_show', {'id': categorie_t.id}) }}">show</a>
-                    <a href="{{ path('categorie_t_edit', {'id': categorie_t.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    <a href="{{ path('categorie_t_new') }}">Create new</a>
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/fares/Desktop/mariem/symfonyProject/src/Controller/CategorieTController.php'|file_link(0) }}">src/Controller/CategorieTController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/fares/Desktop/mariem/symfonyProject/templates/categorie_t/index.html.twig'|file_link(0) }}">templates/categorie_t/index.html.twig</a></code></li>
+    </ul>
+</div>
 {% endblock %}

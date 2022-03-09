@@ -6,9 +6,13 @@ use App\Repository\CategorieERepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=CategorieERepository::class)
+ * @UniqueEntity("nomCat_e")
  */
 class CategorieE
 {
@@ -20,7 +24,8 @@ class CategorieE
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nomCat_e;
 
@@ -30,12 +35,13 @@ class CategorieE
     private $image_e;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
-    private $description;
+    private $desciption;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="idCat_e")
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="categorie")
      */
     private $evenements;
 
@@ -47,6 +53,10 @@ class CategorieE
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __toString() {
+        return $this->nomCat_e;
     }
 
     public function getNomCatE(): ?string
@@ -73,14 +83,14 @@ class CategorieE
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDesciption(): ?string
     {
-        return $this->description;
+        return $this->desciption;
     }
 
-    public function setDescription(string $description): self
+    public function setDesciption(string $desciption): self
     {
-        $this->description = $description;
+        $this->desciption = $desciption;
 
         return $this;
     }
@@ -97,7 +107,7 @@ class CategorieE
     {
         if (!$this->evenements->contains($evenement)) {
             $this->evenements[] = $evenement;
-            $evenement->setIdCatE($this);
+            $evenement->setCategorie($this);
         }
 
         return $this;
@@ -107,8 +117,8 @@ class CategorieE
     {
         if ($this->evenements->removeElement($evenement)) {
             // set the owning side to null (unless already changed)
-            if ($evenement->getIdCatE() === $this) {
-                $evenement->setIdCatE(null);
+            if ($evenement->getCategorie() === $this) {
+                $evenement->setCategorie(null);
             }
         }
 

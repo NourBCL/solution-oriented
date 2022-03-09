@@ -2,92 +2,162 @@
 
 namespace App\Controller;
 
+
+
 use App\Entity\CategorieT;
-use App\Form\CategorieTType;
+use App\Form\CategorieTranspType;
 use App\Repository\CategorieTRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/categorie/t")
- */
 class CategorieTController extends AbstractController
 {
     /**
-     * @Route("/", name="categorie_t_index", methods={"GET"})
+     * @Route("/categorie/t", name="categorie_t")
      */
-    public function index(CategorieTRepository $categorieTRepository): Response
+    public function index(): Response
     {
         return $this->render('categorie_t/index.html.twig', [
-            'categorie_ts' => $categorieTRepository->findAll(),
+            'controller_name' => 'CategorieTController',
         ]);
     }
 
     /**
-     * @Route("/new", name="categorie_t_new", methods={"GET", "POST"})
+     * @Route("/affichercategorietadmin",name="affichercategorie")
+     */
+    public function afficherRegions(CategorieTRepository $repository){
+        $categorie=$repository->listCategorieParType();
+        return $this->render('categorie_t/affichercategorie.html.twig'
+            ,['tablecategorie'=>$categorie]);
+
+    }
+
+    /**
+     * @Route("/ajoutercategorie", name="ajoutercategorie", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $categorieT = new CategorieT();
-        $form = $this->createForm(CategorieTType::class, $categorieT);
+        $categorie = new CategorieT();
+        $form = $this->createForm(CategorieTranspType::class, $categorie);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($categorieT);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('categorie_t_index', [], Response::HTTP_SEE_OTHER);
+            $new=$form->getData();
+            $imageFile = $form->get('image_transport')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        'uploads\region',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $categorie->setImageTransport($newFilename);
+            }
+            $entityManager->persist($categorie);
+            $entityManager->flush();
+            $this->addFlash('success', 'Categorie ajouter');
+
+            return $this->redirectToRoute('affichercategorie');
         }
 
-        return $this->render('categorie_t/new.html.twig', [
-            'categorie_t' => $categorieT,
+        return $this->render('categorie_t/ajoutercategorietransport.html.twig', [
+            'categorie' => $categorie,
             'form' => $form->createView(),
         ]);
     }
-
     /**
-     * @Route("/{id}", name="categorie_t_show", methods={"GET"})
+     * @Route("/{id}/modifiercategorie", name="modifiercategorie", methods={"GET", "POST"})
      */
-    public function show(CategorieT $categorieT): Response
+    public function modifierRegion(Request $request, CategorieT $categorie, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('categorie_t/show.html.twig', [
-            'categorie_t' => $categorieT,
-        ]);
-    }
+        $form = $this->createForm(CategorieTranspType::class, $categorie);
 
-    /**
-     * @Route("/{id}/edit", name="categorie_t_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, CategorieT $categorieT, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(CategorieTType::class, $categorieT);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
 
-            return $this->redirectToRoute('categorie_t_index', [], Response::HTTP_SEE_OTHER);
+            $imageFile = $form->get('image_transport')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        'uploads\region',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $categorie->setImageTransport($newFilename);
+            }
+            $entityManager->flush();
+            $this->addFlash('info', 'Categorie modifier');
+
+            return $this->redirectToRoute('affichercategorie', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('categorie_t/edit.html.twig', [
-            'categorie_t' => $categorieT,
+        return $this->render('categorie_t/modifierCategorie.html.twig', [
+            'image' => $categorie->getImageTransport(),
+            'categorie' => $categorie,
             'form' => $form->createView(),
+
         ]);
     }
 
     /**
-     * @Route("/{id}", name="categorie_t_delete", methods={"POST"})
+     * @Route("/supprimercategorie/{id}", name="supprimercategorie")
      */
-    public function delete(Request $request, CategorieT $categorieT, EntityManagerInterface $entityManager): Response
+    public function supprimercategorie($id, Request $req): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorieT->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($categorieT);
-            $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('categorie_t_index', [], Response::HTTP_SEE_OTHER);
+        $entityManager = $this->getDoctrine()->getManager();
+        $repo = $this->getDoctrine()->getRepository(CategorieT::class);
+        $categorie = $repo->find($id);
+        $entityManager->remove($categorie);
+        $entityManager->flush();
+        $this->addFlash('error', 'Categorie supprimer');
+
+        return $this->redirectToRoute('affichercategorie', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    /**
+     * @Route("/affichercategorieuser",name="affichercategorieuser")
+     */
+    public function afficherRegionsUser(CategorieTRepository $repository){
+        $categorie=$repository->findAll();
+        return $this->render('categorie_t/affichercategoriefront.html.twig'
+            ,['tablecategorie'=>$categorie]);
+
+    }
+
+    /**
+     * @Route("/transportfront/{id}",name="get_transport")
+     */
+
+    public function getCategorieById (CategorieTRepository $repository, Request $request)
+    {
+        $id = $request->get('id');
+
+        $transport = $repository->findOneBy(['id' => $id]);
+
+
+
+
+        return $this->render("transport/affichertransportuser.html.twig",['transport' => $transport]) ;
+
+    }
+
+
+
+
+
 }

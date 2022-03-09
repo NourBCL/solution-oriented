@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\EvenementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -19,16 +22,25 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank
      */
     private $nom_e;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual(value = "today")
      */
     private $date_deb;
 
     /**
      * @ORM\Column(type="date")
+     *  @Assert\GreaterThanOrEqual(value = "today")
+     * @Assert\Expression(
+     *     "this.getDateFin() >= this.getDateDeb()",
+     *     message="Verifier votre date"
+     * )
+     * )
+
      */
     private $date_fin;
 
@@ -39,18 +51,21 @@ class Evenement
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $description;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank
      */
     private $prix_e;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieE::class, inversedBy="evenements")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idCat_e;
+    private $categoryId;
 
     public function getId(): ?int
     {
@@ -129,14 +144,14 @@ class Evenement
         return $this;
     }
 
-    public function getIdCatE(): ?CategorieE
+    public function getCategoryId(): ?CategorieE
     {
-        return $this->idCat_e;
+        return $this->categoryId;
     }
 
-    public function setIdCatE(?CategorieE $idCat_e): self
+    public function setCategoryId(?CategorieE $categoryId): self
     {
-        $this->idCat_e = $idCat_e;
+        $this->categoryId = $categoryId;
 
         return $this;
     }

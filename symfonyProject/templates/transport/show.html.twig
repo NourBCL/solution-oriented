@@ -3,68 +3,167 @@
 {% block title %}Transport{% endblock %}
 
 {% block body %}
-    <h1>Transport</h1>
 
-    <table class="table">
-        <tbody>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <div class="page-header">
+                        <h3 class="page-title">  </h3>
+                        <div class="nicdark_space20"></div>
+                    <h3 class="page-title">Liste des transports</h3>
+
+            <nav aria-label="breadcrumb">
+    {% if transports %}
+                <div class="nicdark_space20"></div>
+        <div class="nicdark_textevidence nicdark_bg_grey   left overflow_scroll">
+            <table class="nicdark_table extrabig nicdark_bg_yellow  ">
+                <thead class="nicdark_border_yellow">
+                <tr>
+                    {#  <td class="nicdark_width_percentage1"><h4 class="white">#</h4></td>#}
+                    <td><h4 class="white">ID</h4></td>
+                    <td><h4 class="white">Lieu_depart</h4></td>
+                    <td><h4 class="white">Lieu_arrivee</h4></td>
+                    <td><h4 class="white">Date_dep</h4></td>
+                    <td><h4 class="white">Date_arrivee</h4></td>
+                    <td><h4 class="white">Date_retour</h4></td>
+                    <td><h4 class="white">Heure_depart</h4></td>
+                    <td><h4 class="white">Heure_arrivee</h4></td>
+                    <td><h4 class="white">Heure_retour</h4></td>
+                    <td><h4 class="white">Nb_place</h4></td>
+                    <td><h4 class="white">Nb_bagage</h4></td>
+                    <td><h4 class="white">Prix_t</h4></td>
+                    <td><h4 class="white">Disponibilite </h4></td>
+                    <td><h4 class="white">actions</h4></td>
+                </tr>
+                </thead>
+                <tbody class="nicdark_bg_grey nicdark_border_grey">
+                {% for transport in transports %}
+                    <tr>
+                        <td>{{ transport.id }}</td>
+                        <td>{{ transport.lieuDepart }}</td>
+                        <td>{{ transport.lieuArrivee }}</td>
+                        <td>{{ transport.dateDep ? transport.dateDep|date('Y-m-d') : '' }}</td>
+                        <td>{{ transport.dateArrivee ? transport.dateArrivee|date('Y-m-d') : '' }}</td>
+                        <td>{{ transport.dateRetour ? transport.dateRetour|date('Y-m-d') : '' }}</td>
+                        <td>{{ transport.heureArrivee ? transport.heureArrivee|date('H:i:s') : '' }}</td>
+                        <td>{{ transport.heureDepart ? transport.heureDepart|date('H:i:s') : '' }}</td>
+                        <td>{{ transport.heureRetour ? transport.heureRetour|date('H:i:s') : '' }}</td>
+                        <td>{{ transport.nbPlace }}</td>
+                        <td>{{ transport.nbBagage }}</td>
+                        <td>{{ transport.prixT }}</td>
+                        <td>{{ transport.disponibilite ? 'Yes' : 'No' }}</td>
+                        <td>
+                            <a href="{{ path('edittransport', {'id': transport.id}) }}" class="btn" type="button">edit</a>
+                            <form method="post" action="{{ path('transportd', {'id': transport.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ transport.id) }}">
+                                <button class="btn">delete</button>
+                            </form>
+                            <div class="nicdark_space20"></div>
+                        </td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="14">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% endif %}
+
+        </div>
+            </nav>      </div>    </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% endblock %}
+
+
+    {#  <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
-                <td>{{ transport.id }}</td>
-            </tr>
-            <tr>
                 <th>Lieu_depart</th>
-                <td>{{ transport.lieuDepart }}</td>
-            </tr>
-            <tr>
+                <div class="nicdark_space20"></div>
                 <th>Lieu_arrivee</th>
-                <td>{{ transport.lieuArrivee }}</td>
-            </tr>
-            <tr>
                 <th>Date_dep</th>
-                <td>{{ transport.dateDep ? transport.dateDep|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Date_arrivee</th>
-                <td>{{ transport.dateArrivee ? transport.dateArrivee|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Heure_arrivee</th>
-                <td>{{ transport.heureArrivee ? transport.heureArrivee|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Heure_depart</th>
-                <td>{{ transport.heureDepart ? transport.heureDepart|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Date_retour</th>
-                <td>{{ transport.dateRetour ? transport.dateRetour|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Heure_retour</th>
-                <td>{{ transport.heureRetour ? transport.heureRetour|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Nb_place</th>
-                <td>{{ transport.nbPlace }}</td>
-            </tr>
-            <tr>
                 <th>Nb_bagage</th>
-                <td>{{ transport.nbBagage }}</td>
-            </tr>
-            <tr>
                 <th>Prix_t</th>
-                <td>{{ transport.prixT }}</td>
-            </tr>
-            <tr>
                 <th>Disponibilite</th>
-                <td>{{ transport.disponibilite ? 'Yes' : 'No' }}</td>
+                <th>actions</th>
             </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for transport in transports %}
+                <tr>
+                    <td>{{ transport.id }}</td>
+                    <td>{{ transport.lieuDepart }}</td>
+                    <td>{{ transport.lieuArrivee }}</td>
+                    <td>{{ transport.dateDep ? transport.dateDep|date('Y-m-d') : '' }}</td>
+                    <td>{{ transport.dateArrivee ? transport.dateArrivee|date('Y-m-d') : '' }}</td>
+                    <td>{{ transport.heureArrivee ? transport.heureArrivee|date('H:i:s') : '' }}</td>
+                    <td>{{ transport.heureDepart ? transport.heureDepart|date('H:i:s') : '' }}</td>
+                    <td>{{ transport.dateRetour ? transport.dateRetour|date('Y-m-d') : '' }}</td>
+                    <td>{{ transport.heureRetour ? transport.heureRetour|date('H:i:s') : '' }}</td>
+                    <td>{{ transport.nbPlace }}</td>
+                    <td>{{ transport.nbBagage }}</td>
+                    <td>{{ transport.prixT }}</td>
+                    <td>{{ transport.disponibilite ? 'Yes' : 'No' }}</td>
+                    <td>
+                         <a href="{{ path('edittransport', {'id': transport.id}) }}">edit</a>
+                        <a href="{{ path('transportd', {'id': transport.id}) }}">delete</a>
+                        <div class="nicdark_space20"></div>
+                    </td>
 
-    <a href="{{ path('transport_index') }}">back to list</a>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('transport_edit', {'id': transport.id}) }}">edit</a>
+    {% endif %}
 
-    {{ include('transport/_delete_form.html.twig') }}
+                </div>    </div>    </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
+     #}

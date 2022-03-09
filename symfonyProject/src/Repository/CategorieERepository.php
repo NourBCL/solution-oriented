@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\CategorieE;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,19 @@ class CategorieERepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CategorieE::class);
+    }
+
+    public function getEvents($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT *  FROM evenement WHERE category_id_id = :id';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue('id',$id);
+        $result =  $stmt->executeQuery();
+
+        return $result->fetchAllAssociative();
     }
 
     // /**

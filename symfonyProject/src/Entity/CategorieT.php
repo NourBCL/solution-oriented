@@ -6,6 +6,7 @@ use App\Repository\CategorieTRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieTRepository::class)
@@ -21,23 +22,30 @@ class CategorieT
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(message="type transport is required")
      */
     private $type_transport;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $image_transport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="idCat_t")
+     * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="categorieT",orphanRemoval=true)
      */
-    private $transports;
+    private $transport;
 
     public function __construct()
     {
-        $this->transports = new ArrayCollection();
+        $this->transport = new ArrayCollection();
     }
+
+
+
+
+
 
     public function getId(): ?int
     {
@@ -68,19 +76,29 @@ class CategorieT
         return $this;
     }
 
-    /**
-     * @return Collection|Transport[]
-     */
-    public function getTransports(): Collection
+
+
+
+
+
+    public function __toString()
     {
-        return $this->transports;
+        return $this->getTypeTransport();
+    }
+
+    /**
+     * @return Collection<int, Transport>
+     */
+    public function getTransport(): Collection
+    {
+        return $this->transport;
     }
 
     public function addTransport(Transport $transport): self
     {
-        if (!$this->transports->contains($transport)) {
-            $this->transports[] = $transport;
-            $transport->setIdCatT($this);
+        if (!$this->transport->contains($transport)) {
+            $this->transport[] = $transport;
+            $transport->setCategorieT($this);
         }
 
         return $this;
@@ -88,10 +106,10 @@ class CategorieT
 
     public function removeTransport(Transport $transport): self
     {
-        if ($this->transports->removeElement($transport)) {
+        if ($this->transport->removeElement($transport)) {
             // set the owning side to null (unless already changed)
-            if ($transport->getIdCatT() === $this) {
-                $transport->setIdCatT(null);
+            if ($transport->getCategorieT() === $this) {
+                $transport->setCategorieT(null);
             }
         }
 

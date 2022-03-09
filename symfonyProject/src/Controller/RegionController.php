@@ -3,91 +3,199 @@
 namespace App\Controller;
 
 use App\Entity\Region;
+
 use App\Form\RegionType;
+use App\Form\RestaurantType;
 use App\Repository\RegionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Restaurant;
+use MercurySeries\FlashyBundle\FlashyNotifier;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
 
-/**
- * @Route("/region")
- */
+
+
 class RegionController extends AbstractController
 {
-    /**
-     * @Route("/", name="region_index", methods={"GET"})
+   
+/**
+     * @Route("/recherche_rest", name="ajaxsearch")
      */
-    public function index(RegionRepository $regionRepository): Response
+    public function searchAction(Request $request)
     {
-        return $this->render('region/index.html.twig', [
-            'regions' => $regionRepository->findAll(),
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $region = $em->getRepository(Region::class)->findEntitiesByString($requestString);
+        if (!$region) {
+            $result['region']['error'] = "region introuvable ";
+        } else {
+            $result['region'] = $this->getRealEntities($region);
+        }
+        return new Response(json_encode($result));
+    }
+    public function getRealEntities($region)
+    {
+        foreach ($region as $region) {
+            $realEntities[$region->getId()] = [$region->getNomregion()];
+        }
+        return $realEntities;
     }
 
     /**
-     * @Route("/new", name="region_new", methods={"GET", "POST"})
+     * @Route("/afficherRegionAdmin",name="afficherregion")
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function afficherRegions(RegionRepository $repository,Request $request , PaginatorInterface $paginator){
+        $region=$this->getDoctrine()->getRepository(region::class)->findAll();
+        $region = $paginator->paginate(
+            $region,  
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 3)/*limit per page*/   
+       );
+       $msg = "";
+       if($request->get("actions") == "delete")
+       {
+           $msg = "Deleted successfully!";
+       }
+        return $this->render('region/afficherRegion.html.twig', [
+            'region' => $region,
+            "msg"=> $msg
+        ]);
+
+
+    }
+    /**
+     * @Route("/afficheruserregion",name="afficherregionUser")
+     */
+    public function afficherRegionsUser(RegionRepository $repository){
+       if (isset($_GET["q"])){
+        return $this->render('region/afficherregionsUser.html.twig'
+        ,['tableregions'=>$repository->findEntitiesByString($_GET["q"]),]);
+    }
+    else{
+        return $this->render('region/afficherregionsUser.html.twig'
+            ,['tableregions'=>$repository->findall(),
+        ]);
+    }
+
+    }
+
+    /**
+     * @Route("/supprimer/{id}", name="supprimerregion")
+     */
+    public function delete($id, Request $req,FlashyNotifier $flashy): Response
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repo = $this->getDoctrine()->getRepository(Region::class);
+        $region = $repo->find($id);
+        $entityManager->remove($region);
+        $entityManager->flush();
+        $flashy->warning('suppression avec succée', 'http://your-awesome-link.com');
+
+        return $this->redirectToRoute('afficherregion', array("actions"=>"delete"), Response::HTTP_SEE_OTHER);
+    }
+
+
+    /**
+     * @Route("/ajouterregion", name="ajouterregion", methods={"GET", "POST"})
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $region = new Region();
         $form = $this->createForm(RegionType::class, $region);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+                $new=$form->getData();
+                $imageFile = $form->get('image')->getData();
+                if ($imageFile) {
+                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                    try {
+                        $imageFile->move(
+                            'uploads\region',
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                    }
+                    $region->setImage($newFilename);
+                }
             $entityManager->persist($region);
             $entityManager->flush();
+            $flashy->success('ajout avec succée', 'http://your-awesome-link.com');
 
-            return $this->redirectToRoute('region_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('afficherregion');
         }
 
-        return $this->render('region/new.html.twig', [
+        return $this->render('region/ajouterregion.html.twig', [
             'region' => $region,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="region_show", methods={"GET"})
+     * @Route("/region/{id}",name="get_restaurants")
      */
-    public function show(Region $region): Response
-    {
-        return $this->render('region/show.html.twig', [
-            'region' => $region,
-        ]);
-    }
 
+    public function getCategorieById (RegionRepository $repository, Request $request)
+    {
+        $id = $request->get('id');
+
+        $region = $repository->findOneBy(['id' => $id]);
+
+
+
+
+        return $this->render("region/listerestaurants.html.twig",['region' => $region]) ;
+
+    }
     /**
-     * @Route("/{id}/edit", name="region_edit", methods={"GET", "POST"})
+     * @Route("/{id}/modifierregion", name="modifierregion", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Region $region, EntityManagerInterface $entityManager): Response
+    public function modifierRegion(Request $request, Region $region, EntityManagerInterface $entityManager,FlashyNotifier $flashy): Response
     {
         $form = $this->createForm(RegionType::class, $region);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
 
-            return $this->redirectToRoute('region_index', [], Response::HTTP_SEE_OTHER);
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        'uploads\region',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $region->setImage($newFilename);
+            }
+            $entityManager->flush();
+            $flashy->success('modification avec sucée', 'http://your-awesome-link.com');
+
+            return $this->redirectToRoute('afficherregion', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('region/edit.html.twig', [
+        return $this->render('region/modifierRegion.html.twig', [
+            'image' => $region->getImage(),
             'region' => $region,
             'form' => $form->createView(),
+
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="region_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Region $region, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$region->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($region);
-            $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('region_index', [], Response::HTTP_SEE_OTHER);
-    }
+
+
 }
