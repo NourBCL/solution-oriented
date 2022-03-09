@@ -233,7 +233,7 @@ class TransportController extends AbstractController
 
 
     /**
-     * @Route("/stat", name="stat")
+     * @Route("/transport/stat", name="stat_transport")
      */
     public function statAction(CategorieTRepository $repo)
     {

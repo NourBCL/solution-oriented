@@ -51,6 +51,7 @@ class RegionController extends AbstractController
      * @Route("/afficherRegionAdmin",name="afficherregion")
      */
     public function afficherRegions(RegionRepository $repository,Request $request , PaginatorInterface $paginator){
+        $region=$repository->listRegionRecherche();
         $region=$this->getDoctrine()->getRepository(region::class)->findAll();
         $region = $paginator->paginate(
             $region,  

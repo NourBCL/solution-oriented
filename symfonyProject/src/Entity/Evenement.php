@@ -67,6 +67,11 @@ class Evenement
      */
     private $categoryId;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $rating;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -152,6 +157,18 @@ class Evenement
     public function setCategoryId(?CategorieE $categoryId): self
     {
         $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): self
+    {
+        $this->rating = $rating;
 
         return $this;
     }

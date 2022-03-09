@@ -22,7 +22,9 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example3" class="display min-w850  dataTable no-footer">
+                    <p style="100px" > <input  id="myInput"  type="text" placeholder="search">
+
+                    <table id="t" class="display min-w850  dataTable no-footer">
                         <thead>
                         <tr>
 
@@ -37,7 +39,7 @@
                         </tr>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myTable">
 
                         {% for utilisateur in utilisateurs %}
 
@@ -106,4 +108,16 @@
         </div>
     </div>
 </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
 {% endblock %}

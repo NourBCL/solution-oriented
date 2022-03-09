@@ -1,0 +1,64 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Magasin{% endblock %}
+{% block body %}
+        <!--start-->
+        <!--start section-->
+        <div class="nicdark_space30"></div>
+        <div class="nicdark_space30"></div>
+        <div class="nicdark_space30"></div>
+        <div class="nicdark_space30"></div>
+        <div class="nicdark_space30"></div>
+        <div class="nicdark_space30"></div>
+
+        <section class="nicdark_section">
+
+            <!--start nicdark_container-->
+            <div class="nicdark_container nicdark_clearfix">
+
+                <div class="nicdark_space50"></div>
+
+                <div class="grid grid_12">
+                    <div class="nicdark_float_right nicdark_width_fix_250 nicdark_width100_responsive nicdark_bg_greydark  nicdark_relative nicdark_icon_select">
+                        <select class="nicdark_bg_greydark2 grey nicdark_padding1020 medium subtitle">
+                            <option>Trier par Prix</option>
+                            <option>Trier par Nom</option>
+                            <option>Trier par Catégorie</option>
+                        </select>
+                    </div>
+                </div>
+
+    <div class="grid grid_3">
+        <div class="container-fluid"
+         <div class="row">
+                    {% for materiel in materiels %}
+
+                    <!-- start product-->
+                    <div class="nicdark_archive1 nicdark_border_grey nicdark_sizing  ">
+                        <img src="{{ asset('uploads/'~materiel.image ) }}"alt="" width="50px" height="50px"/>
+                        <div class="nicdark_textevidence nicdark_bg_greydark">
+                            <h4 class="white nicdark_margin20">{{ materiel.nom }}</h4>
+                        </div>
+
+                        <div class="nicdark_textevidence">
+                            <div class="nicdark_margin20">
+                                <p>{{ materiel.prixM }} DT</p>
+                                <div class="nicdark_space20"></div>
+                                {#   <a href="{{ path('materiel_edit', {'nom du materiel': nom_materiel}) }}" class="grey nicdark_btn nicdark_bg_grey nicdark_border_grey  medium   nicdark_press"><i class="icon-basket"></i>Modifier le produit</a>
+                            <a href="{{ path('materiel_delete', {'nom du materiel': nom_materiel}) }}">Supprimer le produit</a>  #}                      </div>
+                        </div>
+
+                    </div>
+                    <!-- end product-->
+                        <div class="nicdark_space30"></div>
+                        <div class="nicdark_space30"></div>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+
+    </div>
+        </section>
+
+    {{ knp_pagination_render(materiels) }}
+{% endblock %}

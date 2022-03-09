@@ -158,8 +158,10 @@ public function editPass(Request $request, UserPasswordEncoderInterface $passwor
      * @Route("/admin/utilisateurs", name="utilisateur_showALL", methods={"GET"})
      */
 
-    public function showALL(PaginatorInterface $paginator,Request $request): Response
-    { $em = $this->getDoctrine()->getManager();
+    public function showALL(UtilisateurRepository $repository, PaginatorInterface $paginator,Request $request): Response
+    {
+        $utilisateurs=$repository->listUtilisateurTri();
+        $em = $this->getDoctrine()->getManager();
         $utilisateurs = $em->getRepository(Utilisateur::class)->findAll();
 
         $utilisateurs = $paginator->paginate(
@@ -171,10 +173,6 @@ public function editPass(Request $request, UserPasswordEncoderInterface $passwor
             'utilisateurs' => $utilisateurs,
         ]);
     }
-
-
-
-
 
 
 

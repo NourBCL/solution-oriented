@@ -32,7 +32,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
     {% endblock %}
-
+{% block extracss %}{% endblock %}
     <!--google fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,400italic' rel='stylesheet'
@@ -216,9 +216,11 @@
                                                 <li class="greydark">
                                                     <a class="" href="{{ path('afficherregionUser') }}">Restaurant</a>
                                                 </li>
-                                                <li class="greydark nicdark_megamenu">
-                                                    <a href=" ">Magasin</a>
-
+                                                <li class="greydark">
+                                                    <a href="{{ path('list-materiel') }}">Magasin</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="{{ path('materiel_new') }} ">Vendre</a></li>
+                                                    </ul>
                                                 </li>
                                                 <li class="greydark">
                                                     <a href=" ">Contacts</a>
@@ -635,6 +637,7 @@
     </script>
     <!--google analytics-->
 {% endblock %}
-
+{% block extraJS%}
+{% endblock %}
 </body>
 </html>

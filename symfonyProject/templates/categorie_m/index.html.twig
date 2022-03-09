@@ -1,0 +1,77 @@
+ {% extends 'base-back.html.twig' %}
+{% block title %}CategorieM index{% endblock %}
+
+{% block body %}
+    <div style="padding-left:30% ; padding-top:15%" >
+
+    <div class="nicdark_space100" ></div>
+        <form>
+            <input class="form-control" type="text" width="48px" height="48px" name="AfficherClasse" onkeyup="myFunction()" placeholder="Search "  id="myInput" >
+        </form>
+        <div class="nicdark_space100" ></div>
+
+        <h1>CategorieM </h1>
+    <div class="nicdark_space100" ></div>
+    <div class="nicdark_space100"></div>
+
+
+
+    <table class="nicdark_table extrabig nicdark_bg_white ">
+        <thead colspan="2" >
+            <tr >
+                <th colspan="2" >Id</th>
+                <th >NomCatM</th>
+                <th colspan="2">Nom_materiel</th>
+                <th >actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_m in categorie_ms %}
+            <tr >
+                <td colspan="2">{{ categorie_m.id }}</td>
+                <td colspan="2">{{ categorie_m.nomCatM }}</td>
+                <td colspan="2">
+                    <a href="{{ path('categorie_m_show', {'id': categorie_m.id}) }}">show</a>
+                    <a href="{{ path('categorie_m_edit', {'id': categorie_m.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_m_new') }}">Create new</a>
+
+    </div>
+
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i,j, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("events");
+            tr = table.getElementsByTagName("tr");
+            //   alert(td.length);
+            for (i = 0; i < tr.length; i++) {
+                var rowContent = tr[i].textContent;
+                rowContent = rowContent.replace(/[\s]+/g, ' ');
+                //console.log(rowContent);
+
+                if (rowContent) {
+                    if (rowContent.toUpperCase().includes(filter)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+
+            }
+        }
+
+    </script>
+
+{% endblock %}
