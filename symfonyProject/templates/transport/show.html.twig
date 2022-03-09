@@ -1,0 +1,70 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Transport{% endblock %}
+
+{% block body %}
+    <h1>Transport</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ transport.id }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_depart</th>
+                <td>{{ transport.lieuDepart }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_arrivee</th>
+                <td>{{ transport.lieuArrivee }}</td>
+            </tr>
+            <tr>
+                <th>Date_dep</th>
+                <td>{{ transport.dateDep ? transport.dateDep|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_arrivee</th>
+                <td>{{ transport.dateArrivee ? transport.dateArrivee|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure_arrivee</th>
+                <td>{{ transport.heureArrivee ? transport.heureArrivee|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure_depart</th>
+                <td>{{ transport.heureDepart ? transport.heureDepart|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_retour</th>
+                <td>{{ transport.dateRetour ? transport.dateRetour|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure_retour</th>
+                <td>{{ transport.heureRetour ? transport.heureRetour|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nb_place</th>
+                <td>{{ transport.nbPlace }}</td>
+            </tr>
+            <tr>
+                <th>Nb_bagage</th>
+                <td>{{ transport.nbBagage }}</td>
+            </tr>
+            <tr>
+                <th>Prix_t</th>
+                <td>{{ transport.prixT }}</td>
+            </tr>
+            <tr>
+                <th>Disponibilite</th>
+                <td>{{ transport.disponibilite ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('transport_index') }}">back to list</a>
+
+    <a href="{{ path('transport_edit', {'id': transport.id}) }}">edit</a>
+
+    {{ include('transport/_delete_form.html.twig') }}
+{% endblock %}
