@@ -21,8 +21,11 @@ class CategorieMController extends AbstractController
      */
     public function index(CategorieMRepository $categorieMRepository): Response
     {
+
         return $this->render('categorie_m/index.html.twig', [
             'categorie_ms' => $categorieMRepository->findAll(),
+
+
         ]);
     }
 

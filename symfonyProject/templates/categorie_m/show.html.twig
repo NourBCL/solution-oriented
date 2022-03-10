@@ -7,22 +7,20 @@
 {% block body %}
 <div style="padding-left:40% ; padding-top:10%" >
 
-<h1>CategorieM</h1>
+<h1>Categorie du matériel</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ categorie_m.id }}</td>
+                <th>NomCatM</th>
+
             </tr>
             <tr>
-                <th>NomCatM</th>
+                <td>{{ categorie_m.id }}</td>
                 <td>{{ categorie_m.nomCatM }}</td>
             </tr>
-            <tr>
-                <th>Nom_materiel</th>
-                <td>{{ categorie_m.nomMateriel }}</td>
-            </tr>
+
         </tbody>
     </table>
 

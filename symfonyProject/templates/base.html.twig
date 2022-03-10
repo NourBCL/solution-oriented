@@ -142,7 +142,19 @@
 
                                         <div class="grid_2">
                                             <div class="nicdark_space5"></div>
-                                            <a href="#" class="nicdark_btn nicdark_bg_orange  right medium white">RÉSERVER</a>
+                                            <div class="grid_2">
+
+                                                <div class="row">
+
+                                                    <div class="col col-md-6">
+                                                        <a href="{{ path('materiel_new') }}" class="nicdark_btn nicdark_bg_blue  right medium white">VENDRE</a>
+                                                    </div>
+                                                    <div class="col col-md-6">
+                                                        <a href="{{ path('index_c') }}" class="nicdark_btn nicdark_bg_green right medium white">PANIER</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                             <div class="nicdark_space5"></div>
                                         </div>
 
@@ -192,9 +204,6 @@
                                             <ul class="nicdark_menu nicdark_margin010 nicdark_padding50">
 
                                                 <li class="greydark">
-                                                    <a href="{{ path('accueil') }}">Accueil</a>
-                                                </li>
-                                                <li class="greydark">
                                                     <a href="{{ path('evenement_index') }}">Événements</a>
                                                 </li>
 
@@ -218,13 +227,10 @@
                                                 </li>
                                                 <li class="greydark">
                                                     <a href="{{ path('list-materiel') }}">Magasin</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="{{ path('materiel_new') }} ">Vendre</a></li>
-                                                    </ul>
+
                                                 </li>
-                                                <li class="greydark">
-                                                    <a href=" ">Contacts</a>
-                                                </li>
+
+
                                             </ul>
                                         </nav>
                                         <div class="nicdark_space20">

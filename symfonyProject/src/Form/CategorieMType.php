@@ -14,7 +14,7 @@ class CategorieMType extends AbstractType
     {
         $builder
             ->add('nomCatM')
-            ->add('Create', SubmitType::class)
+            ->add('Valider', SubmitType::class)
 
         ;
     }

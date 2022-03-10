@@ -1,77 +1,89 @@
- {% extends 'base-back.html.twig' %}
-{% block title %}CategorieM index{% endblock %}
+{% extends 'base-back.html.twig' %}
 
 {% block body %}
-    <div style="padding-left:30% ; padding-top:15%" >
 
-    <div class="nicdark_space100" ></div>
-        <form>
-            <input class="form-control" type="text" width="48px" height="48px" name="AfficherClasse" onkeyup="myFunction()" placeholder="Search "  id="myInput" >
-        </form>
-        <div class="nicdark_space100" ></div>
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="page-titles">
+                <h4>Ajouter</h4>
+                <ol class="breadcrumb">
 
-        <h1>CategorieM </h1>
-    <div class="nicdark_space100" ></div>
-    <div class="nicdark_space100"></div>
+                    <li class="breadcrumb-item active"><a href="{{ path('categorie_m_new') }}">une nouvelle catégorie</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Liste des catégories des matériels </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table id="t" class="display min-w850  dataTable no-footer">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th >NomCatM</th>
+
+
+                                        <th>Actions</th>
+                                    </tr>
+
+                                    </thead>
+                                    <tbody id="myTable">
+
+                                    {% for categorie_m in categorie_ms %}
+
+
+                                            <td>{{ categorie_m.id }}</td>
+                                            <td>{{ categorie_m.nomCatM }}</td>
+
+
+                                            <td>
+                                                <div class="d-flex">
 
 
 
-    <table class="nicdark_table extrabig nicdark_bg_white ">
-        <thead colspan="2" >
-            <tr >
-                <th colspan="2" >Id</th>
-                <th >NomCatM</th>
-                <th colspan="2">Nom_materiel</th>
-                <th >actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorie_m in categorie_ms %}
-            <tr >
-                <td colspan="2">{{ categorie_m.id }}</td>
-                <td colspan="2">{{ categorie_m.nomCatM }}</td>
-                <td colspan="2">
-                    <a href="{{ path('categorie_m_show', {'id': categorie_m.id}) }}">show</a>
-                    <a href="{{ path('categorie_m_edit', {'id': categorie_m.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                                                    <a href="{{ path('categorie_m_edit', {'id': categorie_m.id}) }}" class="btn btn-rounded btn-outline-danger">Modifier</a>
 
-    <a href="{{ path('categorie_m_new') }}">Create new</a>
 
+                                                </div>
+
+
+                                            </td>
+                                            </tr>
+
+
+                                    {% endfor %}
+                                    </tbody>
+
+
+                                </table>
+                                <div class="navigation">
+                                 {#    {{ knp_pagination_render(utilisateurs,'@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',{'rounded': true,'size': 'small' }) }}
+                                 #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i,j, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("events");
-            tr = table.getElementsByTagName("tr");
-            //   alert(td.length);
-            for (i = 0; i < tr.length; i++) {
-                var rowContent = tr[i].textContent;
-                rowContent = rowContent.replace(/[\s]+/g, ' ');
-                //console.log(rowContent);
-
-                if (rowContent) {
-                    if (rowContent.toUpperCase().includes(filter)) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-
-            }
-        }
-
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
 
 {% endblock %}

@@ -28,65 +28,50 @@
 
         <div class="nicdark_space40"></div>
 
-        <div class="grid grid_12">
-
-            <div class="nicdark_alerts nicdark_bg_orange  ">
-                <p class="white nicdark_size_medium"><i class="icon-cancel-circled-outline iconclose"></i>
-                    <strong>ATTENTION : </strong> SI VOUS N'AVEZ PAS DE COMPTE
-                    <a class="white" href="#"> CLIQUER ICI POUR S'INSCRIRE</a></p>
-            </div>
-
-            <div class="nicdark_space20"></div>
-
-        </div>
 
         <!--title-->
         <div class="nicdark_alerts nicdark_bg_green  ">
-            <p class="white nicdark_size_medium"><i class="bi bi-arrow-down-circle"> <svg xmlns="http://www.w3.org/2000/svg" width="1em" line-height="1em" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-                </svg></i>
-                <strong>DEPOSER VOTRE MATERIEL :</strong></p>
+            <p class="white nicdark_size_medium"><i class="bi bi-arrow-down-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" line-height="1em" fill="currentColor"
+                         class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                    </svg>
+                </i>
+                <strong>DEPOSER VOTRE MATERIELS :</strong></p>
         </div>
-            <!--title-->
+        <!--title-->
         <div class="card-body">
-            <div class="nicdark_margin20">
-                <p>NOM :</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_start(form) }}
-                {{ form_errors(form.nom) }}
-                {{ form_widget(form.nom, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
+            <div class="nicdark_space5"></div>
+            <div class="nicdark_space20"></div>
+            <div class="nicdark_space20"></div>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    {{ form_widget(form.nom,{'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle",'placeholder':'Votre Nom'}}) }}
+                </div>
+                <div class="form-group col-md-6">
+
+                    {{ form_widget(form.prenom,{'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey large subtitle",'placeholder':'Votre Prénom'}}) }}
+                </div>
+            </div>
 
 
-                <div class="nicdark_space20"></div>
-                <p>PRENOM :</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_errors(form.prenom) }}
-                {{ form_widget(form.prenom, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
 
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle",'placeholder':'Votre Email'}}) }}
+                </div>
+                <div class="form-group col-md-6">
 
-                <div class="nicdark_space20"></div>
-                <p>EMAIL :</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_errors(form.email) }}
-                {{ form_widget(form.email, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
+                    {{ form_errors(form.numtel) }}
+                    {{ form_widget(form.numtel, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle",'placeholder':'Téléphone'}}) }}
+                </div>
+            </div>
 
-
-                <div class="nicdark_space20"></div>
-                <p>NUM TEL :</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_errors(form.numtel) }}
-                {{ form_widget(form.numtel, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
-
-
-                {#  <div class="nicdark_space20"></div>
+            {# <div class="nicdark_space20"></div>
                 <p>CATEGORIE MATERIEL:</p>
                 <div class="nicdark_space5"></div>
                 <label for="cat" ></label>
@@ -107,46 +92,50 @@
                 <div class="nicdark_space20"></div> #}
 
 
-                <div class="nicdark_space20"></div>
-                <p>MATERIEL :</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_errors(form.nom_materiel) }}
-                {{ form_widget(form.nom_materiel, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
 
-
-                <p>DESCRIPTION MATERIEL:</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_errors(form.description) }}
-                {{ form_widget(form.description, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
-
-
-                <div class="nicdark_space20"></div>
-                <p>PRIX:</p>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space20"></div>
-                {{ form_errors(form.prix_m) }}
-                {{ form_widget(form.prix_m, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle"}})}}
-                <div class="nicdark_space20"></div>
-
-
-
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_space5"></div>
-                <div class="nicdark_bg_grey nicdark_border_grey   grey small subtitle" type="" value="SUBMIT">
-                {{ form_row(form.Create) }}
+                    <div class="nicdark_space20"></div>
+                    {{ form_errors(form.nom_materiel) }}
+                    {{ form_widget(form.nom_materiel, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle",'placeholder':'Matériel'}}) }}
                 </div>
+                <div class="form-group col-md-6">
 
-                {{ form_end(form) }}
-
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle",'placeholder':'Description'}}) }}
+                </div>
             </div>
-        </div>
 
 
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <div class="nicdark_space20"></div>
+                    {{ form_errors(form.prix_m) }}
+                    {{ form_widget(form.prix_m, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey medium subtitle",'placeholder':'Prix'}})}}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Catégorie du matériel</label>
+                    {{ form_errors(form.categorie) }}
+                    {{ form_widget(form.categorie, {'attr':{'class':"nicdark_bg_grey nicdark_border_grey   grey small subtitle"}}) }}
+                </div>
+            </div>
+
+
+            <div class="nicdark_space5"></div>
+            <div class="nicdark_space5"></div>
+
+
+
+            {{ form_end(form) }}
+
         </div>
+    </div>
+
+
+    </div>
 
     </div>
 {% endblock %}

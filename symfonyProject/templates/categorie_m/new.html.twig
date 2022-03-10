@@ -1,15 +1,15 @@
 {% extends 'base-back.html.twig' %}
 
-{% block title %}New Categorie{% endblock %}
+{% block title %}Ajouter une catégorie {% endblock %}
 
 {% block body %}
 <div style="padding-left:40% ; padding-top:10%" >
 
-<h1>Create new CategorieM</h1>
+<h1>Nouvelle catégorie du matériel</h1>
 
     {{ include('categorie_m/_form.html.twig') }}
 
-    <a href="{{ path('categorie_m_index') }}">back to list</a>
+    <a href="{{ path('categorie_m_index') }}">Retour liste</a>
 {% endblock %}
 
 

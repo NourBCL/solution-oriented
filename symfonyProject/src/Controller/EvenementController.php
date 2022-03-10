@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @Route("/evenement")
+ * @Route("/")
  */
 class EvenementController extends AbstractController
 {

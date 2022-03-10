@@ -88,12 +88,7 @@
                 <div class="collapse navbar-collapse justify-content-between">
                     <div class="header-left">
                         <div class="dashboard_bar">
-                            <div class="input-group search-area d-lg-inline-flex d-none">
-                                <input type="text" class="form-control" placeholder="Search here...">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <ul class="navbar-nav header-right">
@@ -344,16 +339,25 @@
                         <span class="nav-text">Matériels</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="uc-select2.html#">Select 2</a></li>
-                        <li><a href="uc-nestable.html#">Nestedable</a></li>
+                        <li><a href="{{ path('categorie_m_index') }}">Catégorie</a></li>
+                        <li><a href="{{ path('materiel_index') }}">Liste matériels</a></li>
 
                     </ul>
                 </li>
-                <li><a href="widget-basic.html#" class="ai-icon" aria-expanded="false">
-                        <i class="flaticon-381-settings-2"></i>
-                        <span class="nav-text"> Commandes </span>
+
+
+
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-heart"></i>
+                        <span class="nav-text">Commandes</span>
                     </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ path('commande_e_index_admin') }}">Evenements</a></li>
+                        <li><a href="{{ path('commande_m_index_admin') }}">Materiels</a></li>
+                        <li><a href="{{ path('commande_t_index_admin') }}">Transports</a></li>
+                    </ul>
                 </li>
+
 
 
             </ul>

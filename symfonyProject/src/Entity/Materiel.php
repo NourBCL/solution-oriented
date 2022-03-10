@@ -71,6 +71,16 @@ class Materiel
     private $image;
 
     /**
+     * @ORM\ManyToOne(targetEntity=CommandeM::class, inversedBy="materiel")
+     */
+    private $commandeM;
+
+
+
+
+
+
+    /**
      * @return mixed
      */
     public function getNom()
@@ -221,6 +231,18 @@ class Materiel
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCommandeM(): ?CommandeM
+    {
+        return $this->commandeM;
+    }
+
+    public function setCommandeM(?CommandeM $commandeM): self
+    {
+        $this->commandeM = $commandeM;
 
         return $this;
     }

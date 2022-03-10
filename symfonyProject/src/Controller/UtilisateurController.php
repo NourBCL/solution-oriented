@@ -58,7 +58,7 @@ class UtilisateurController extends AbstractController
     public function show(): Response
     {
         return $this->render('utilisateur/utilisateur.html.twig', [
-            'utilisateur' => $this->getUser(),
+            'utilisateur' => $this->getUser()
         ]);
     }
 
@@ -70,43 +70,21 @@ class UtilisateurController extends AbstractController
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()&& $form->isValid()) {
-            /** @var UploadedFile $imageFile */
-            $imageFile = $form->get('image')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-
-                $safeFilename = $originalFilename;
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-
-
-                try {
-                    $imageFile->move(
-                        $this->getParameter('image_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
-                $utilisateur->setImage($newFilename);
-            }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('image_directory'),$filename);
+            $utilisateur->setImage($filename);
+            $entityManager->persist($utilisateur);
             $entityManager->flush();
-
             return $this->redirectToRoute('utilisateur_index', [], Response::HTTP_SEE_OTHER);
         }
-//else { dd($form);}
+
         return $this->render('utilisateur/edit.html.twig', [
             'utilisateur' => $this->getUser(),
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="utilisateur_delete", methods={"POST"})
      *

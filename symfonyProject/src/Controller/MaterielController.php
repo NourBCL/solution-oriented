@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 
 
 /**
@@ -40,7 +44,7 @@ class MaterielController extends AbstractController
 
         $materiel = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos materiels)
-            $request->query->getInt('page', 1),2);
+            $request->query->getInt('page', 1),3);
 
         return $this->render('materiel/magasin.html.twig', [
             'materiels' => $materiel,
@@ -59,6 +63,7 @@ class MaterielController extends AbstractController
 
 
     /**
+     * @IsGranted ("ROLE_USER")
      * @Route("/new", name="materiel_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -144,6 +149,42 @@ class MaterielController extends AbstractController
 
         return $this->redirectToRoute('materiel_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+
+    /**
+     * @Route("/pdf/fatma", name="imprimer", methods={"GET"})
+     */
+    public function pdf(MaterielRepository $materielRepository): Response
+    {
+
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($pdfOptions);
+
+        $html = $this->renderView('materiel/pdf.html.twig', [
+            'materiels' => $materielRepository->findAll(),
+        ]);
+
+        $dompdf->loadHtml($html);
+
+
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();
+
+
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+    }
+
+
+
 }
 
 
