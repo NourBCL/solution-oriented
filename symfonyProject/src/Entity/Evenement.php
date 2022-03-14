@@ -52,6 +52,14 @@ class Evenement
      */
     private $idCat_e;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeE::class, inversedBy="id_e")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $e_c;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +145,30 @@ class Evenement
     public function setIdCatE(?CategorieE $idCat_e): self
     {
         $this->idCat_e = $idCat_e;
+
+        return $this;
+    }
+
+    public function getIdE(): ?CommandeE
+    {
+        return $this->id_e;
+    }
+
+    public function setIdE(?CommandeE $id_e): self
+    {
+        $this->id_e = $id_e;
+
+        return $this;
+    }
+
+    public function getEC(): ?CommandeE
+    {
+        return $this->e_c;
+    }
+
+    public function setEC(?CommandeE $e_c): self
+    {
+        $this->e_c = $e_c;
 
         return $this;
     }

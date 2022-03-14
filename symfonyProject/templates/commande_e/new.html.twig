@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}New CommandeE{% endblock %}
+
+{% block body %}
+    <div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
+    <h4>Commande Evenement</h4>
+    <table  class="nicdark_table extrabig nicdark_bg_yellow ">
+        <tbody class="nicdark_border_yellow">
+
+        {{ form_start(form) }}
+        <tr>
+
+            <th>date_commande  </th>
+            <td>
+
+                {{ form_label(form.date_creation)}}
+
+                {{ form_errors(form.date_creation)}}
+                {{ form_widget(form.date_creation) }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>adresse_destination  </th>
+            <td>
+                {{ form_errors(form.address_destination)}}
+                {{ form_widget(form.address_destination) }}
+
+            </td>
+        </tr>
+        {{ form_end(form) }}
+
+        </tbody>
+    </table>
+    {{include('commande_e/_form.html.twig') }}
+
+{#   <a href="{{ path('commande_e_index') }}">back to list</a>#}
+
+    </div>
+{% endblock %}

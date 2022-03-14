@@ -18,6 +18,18 @@ class CommandeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Commande::class);
     }
+    /**
+     *
+     * Requête QueryBuilder
+     */
+
+    public function searchc(){
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+    }
 
     // /**
     //  * @return Commande[] Returns an array of Commande objects

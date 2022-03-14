@@ -34,6 +34,28 @@ class Commande
      */
     private $idArticle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeE::class, inversedBy="commandes")
+     */
+    private $commandeE_c;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeM::class, inversedBy="commandesM")
+     */
+    private $CommandeM_c;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeT::class, inversedBy="commandesT")
+     */
+    private $commmandeT_c;
+
+ //  /**
+ //   * @ORM\Column(type="float", nullable=true)
+ //   */
+ //  private $Total_c;
+
+
+
     public function __construct()
     {
         $this->idArticle = new ArrayCollection();
@@ -91,4 +113,94 @@ class Commande
 
         return $this;
     }
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->get();
+    }
+
+    public function getCommandeEC(): ?CommandeE
+    {
+        return $this->commandeE_c;
+    }
+
+    public function setCommandeEC(?CommandeE $commandeE_c): self
+    {
+        $this->commandeE_c = $commandeE_c;
+
+        return $this;
+    }
+
+    public function getCommmandeMC(): ?self
+    {
+        return $this->commmandeM_c;
+    }
+
+    public function setCommmandeMC(?self $commmandeM_c): self
+    {
+        $this->commmandeM_c = $commmandeM_c;
+
+        return $this;
+    }
+
+    public function getCommandeMC(): ?CommandeM
+    {
+        return $this->CommandeM_c;
+    }
+
+    public function setCommandeMC(?CommandeM $CommandeM_c): self
+    {
+        $this->CommandeM_c = $CommandeM_c;
+
+        return $this;
+    }
+
+    public function getCommmandeTC(): ?CommandeT
+    {
+        return $this->commmandeT_c;
+    }
+
+    public function setCommmandeTC(?CommandeT $commmandeT_c): self
+    {
+        $this->commmandeT_c = $commmandeT_c;
+
+        return $this;
+    }
+
+  // public function getTotalC(): ?float
+  // {
+  //     return $this ->Total_c;
+  //     //$total = 0;
+  //     //        $totalE = 0;
+  //     //        $totalM = 0;
+  //     //        $totalT = 0;
+  //     //
+  //     //        foreach($this->getCommandeEC() as $itemE)
+  //     //        {
+  //     //            $totalItem = $itemE['produit']->getPrixE();
+  //     //            $totalE += $totalItem ;
+  //     //        }
+  //     //        foreach($this->getCommandeMC() as $itemM)
+  //     //        {
+  //     //            $totalItem = $itemM['produit']->getPrixM() * $itemM['quantite']->getQuantite();
+  //     //            $totalM += $totalItem ;
+  //     //        }
+  //     //        foreach($this->getCommmandeTC() as $itemT)
+  //     //        {
+  //     //            $totalItem = $itemT['produit']->getPrixT();
+  //     //            $totalT += $totalItem ;
+  //     //        }
+  //     //        $total = $totalE +$totalM +$totalT ;
+  //     //        return $total;
+  // }
+
+  // public function setTotalC(?float $Total_c): self
+  // {
+  //     $this->Total_c = $Total_c;
+
+  //     return $this;
+  // }
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommandeE index{% endblock %}
+
+{% block body %}
+
+<div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
+    <div class="nicdark_textevidence  left overflow_scroll">
+
+    <table class="nicdark_table extrabig nicdark_bg_yellow ">
+        <thead class="nicdark_border_yellow">
+            <tr>
+                <th>Id</th>
+                <th>Date_creation</th>
+                <th>Address_destination</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody class="nicdark_bg_grey nicdark_border_grey">
+        {% for commande_e in commande_es %}
+            <tr>
+                <td>{{ commande_e.id }}</td>
+                <td>{{ commande_e.dateCreation ? commande_e.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande_e.addressDestination }}</td>
+                <td>
+                    <a href="{{ path('commande_e_show', {'id': commande_e.id}) }}" class="nicdark_btn_icon nicdark_bg_green small _circle white">show</a>
+                    <a href="{{ path('commande_e_edit', {'id': commande_e.id}) }}" class="nicdark_btn_icon nicdark_bg_red small _circle white">edit</a>
+                    <a href="{{ path('commande_e_delete', {'id': commande_e.id}) }}" class="nicdark_btn_icon nicdark_bg_blue small _circle white">delete</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <a href="{{ path('commande_e_new') }}">Create new</a>
+{% endblock %}

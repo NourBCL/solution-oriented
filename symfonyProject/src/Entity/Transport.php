@@ -82,6 +82,14 @@ class Transport
      */
     private $idCat_t;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeT::class, inversedBy="id_t")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $t_c;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -239,6 +247,30 @@ class Transport
     public function setIdCatT(?CategorieT $idCat_t): self
     {
         $this->idCat_t = $idCat_t;
+
+        return $this;
+    }
+
+    public function getComtran(): ?CommandeT
+    {
+        return $this->comtran;
+    }
+
+    public function setComtran(?CommandeT $comtran): self
+    {
+        $this->comtran = $comtran;
+
+        return $this;
+    }
+
+    public function getTC(): ?CommandeT
+    {
+        return $this->t_c;
+    }
+
+    public function setTC(?CommandeT $t_c): self
+    {
+        $this->t_c = $t_c;
 
         return $this;
     }

@@ -1,12 +1,34 @@
-{% extends 'base.html.twig' %}
 
+{% extends 'base.html.twig' %}
 {% block title %}Commande index{% endblock %}
 
 {% block body %}
-    <h1>Commande index</h1>
 
-    <table class="table">
-        <thead>
+
+    <div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
+
+
+
+
+    <div class="nicdark_textevidence">
+    <div class="nicdark_margin1820 nicdark_marginleft100 nicdark_marginleft20_iphoneland nicdark_marginleft20_iphonepotr">
+        <div class="nicdark_focus nicdark_width_percentage25">
+
+            <div class="nicdark_focus nicdark_relative nicdark_icon_text">
+                <input  id="search" class="nicdark_bg_white nicdark_border_grey   grey medium subtitle" type="text" placeholder="search.." value="" size="200">
+            </div>
+
+        </div>
+        <br><br>        <br><br>
+
+        <div class="nicdark_textevidence  left overflow_scroll">
+    <table class="nicdark_table extrabig nicdark_bg_yellow ">
+
+        <thead class="nicdark_border_yellow">
             <tr>
                 <th>Id</th>
                 <th>Date_commande</th>
@@ -14,17 +36,21 @@
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody  id="tabcom" class="nicdark_bg_grey nicdark_border_grey">
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
                 <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.adresseDestination }}</td>
                 <td>
-                    <a href="{{ path('commande_show', {'id': commande.id}) }}">show</a>
-                    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+                    <a href="{{ path('show_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_green small _circle white">show</a>
+                    <a href="{{ path('edit_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_red small _circle white">edit</a>
+                    <a href="{{ path('delete_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_blue small _circle white">delete</a>
+                    <a href="{{ path('checkout') }}" class="nicdark_btn_icon nicdark_bg_blue small _circle white">Checkout</a>
+
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
@@ -33,5 +59,107 @@
         </tbody>
     </table>
 
-    <a href="{{ path('commande_new') }}">Create new</a>
+
+    <a href="{{ path('add_c') }}">Create new</a>
+            <a href="{{ path('facture') }}">facture</a>
+
+        </div>
+        {#  <div class="nicdark_container nicdark_clearfix">
+
+        <div class="nicdark_space40"></div>
+    <div class="grid grid_6 nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+       {{ knp_pagination_render(commandes,'@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig',{'rounded': true,'size': 'small' }) }}
+
+            <a class="nicdark_disable_floatright_iphoneland nicdark_disable_floatright_iphonepotr nicdark_btn nicdark_bg_green medium right   white nicdark_press"><i class="icon-angle-left"></i>&nbsp;&nbsp;&nbsp;PREV</a>
+        </div>
+        <div class="grid grid_6 nicdark_aligncenter_iphoneland nicdark_aligncenter_iphonepotr">
+            <a class=" nicdark_btn nicdark_bg_green medium   white nicdark_press">NEXT&nbsp;&nbsp;&nbsp;<i class="icon-angle-right"></i></a>
+        </div>
+
+        <div class="nicdark_space50"></div>
+        #}
+    </div>
+
+    {# <form action="/checkout" method="POST">
+        <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
+    </form> #}
+    {#
+
+
+            <table class="nicdark_table extrabig nicdark_bg_orange ">
+                <thead class="nicdark_border_orange">
+                <tr>
+                    <td class="nicdark_width_percentage1"><h4 class="white"></h4></td>
+                    <td class="nicdark_width_percentage1"><h4 class="white"></h4></td>
+                    <td><h4 class="white">ACCOMODATION</h4></td>
+                    <td><h4 class="white">PRICE</h4></td>
+                    <td><h4 class="white">PEOPLE</h4></td>
+                    <td><h4 class="white">TOTAL</h4></td>
+                </tr>
+                </thead>
+                <tbody class="nicdark_bg_white nicdark_border_grey">
+                <tr>
+                    <td><h1><a href="#"><i class="icon-cancel-circled-1 red"></i></a></h1></td>
+                    <td><img alt="" class=" nicdark_opacity" src="img/shop/img1.jpg" width="70"></td>
+                    <td><p>BIG CARAVAN</p></td>
+                    <td><p>$ 20,00</p></td>
+                    <td><p>1</p></td>
+                    <td><p>$ 20,00</p></td>
+                </tr>
+                <tr>
+                    <td><h1><a href="#"><i class="icon-cancel-circled-1 red"></i></a></h1></td>
+                    <td><img alt="" class=" nicdark_opacity" src="img/shop/img2.jpg" width="70"></td>
+                    <td><p>MEDIUM COTTAGE</p></td>
+                    <td><p>$ 40,00</p></td>
+                    <td><p>2</p></td>
+                    <td><p>$ 80,00</p></td>
+                </tr>
+                <tr>
+                    <td><h1><a href="#"><i class="icon-cancel-circled-1 red"></i></a></h1></td>
+                    <td><img alt="" class=" nicdark_opacity" src="img/shop/img3.jpg" width="70"></td>
+                    <td><p>SMALL CARAVAN</p></td>
+                    <td><p>$ 60,00</p></td>
+                    <td><p>1</p></td>
+                    <td><p>$ 60,00</p></td>
+                </tr>
+                <tr>
+                    <td><h1><a href="#"><i class="icon-cancel-circled-1 red"></i></a></h1></td>
+                    <td><img alt="" class=" nicdark_opacity" src="img/shop/img4.jpg" width="70"></td>
+                    <td><p>XLARGE PITCH</p></td>
+                    <td><p>$ 50,00</p></td>
+                    <td><p>2</p></td>
+                    <td><p>$ 100,00</p></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>   #}
+
+     {#   <div class="nicdark_textevidence nicdark_bg_grey nicdark_border_grey nicdark_sizing  right ">
+            <div class="nicdark_space10"></div>
+            <a href="#" class="nicdark_btn nicdark_bg_red nicdark_bg_reddark_hover nicdark_transition medium   white nicdark_margin10"><i class="icon-spin3"></i>&nbsp;&nbsp;&nbsp;UPDATE CART</a>
+            <a href="shop-checkout.html" class="nicdark_btn nicdark_bg_orange nicdark_transition nicdark_bg_orangedark_hover medium   white nicdark_margin10"><i class="icon-basket-1"></i>&nbsp;&nbsp;&nbsp;CHECKOUT</a>&nbsp;&nbsp;
+            <div class="nicdark_space10"></div>
+        </div>
+
+    </div> #}
+
+    {% block javascripts %}
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#tabcom tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+    {% endblock %}
+
+
 {% endblock %}

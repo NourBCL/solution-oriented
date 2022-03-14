@@ -52,6 +52,13 @@ class Materiel
      */
     private $idCat_m;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CommandeM::class, inversedBy="id_m")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $m_c;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +144,30 @@ class Materiel
     public function setIdCatM(?CategorieM $idCat_m): self
     {
         $this->idCat_m = $idCat_m;
+
+        return $this;
+    }
+
+    public function getIdM(): ?CommandeM
+    {
+        return $this->id_m;
+    }
+
+    public function setIdM(?CommandeM $id_m): self
+    {
+        $this->id_m = $id_m;
+
+        return $this;
+    }
+
+    public function getMC(): ?CommandeM
+    {
+        return $this->m_c;
+    }
+
+    public function setMC(?CommandeM $m_c): self
+    {
+        $this->m_c = $m_c;
 
         return $this;
     }

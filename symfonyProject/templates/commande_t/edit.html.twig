@@ -1,0 +1,43 @@
+{% extends"base.html.twig" %}
+{% block title %}Edit CommandeT{% endblock %}
+
+{% block body %}
+    <h1>Edit CommandeT</h1>
+<div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
+    <h1>Edit CommandeM</h1>
+    <table class="table">
+        <tbody class="nicdark_border_yellow">
+
+        {{ form_start(form) }}
+        <tr>
+
+            <th>date_commande  </th>
+            <td>
+
+                {{ form_label(form.date_creation)}}
+
+                {{ form_errors(form.date_creation)}}
+                {{ form_widget(form.date_creation) }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>adresse_destination  </th>
+            <td>
+                {{ form_errors(form.address_destination)}}
+                {{ form_widget(form.address_destination) }}
+
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('commande_t_index') }}">back to list</a>
+</div>
+    {{ include('commande_t/_delete_form.html.twig') }}
+{% endblock %}

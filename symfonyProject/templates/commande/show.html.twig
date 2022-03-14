@@ -1,12 +1,20 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Commande{% endblock %}
 
 {% block body %}
+
+
+
+
+<div class="grid grid_12">
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space50"></div>
+    <div class="nicdark_space30"></div>
     <h1>Commande</h1>
 
     <table class="table">
-        <tbody>
+        <tbody class="nicdark_border_yellow">
             <tr>
                 <th>Id</th>
                 <td>{{ commande.id }}</td>
@@ -21,10 +29,11 @@
             </tr>
         </tbody>
     </table>
+    <a href="{{ path('index_c') }}"  >back to list</a>
 
-    <a href="{{ path('commande_index') }}">back to list</a>
-
-    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+    <a href="{{ path('edit_c', {'id': commande.id}) }}" class="nicdark_btn_icon nicdark_bg_red  small _circle white">edit</a>
 
     {{ include('commande/_delete_form.html.twig') }}
-{% endblock %}
+</div>
+ {% endblock %}
+

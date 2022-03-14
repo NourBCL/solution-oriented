@@ -23,4 +23,5 @@ class ArticleType extends AbstractType
             'data_class' => Article::class,
         ]);
     }
+
 }
