@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TransportModifierController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="918.0" style="-fx-background-color: #fcf7f7;">
+         <children>
+            <Label fx:id="welcome" layoutX="62.0" layoutY="28.0" text="Modifier un Transport" textFill="#468d59">
+               <font>
+                  <Font name="Bodoni MT Condensed" size="32.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lieu_depart" layoutX="58.0" layoutY="76.0" prefHeight="39.0" prefWidth="391.0" promptText="lieu_depart" />
+            <Button fx:id="A" layoutX="504.0" layoutY="452.0" mnemonicParsing="false" onAction="#insert" prefHeight="47.0" prefWidth="153.0" style="-fx-background-color: #8FBC8F; -fx-border-radius: 50; -fx-background-radius: 50;" text="Confirmer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="categorie" layoutX="487.0" layoutY="328.0" prefHeight="39.0" prefWidth="391.0" promptText="categorie" />
+            <Hyperlink fx:id="prec" layoutX="388.0" layoutY="455.0" onAction="#prec" style="-fx-background-color: #556B2F;" text="Retour" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="imgpathttt" layoutX="146.0" layoutY="603.0" text="Label" visible="false" />
+            <TextField fx:id="lieu_arrivee" layoutX="58.0" layoutY="127.0" prefHeight="39.0" prefWidth="391.0" promptText="lieu_arrivee" />
+            <TextField fx:id="heure_depart" layoutX="58.0" layoutY="329.0" prefHeight="39.0" prefWidth="391.0" promptText="heure_depart" />
+            <TextField fx:id="heure_retour" layoutX="487.0" layoutY="75.0" prefHeight="39.0" prefWidth="391.0" promptText="heure_retour" />
+            <TextField fx:id="heure_arrivee" layoutX="58.0" layoutY="381.0" prefHeight="39.0" prefWidth="391.0" promptText="heure_arrivee" />
+            <DatePicker fx:id="date_dep" layoutX="58.0" layoutY="176.0" prefHeight="39.0" prefWidth="391.0" promptText="date_dep" />
+            <DatePicker fx:id="date_arrivee" layoutX="58.0" layoutY="224.0" prefHeight="39.0" prefWidth="391.0" promptText="date_arrivee" />
+            <DatePicker fx:id="date_retour" layoutX="58.0" layoutY="276.0" prefHeight="39.0" prefWidth="391.0" promptText="date_retour" />
+            <TextField fx:id="nb_place" layoutX="487.0" layoutY="126.0" prefHeight="39.0" prefWidth="391.0" promptText="nb_place" />
+            <TextField fx:id="nb_bagage" layoutX="487.0" layoutY="175.0" prefHeight="39.0" prefWidth="391.0" promptText="nb_bagage" />
+            <TextField fx:id="prix_t" layoutX="487.0" layoutY="223.0" prefHeight="39.0" prefWidth="391.0" promptText="prix_t" />
+            <TextField fx:id="disponibilite" layoutX="487.0" layoutY="275.0" prefHeight="39.0" prefWidth="391.0" promptText="disponibilite" />
+            <Label fx:id="labelid" layoutX="208.0" layoutY="574.0" text="Label" visible="false" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

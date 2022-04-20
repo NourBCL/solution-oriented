@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TransportFrontController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="918.0" style="-fx-background-color: #fcf7f7;">
+         <children>
+            <Button fx:id="supp1" layoutX="400.0" layoutY="390.0" mnemonicParsing="false" onAction="#Modif" prefHeight="43.0" prefWidth="119.0" style="-fx-background-color: #8FBC8F #8FBC8F;" text="Afficher" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <TableView fx:id="tableview" layoutX="33.0" layoutY="107.0" prefHeight="267.0" prefWidth="852.0">
+               <columns>
+                  <TableColumn fx:id="categorie_t_id" minWidth="0.0" prefWidth="0.0" text="categorie_t_id " />
+                  <TableColumn fx:id="lieu_depart" prefWidth="69.0" text="lieu depart" />
+                  <TableColumn fx:id="lieu_arrivee" prefWidth="70.0" text="lieu arrivee" />
+                  <TableColumn fx:id="date_dep" prefWidth="74.0" text="date depart" />
+                  <TableColumn fx:id="date_arrivee" prefWidth="73.0" text="date arrivee" />
+                  <TableColumn fx:id="heure_arrivee" prefWidth="81.0" text="heure arrivee" />
+                  <TableColumn fx:id="heure_depart" prefWidth="79.0" text="heure depart" />
+                  <TableColumn fx:id="date_retour" prefWidth="71.0" text="date retour" />
+                  <TableColumn fx:id="heure_retour" prefWidth="77.0" text="heure retour" />
+                  <TableColumn fx:id="nb_place" prefWidth="100.0" text="nombre de place" />
+                  <TableColumn fx:id="nb_bagage" prefWidth="114.0" text="nombre de bagage" />
+                  <TableColumn fx:id="prix_t" prefWidth="44.0" text="prix" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
