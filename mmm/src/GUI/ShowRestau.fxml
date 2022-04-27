@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1025.0" style="-fx-background-color: #f2e8cf;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ShowRestauController">
+   <children>
+      <HBox layoutY="38.0" prefHeight="602.0" prefWidth="1002.0">
+         <children>
+            <ScrollPane fx:id="scroll" prefHeight="565.0" prefWidth="1003.0" stylesheets="@style.css">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="544.0" prefWidth="959.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                  </GridPane>
+               </content>
+               <HBox.margin>
+                  <Insets bottom="20.0" top="10.0" />
+               </HBox.margin>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <Button layoutX="501.0" layoutY="17.0" mnemonicParsing="false" onAction="#PDF" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: #fdcce5;" text="PDF" />
+      <Button layoutX="350.0" layoutY="20.0" mnemonicParsing="false" onAction="#gotoStat" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: #beb9db;" text="Statistiques" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField layoutX="659.0" layoutY="20.0" promptText="recherche" />
+   </children>
+</AnchorPane>
