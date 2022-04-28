@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="651.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListeUtilisateurBackController">
+   <children>
+      <TabPane prefHeight="651.0" prefWidth="1025.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab text=" Gérer Utilisateurs">
+               <content>
+                  <AnchorPane prefHeight="501.0" prefWidth="1128.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <TableView fx:id="apprenants" layoutX="8.0" layoutY="119.0" prefHeight="382.0" prefWidth="1010.0">
+                           <columns>
+                              <TableColumn fx:id="iduser" prefWidth="50.0" text="ID" />
+                              <TableColumn fx:id="nom" prefWidth="89.0" text="Nom" />
+                              <TableColumn fx:id="nomp" prefWidth="107.0" text="Prénom" />
+                              <TableColumn fx:id="num" prefWidth="139.0" text="Téléphone" />
+                              <TableColumn fx:id="passe" prefWidth="115.0" text="Password" />
+                              <TableColumn fx:id="genre" prefWidth="129.0" text="Date Naissance" />
+                              <TableColumn fx:id="email" prefWidth="120.0" text="Email" />
+                              <TableColumn fx:id="role" prefWidth="124.0" text="role" />
+                              <TableColumn fx:id="image" prefWidth="136.0" text="image" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btn_supp" layoutX="751.0" layoutY="529.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#delete" prefHeight="33.0" prefWidth="207.0" style="-fx-background-color: #6088a4;" text="Supprimer" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                           <effect>
+                              <Lighting diffuseConstant="2.0" light="$null" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                              </Lighting>
+                           </effect>
+                        </Button>
+                        <Button layoutX="522.0" layoutY="529.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#click" prefHeight="33.0" prefWidth="209.0" style="-fx-background-color: #76b38f;" text="Modifier" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                           <effect>
+                              <Lighting diffuseConstant="2.0" light="$null" specularConstant="0.7" specularExponent="33.95" surfaceScale="1.73">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                              </Lighting>
+                           </effect>
+                        </Button>
+                        <Label contentDisplay="CENTER" layoutX="75.0" layoutY="44.0" text="Listes des Utilisateurs" textFill="#76b38f">
+                           <font>
+                              <Font name="Tahoma" size="32.0" />
+                           </font>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="388.0" layoutY="50.0" onMouseClicked="#reload" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/reload.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="63.0" fitWidth="54.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/list.png" />
+                           </image>
+                        </ImageView>
+                        <HBox layoutX="523.0" layoutY="49.0" prefHeight="30.0" prefWidth="276.0" style="-fx-background-color: #fff;">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/recherche.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="rechercherMembre" onAction="#affichageTabMembre" prefHeight="31.0" prefWidth="250.0" promptText="Par Email" />
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="trierNomMembre" layoutX="820.0" layoutY="57.0" mnemonicParsing="false" onAction="#affichageTabMembre" text="Nom" />
+                        <CheckBox fx:id="trierTelMembre" layoutX="897.0" layoutY="57.0" mnemonicParsing="false" onAction="#affichageTabMembre" prefHeight="21.0" prefWidth="61.0" text="ID" />
+                        <Label layoutX="820.0" layoutY="31.0" text="Trier par :" />
+                        <Button fx:id="bann" layoutX="152.0" layoutY="514.0" mnemonicParsing="false" onAction="#bann" text="bloquer" />
+                        <Button fx:id="unbann" layoutX="279.0" layoutY="515.0" mnemonicParsing="false" onAction="#unbann" text="debloquer" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Button mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>
