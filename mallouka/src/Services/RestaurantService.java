@@ -238,6 +238,27 @@ public class RestaurantService {
          return  r;
 
     }*/
-}
+    public ObservableList<Restaurant> search(String text) {
+        ObservableList<Restaurant> restaurants = FXCollections.observableArrayList();
 
+        try {
+            Statement stm = cnx.createStatement();
+            String querry = "select * from restaurant r inner join region re on r.id_region_id = re.id WHERE nom_resto LIKE '%" + text + "%' OR num_tel LIKE '%" + text + "%' ";
+            RegionService tt = new RegionService();
+            ResultSet rs = stm.executeQuery(querry);
+
+            while (rs.next()) {
+                restaurants.add(new Restaurant(rs.getInt("r.id"), rs.getString(3), rs.getInt(4), rs.getDate(5), rs.getDate(6), rs.getString(7), rs.getInt(8), new Region(rs.getInt("re.id"), rs.getString(9), rs.getString(10))));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return restaurants;
+
+    }
+}
 

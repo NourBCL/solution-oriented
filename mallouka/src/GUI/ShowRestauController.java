@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,10 +31,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-
+import javafx.scene.control.TextField;
 /**
  * FXML Controller class
  *
@@ -49,12 +51,15 @@ public class ShowRestauController implements Initializable {
     @FXML
     private GridPane grid;
      @FXML
-   
+     
+    private TextField search;
+
+    static String searchtext = "";
 
     /**
      * Initializes the controller class.
      */
-    private List<Restaurant> regions = new ArrayList<>();
+    private TextField Recherche;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -231,8 +236,17 @@ public class ShowRestauController implements Initializable {
 
     }
 
+    @FXML
     public void gotoStat() throws IOException {
         loadPage("Statistiques");
     }
+
+  public void search() throws IOException {
+        ShowRestauController.searchtext = search.getText();
+        loadPage("SearchRestauItems");
+
+    }
+
+  
 
 }

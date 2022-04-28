@@ -55,7 +55,7 @@ public class StatistiquesController implements Initializable {
         List<Restaurant> list = res.getNumberOfRestaurantsByCat();
         list.stream().map((rest) -> {
             int number = rest.getCount();
-            String name = rest.getNom() + " (" + number + ") ";
+            String name = rest.getNom_reg().getNomregion() + " (" + number + ") ";
             PieChart.Data slice = new PieChart.Data(name, number);
             return slice;
         }).forEachOrdered((slice) -> {

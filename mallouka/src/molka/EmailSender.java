@@ -31,8 +31,8 @@ public class EmailSender {
 
         String host = "smtp.gmail.com";
         String port = "587";
-        final String userName = "alemnicontact@gmail.com";
-        final String password = "alemni2022";
+        final String userName = "gocamp347@gmail.com";
+        final String password = "Fladjaflija123";
         Properties properties = new Properties();
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", port);
