@@ -179,7 +179,7 @@ public class SignupController implements Initializable{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("Formateur insérée avec succés!");
+        alert.setContentText("Votre inscription est faite avec succés!");
         
         
         

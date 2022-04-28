@@ -140,7 +140,7 @@ public class ServiceUtilisateur implements UService<Utilisateur> {
                     ObservableList <Utilisateur> list = FXCollections.observableArrayList();
 
         try {
-            String req = "select * from utilisateur where roles!='[\"ROLE_ADMIN\"]'";
+            String req = "select * from utilisateur where roles!='[\"ROLE_USER\"]'";
             PreparedStatement pst=cnx.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){

@@ -18,16 +18,16 @@
          <tabs>
             <Tab text="PROFIL">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="883.0" style="-fx-background-color: #f2e8cf;">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="883.0" style="-fx-background-color: #fff;">
                      <children>
-                        <ImageView fitHeight="195.0" fitWidth="202.0" layoutX="95.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="195.0" fitWidth="202.0" layoutX="830.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/blba.jpg" />
                            </image>
                         </ImageView>
-                        <Button fx:id="bt_modifier" layoutX="384.0" layoutY="436.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#modifier" prefHeight="49.0" prefWidth="211.0" style="-fx-background-color: #76b38f;" text="Modifier profil" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                        <Button fx:id="bt_modifier" layoutX="260.0" layoutY="491.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#modifier" prefHeight="49.0" prefWidth="504.0" style="-fx-background-color: #6088a4;" text="Modifier profil" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                            <font>
-                              <Font name="Arial Bold" size="18.0" />
+                              <Font name="Arial Bold" size="25.0" />
                            </font>
                            <effect>
                               <Lighting diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
@@ -41,24 +41,24 @@
                            </effect>
                           
                         </Button>
-                        <ImageView fx:id="imageView" fitHeight="167.0" fitWidth="153.0" layoutX="98.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="358.0" layoutY="200.0" text="Nom:">
+                        <ImageView fx:id="imageView" fitHeight="167.0" fitWidth="153.0" layoutX="833.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="335.0" layoutY="174.0" text="Nom:">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font></Label>
-                        <Label layoutX="358.0" layoutY="250.0" text="Prenom:">
+                        <Label layoutX="335.0" layoutY="224.0" text="Prenom:">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font></Label>
-                        <Label layoutX="357.0" layoutY="297.0" text="Email:">
+                        <Label layoutX="334.0" layoutY="271.0" text="Email:">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font></Label>
-                        <Label layoutX="358.0" layoutY="358.0" text="Telephone:">
+                        <Label layoutX="335.0" layoutY="332.0" text="Telephone:">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font></Label>
-                        <Button fx:id="bt_img" layoutX="98.0" layoutY="255.0" mnemonicParsing="false" onAction="#onChoseFile" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: #6088a4;" text="Télécharger photo" textFill="WHITE">
+                        <Button fx:id="bt_img" layoutX="524.0" layoutY="393.0" mnemonicParsing="false" onAction="#onChoseFile" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: #76b38f;" text="Télécharger photo" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
@@ -74,26 +74,31 @@
                               </Lighting>
                            </effect>
                         </Button>
-                        <Label layoutX="358.0" layoutY="75.0" text="Profil" textFill="#6088a4">
+                        <Label layoutX="134.0" layoutY="48.0" prefHeight="77.0" prefWidth="298.0" text="Profil :" textFill="#76b38f">
                            <font>
                               <Font name="Calibri Bold" size="67.0" />
                            </font></Label>
-                        <Label fx:id="Lnom" layoutX="593.0" layoutY="207.0" prefHeight="21.0" prefWidth="187.0" text="Label">
+                        <Label fx:id="Lnom" layoutX="570.0" layoutY="181.0" prefHeight="21.0" prefWidth="187.0" text="Label">
                            <font>
                               <Font size="20.0" />
                            </font></Label>
-                        <Label fx:id="Lprenom" layoutX="593.0" layoutY="258.0" prefHeight="21.0" prefWidth="188.0" text="Label">
+                        <Label fx:id="Lprenom" layoutX="570.0" layoutY="232.0" prefHeight="21.0" prefWidth="188.0" text="Label">
                            <font>
                               <Font size="20.0" />
                            </font></Label>
-                        <Label fx:id="LAdress" layoutX="593.0" layoutY="305.0" prefHeight="21.0" prefWidth="213.0" text="Label">
+                        <Label fx:id="LAdress" layoutX="570.0" layoutY="279.0" prefHeight="21.0" prefWidth="213.0" text="Label">
                            <font>
                               <Font size="20.0" />
                            </font></Label>
-                        <Label fx:id="Lnum" layoutX="593.0" layoutY="358.0" prefHeight="21.0" prefWidth="228.0" text="Label">
+                        <Label fx:id="Lnum" layoutX="570.0" layoutY="332.0" prefHeight="21.0" prefWidth="228.0" text="Label">
                            <font>
                               <Font size="20.0" />
                            </font></Label>
+                        <Label fx:id="photo" layoutX="335.0" layoutY="390.0" text="Photo :">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>

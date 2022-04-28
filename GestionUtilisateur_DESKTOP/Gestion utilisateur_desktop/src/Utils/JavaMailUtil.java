@@ -37,9 +37,9 @@ properties.put("mail.smtp.host", "smtp.gmail.com");
 //        mail.smtp.port =587
  properties.put("mail.smtp.port", "587");
   //Your gmail address
-        String email = "goggymm@gmail.com";
+        String email = "gocampprojet@gmail.com";
         //Your gmail password
-        String password = "Gogym123@";
+        String password = "gocamp123@";
  //Create a session with account credentials
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
@@ -63,7 +63,7 @@ try {      ServiceUtilisateur o= new ServiceUtilisateur();
             message.setFrom(new InternetAddress(email));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Réinitialiser le mot de passe ");
-            String htmlCode = "<p> Bonjour, </p> <br/> <p> " +
+            String htmlCode = "<p> Bonjour,  </p> <br/> <p> " +
 "<p>Nous avons reçu une demande de réinitialisation de votre mot de passe .</p> <br>" +
 "<p>Entrez le code de réinitialisation du mot de passe suivant :</p>"+"<br/>"+"<h2>"+code+"</h2>";
             message.setContent(htmlCode, "text/html");

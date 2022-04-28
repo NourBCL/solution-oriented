@@ -38,9 +38,9 @@
                               <TableColumn fx:id="image" prefWidth="136.0" text="image" />
                            </columns>
                         </TableView>
-                        <Button fx:id="btn_supp" layoutX="751.0" layoutY="529.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#delete" prefHeight="33.0" prefWidth="207.0" style="-fx-background-color: #6088a4;" text="Supprimer" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                        <Button fx:id="btn_supp" layoutX="794.0" layoutY="529.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#delete" prefHeight="33.0" prefWidth="207.0" style="-fx-background-color: #6088a4;" text="Supprimer" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                            <font>
-                              <Font name="Arial Bold" size="13.0" />
+                              <Font name="Arial Bold" size="17.0" />
                            </font>
                            <effect>
                               <Lighting diffuseConstant="2.0" light="$null" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
@@ -50,9 +50,9 @@
                               </Lighting>
                            </effect>
                         </Button>
-                        <Button layoutX="522.0" layoutY="529.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#click" prefHeight="33.0" prefWidth="209.0" style="-fx-background-color: #76b38f;" text="Modifier" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                        <Button layoutX="534.0" layoutY="529.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#click" prefHeight="33.0" prefWidth="209.0" style="-fx-background-color: #76b38f;" text="Modifier" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                            <font>
-                              <Font name="Arial Bold" size="13.0" />
+                              <Font name="Arial Bold" size="17.0" />
                            </font>
                            <effect>
                               <Lighting diffuseConstant="2.0" light="$null" specularConstant="0.7" specularExponent="33.95" surfaceScale="1.73">
@@ -93,14 +93,16 @@
                         <CheckBox fx:id="trierNomMembre" layoutX="820.0" layoutY="57.0" mnemonicParsing="false" onAction="#affichageTabMembre" text="Nom" />
                         <CheckBox fx:id="trierTelMembre" layoutX="897.0" layoutY="57.0" mnemonicParsing="false" onAction="#affichageTabMembre" prefHeight="21.0" prefWidth="61.0" text="ID" />
                         <Label layoutX="820.0" layoutY="31.0" text="Trier par :" />
-                        <Button fx:id="bann" layoutX="152.0" layoutY="514.0" mnemonicParsing="false" onAction="#bann" text="bloquer" />
-                        <Button fx:id="unbann" layoutX="279.0" layoutY="515.0" mnemonicParsing="false" onAction="#unbann" text="debloquer" />
+                        <Button fx:id="bann" layoutX="31.0" layoutY="507.0" mnemonicParsing="false" onAction="#bann" prefHeight="31.0" prefWidth="73.0" style="-fx-background-color: red;" text="Bloquer" textFill="WHITE" />
+                        <Button fx:id="unbann" layoutX="121.0" layoutY="507.0" mnemonicParsing="false" onAction="#unbann" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: orange;" text="Débloquer" textFill="#fffdfd">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
          </tabs>
       </TabPane>
-      <Button mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>

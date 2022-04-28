@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Controllers/ListeUtilisateurBackController.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Services/ServiceAdmin.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Controllers/SigninController.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Services/ServiceUtilisateur.java</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Controllers/modifprofilcontroller.java</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Interfaces/profilmodif.fxml</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Utils/JavaMailUtil.java</file>
+            <file>file:/C:/Users/hp/Documents/NetBeansProjects/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/Controllers/AcceuilUserController.java</file>
         </group>
     </open-files>
 </project-private>

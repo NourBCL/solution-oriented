@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
@@ -307,11 +308,23 @@ System.out.println(rechercherMembre.getText() + "test");
         Utilisateur person = apprenants.getSelectionModel().getSelectedItem();
         admin.bloquer(person);
         
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("warning");
+        alert.setHeaderText(null);
+        alert.setContentText("Un utilisateur à été bloquer!");
+        alert.show();
+        
     }
     @FXML
                public void unbann() {
         Utilisateur person = apprenants.getSelectionModel().getSelectedItem();
         admin.debloquer(person);
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Un utilisateur à été débloquer!");
+        alert.show();
         
     }
 }

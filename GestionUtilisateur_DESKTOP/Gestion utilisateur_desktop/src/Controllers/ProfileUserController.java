@@ -28,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -86,6 +87,8 @@ public class ProfileUserController implements Initializable {
     ServiceUtilisateur userser = new ServiceUtilisateur();
 
     Utilisateur user = new Utilisateur();
+    @FXML
+    private Label photo;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -183,11 +186,20 @@ imageView.setImage(image1);
         alert.setContentText("modification avec succés!");
         alert.show();*/
       
-                Parent root =FXMLLoader.load(getClass().getResource("/Interfaces/profilmodif.fxml"));    
+      
+       Parent page1 = FXMLLoader.load(getClass().getResource("/Interfaces/profilmodif.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Go Camp");
+        stage.setScene(scene);
+        stage.show();
+      
+      
+                /*Parent root =FXMLLoader.load(getClass().getResource("/Interfaces/profilmodif.fxml"));    
                 Stage mainStage = new Stage();
                 Scene scene = new Scene(root);
                 mainStage.setScene(scene);
-                mainStage.show();
+                mainStage.show();*/
     }
 
     void changeUser(ActionEvent event) throws IOException {

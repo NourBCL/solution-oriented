@@ -139,7 +139,7 @@ public class SigninController implements Initializable{
                 }
                 
             }else
-                JOptionPane.showMessageDialog(null, "invalide Username or Password ");
+                JOptionPane.showMessageDialog(null, "Mot de passe ou Username incorrecte!!  ");
         }catch(Exception ex){
                 System.out.println(ex.getMessage());
         }
@@ -157,11 +157,12 @@ public class SigninController implements Initializable{
    @FXML
     private void signup(MouseEvent event) {
                                 try {
-                Parent root =FXMLLoader.load(getClass().getResource("/Interfaces/Sign_up.fxml"));    
-                Stage mainStage = new Stage();
-                Scene scene = new Scene(root);
-                mainStage.setScene(scene);
-                mainStage.show();
+         Parent page1 = FXMLLoader.load(getClass().getResource("/Interfaces/Sign_up.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Go Camp");
+        stage.setScene(scene);
+        stage.show();
             } catch (IOException ex) {
                                     System.out.println(ex.getMessage());
             }

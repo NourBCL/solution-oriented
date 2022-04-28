@@ -103,11 +103,34 @@ public class Utilisateur {
         this.prenom = prenom;
         this.is_verified = is_verified;
        
-        
-       
-      
+  
     }
 
+    
+    
+  public  Utilisateur(int id , String nom, String prenom, int num_tel,  String email)
+       
+  {
+  this.id = id;
+   this.nom = nom;
+        this.prenom = prenom;
+         this.num_tel = num_tel;
+  this.email = email;
+  
+  
+  
+  }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public Utilisateur(String text, String text0, String text1, String text2, String hashPassword, String toString) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
