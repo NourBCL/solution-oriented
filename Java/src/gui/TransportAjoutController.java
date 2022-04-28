@@ -5,6 +5,7 @@
  */
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import entites.Transport;
 import java.io.IOException;
 import java.net.URL;
@@ -12,8 +13,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Date;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +34,18 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import services.TransportService;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 import util.MyBD;
 
 /**
@@ -75,6 +90,8 @@ public class TransportAjoutController implements Initializable {
     @FXML
     private TextField disponibilite;
    Connection cnx;
+    @FXML
+    private JFXButton transport;
 
     public TransportAjoutController() {
         cnx = MyBD.getInstance().getConnection();
@@ -105,7 +122,7 @@ public class TransportAjoutController implements Initializable {
     }    
 
     @FXML
-    private void insert(ActionEvent event) throws IOException, SQLException {
+    private void insert(ActionEvent event) throws IOException, SQLException, MessagingException {
           TransportService productService = new TransportService();
         
         if (lieu_depart.getText().equals("")
@@ -120,6 +137,8 @@ public class TransportAjoutController implements Initializable {
             
             
         }  
+    
+
                
                
               else if (lieu_depart.getText().matches("[\\\\!\"#$%&()*+,./:;<=>?@\\[\\]^_{|}~]+")
@@ -154,11 +173,20 @@ public class TransportAjoutController implements Initializable {
                 heure_retour.getText(),Integer.parseInt(nb_place.getText()),Integer.parseInt(nb_bagage.getText()),
                 Integer.parseInt(prix_t.getText()),Integer.parseInt(disponibilite.getText()));
               
-                
-        
+                      Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setContentText("Confirmer ");
+            a.setHeaderText(null);
+            a.showAndWait();
+         
         productService.ajouterTransport(c);
-                
-              
+            sendMail("maryem.tayeb@esprit.tn");    
+                TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.SLIDE;
+            tray.setAnimationType(type);
+            tray.setTitle("Transport Ajouté avec succées");
+            tray.setMessage("Transport Ajouté avec succées");
+            tray.setNotificationType(NotificationType.INFORMATION);//
+            tray.showAndDismiss(Duration.millis(3000));
        
       Parent page1 = FXMLLoader.load(getClass().getResource("TransportGestion.fxml"));
         Scene scene = new Scene(page1);
@@ -182,5 +210,50 @@ public class TransportAjoutController implements Initializable {
         
         
     }
+    public static void sendMail(String recipient) throws MessagingException {
+        System.out.println("Preparing to send email");
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        String myAccountEmail = "pidev45@gmail.com";
+        String password = "pidev455683@";
+        Session session = Session.getInstance(properties, new Authenticator() {
+             @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(myAccountEmail, password);
+            }
+        });
+            
+        Message message = prepareMessage(session, myAccountEmail, recipient);
+
+        javax.mail.Transport.send(message);
+        System.out.println("Message sent successfully");
+    }  
+   
     
+    private static Message prepareMessage(Session session, String myAccountEmail, String recipient) {
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Vous Avez Ajouté un nouveau Transport");
+            message.setText("Vous Avez Ajouté un nouveau Transport");
+            return message;
+        } catch (MessagingException ex) {
+          
+        }
+        return null;
+    }  
+
+    @FXML
+    private void transport(ActionEvent event) throws IOException {
+         Parent page1 = FXMLLoader.load(getClass().getResource("TransportGestion.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Liste des transport");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

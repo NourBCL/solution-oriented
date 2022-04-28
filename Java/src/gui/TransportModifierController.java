@@ -5,6 +5,7 @@
  */
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import entites.Transport;
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,11 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import services.TransportService;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 import util.MyBD;
 
 /**
@@ -80,6 +85,8 @@ public class TransportModifierController implements Initializable {
     @FXML
     private Label labelid;
 Connection cnx;
+    @FXML
+    private JFXButton transport;
 
     public TransportModifierController() {
         cnx = MyBD.getInstance().getConnection();
@@ -201,10 +208,19 @@ disponibilite.setText(Integer.toString( TransportGestionController.connectedTran
                 heure_retour.getText(),Integer.parseInt(nb_place.getText()),Integer.parseInt(nb_bagage.getText()),
                 Integer.parseInt(prix_t.getText()),Integer.parseInt(disponibilite.getText()));
               
-                
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setContentText("Confirmer ");
+            a.setHeaderText(null);
+            a.showAndWait();
         
         productService.modifierTransport(c);
-                
+                      TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.SLIDE;
+            tray.setAnimationType(type);
+            tray.setTitle("Transport Modifié avec succées");
+            tray.setMessage("Transport Modifié avec succées");
+            tray.setNotificationType(NotificationType.SUCCESS);//
+            tray.showAndDismiss(Duration.millis(3000));
               
        
       Parent page1 = FXMLLoader.load(getClass().getResource("TransportGestion.fxml"));
@@ -232,4 +248,14 @@ disponibilite.setText(Integer.toString( TransportGestionController.connectedTran
     
     
 }
+
+    @FXML
+    private void transport(ActionEvent event) throws IOException {
+         Parent page1 = FXMLLoader.load(getClass().getResource("TransportGestion.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Liste des transport");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -61,8 +61,6 @@ public void ajouterTransport(Transport e) throws SQLException {
         Statement stm = cnx.createStatement();
         ResultSet rst = stm.executeQuery(req);
 
-        
-//``,``,``,``,``,``,``,``,``,``,``,``,``) "
 
         while (rst.next()) {
             Transport e = new Transport(rst.getInt("id")
@@ -83,7 +81,64 @@ public void ajouterTransport(Transport e) throws SQLException {
         }
         return Transports;
     }
+   public List<Transport> AfficherAllTransportBydate() throws SQLException {
 
+        List<Transport> Transports = new ArrayList<>();
+        String req = "select * from transport order by date_dep  ";
+        Statement stm = cnx.createStatement();
+        ResultSet rst = stm.executeQuery(req);
+
+
+        while (rst.next()) {
+            Transport e = new Transport(rst.getInt("id")
+                    , rst.getInt("categorie_t_id")
+                  , rst.getString("lieu_depart")
+                    , rst.getString("lieu_arrivee")
+                    , rst.getDate("date_dep")
+                    , rst.getDate("date_arrivee")
+                    , rst.getString("heure_arrivee")
+                    , rst.getString("heure_depart")
+                    , rst.getDate("date_retour")
+                    , rst.getString("heure_retour")
+                    , rst.getInt("nb_place")
+                    , rst.getInt("nb_bagage")
+                    , rst.getInt("prix_t")
+                    , rst.getInt("disponibilite"));
+            Transports.add(e);
+        }
+        return Transports;
+    }
+   
+   
+      public List<Transport> AfficherAllTransportByLiey() throws SQLException {
+
+        List<Transport> Transports = new ArrayList<>();
+        String req = "select * from transport order by lieu_depart  ";
+        Statement stm = cnx.createStatement();
+        ResultSet rst = stm.executeQuery(req);
+
+
+        while (rst.next()) {
+            Transport e = new Transport(rst.getInt("id")
+                    , rst.getInt("categorie_t_id")
+                  , rst.getString("lieu_depart")
+                    , rst.getString("lieu_arrivee")
+                    , rst.getDate("date_dep")
+                    , rst.getDate("date_arrivee")
+                    , rst.getString("heure_arrivee")
+                    , rst.getString("heure_depart")
+                    , rst.getDate("date_retour")
+                    , rst.getString("heure_retour")
+                    , rst.getInt("nb_place")
+                    , rst.getInt("nb_bagage")
+                    , rst.getInt("prix_t")
+                    , rst.getInt("disponibilite"));
+            Transports.add(e);
+        }
+        return Transports;
+    }
+   
+   
      public void SupprimerTransport(Transport e) throws SQLException {
 
         String req = "DELETE FROM transport WHERE id =?";

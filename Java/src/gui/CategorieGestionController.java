@@ -5,6 +5,7 @@
  */
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import entites.Categoriet;
 import entites.Transport;
 import java.awt.image.BufferedImage;
@@ -91,6 +92,8 @@ public class CategorieGestionController implements Initializable {
     private Hyperlink cat;
     @FXML
     private Button prec1;
+    @FXML
+    private JFXButton transport;
   
  
 
@@ -298,6 +301,17 @@ public class CategorieGestionController implements Initializable {
         stage.setScene(scene);
         stage.show();
         
+    }
+
+    @FXML
+    private void transport(ActionEvent event) throws IOException {
+         Parent page1 = FXMLLoader.load(getClass().getResource("TransportGestion.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Liste des transport");
+        stage.setScene(scene);
+        stage.show();
+    
     }
  
     
