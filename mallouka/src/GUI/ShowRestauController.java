@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,27 +30,22 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import javafx.scene.control.TextField;
+
 /**
  * FXML Controller class
  *
  * @author SBS
  */
-
-
- 
 public class ShowRestauController implements Initializable {
 
     @FXML
     private ScrollPane scroll;
     @FXML
     private GridPane grid;
-     @FXML
-     
+    @FXML
     private TextField search;
 
     static String searchtext = "";
@@ -59,13 +53,17 @@ public class ShowRestauController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private TextField Recherche;
+    private List<Restaurant> regions = new ArrayList<>();
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    RestaurantService rs = new RestaurantService();
 
-        RestaurantService rs = new RestaurantService();
+    public void search() throws IOException {
+        ShowRestauController.searchtext = search.getText();
+        loadPage("SearchRestauItems");
 
+    }
+
+    public void loadData() {
         int col = 0;
         int row = 0;
 
@@ -109,7 +107,67 @@ public class ShowRestauController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
 
+    public void searchItems(String text) {
+        int col = 0;
+        int row = 0;
+
+        try {
+            grid.getChildren().clear();
+            for (Restaurant r : rs.search(text)) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("RestauItem.fxml"));
+
+                AnchorPane anchorpane = fxmlLoader.load();
+
+                RestauItemController itemController = fxmlLoader.getController();
+                itemController.setData(r);
+
+                if (col == 2) {
+                    col = 0;
+                    row++;
+                }
+
+                grid.add(anchorpane, col++, row);
+                GridPane.setMargin(anchorpane, new Insets(10));
+
+            }
+            if (rs.search(text).isEmpty()) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("RestauItem.fxml"));
+
+                AnchorPane anchorpane = fxmlLoader.load();
+
+                RestauItemController itemController = fxmlLoader.getController();
+                itemController.setData();
+
+                if (col == 2) {
+                    col = 0;
+                    row++;
+                }
+                grid.getChildren().clear();
+                grid.add(anchorpane, col++, row);
+
+                GridPane.setMargin(anchorpane, new Insets(40, 10, 10, 10));
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                this.loadData();
+            } else {
+                this.searchItems(newValue);
+            }
+        });
+        this.loadData();
     }
 
     private static void loadPage(String page) throws IOException {
@@ -127,14 +185,14 @@ public class ShowRestauController implements Initializable {
         }
     }
 
-    @FXML
+  @FXML
     private void PDF(ActionEvent event) {
 
         try {
 
             FileChooser fileChooser = new FileChooser();
 
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (.pdf)", ".pdf");
             fileChooser.getExtensionFilters().add(extFilter);
             File f = fileChooser.showSaveDialog(Acceuil.primaryStage);
 
@@ -236,17 +294,8 @@ public class ShowRestauController implements Initializable {
 
     }
 
-    @FXML
     public void gotoStat() throws IOException {
         loadPage("Statistiques");
     }
-
-  public void search() throws IOException {
-        ShowRestauController.searchtext = search.getText();
-        loadPage("SearchRestauItems");
-
-    }
-
-  
 
 }

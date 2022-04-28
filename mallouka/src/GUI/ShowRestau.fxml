@@ -28,16 +28,17 @@
             </ScrollPane>
          </children>
       </HBox>
-      <Button graphicTextGap="6.0" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" onAction="#PDF" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: #fdcce5;" text="PDF" textFill="WHITE" />
-      <TextField fx:id="search" layoutX="640.0" layoutY="16.0" promptText="recherche" />
-      <Button graphicTextGap="10.0" layoutX="833.0" layoutY="13.0" mnemonicParsing="false" onAction="#search" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: FBA672;" text="chercher" textFill="WHITE">
+      <Button graphicTextGap="6.0" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" onAction="#PDF" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: #fdcce5;" text="PDF" textFill="#635a5a">
          <font>
-            <Font name="Century Schoolbook" size="12.0" />
-         </font>
-      </Button>
-      <Button graphicTextGap="6.0" layoutX="368.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoStat" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: #beb9db;" text="Statistiques" textFill="WHITE">
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextField fx:id="search" layoutX="732.0" layoutY="14.0" prefHeight="30.0" prefWidth="159.0" promptText="recherche" style="-fx-background-radius: 50px; -fx-background-color: E7F9E8;">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <Button graphicTextGap="6.0" layoutX="368.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoStat" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-background-color: #beb9db;" text="Statistiques" textFill="#635959">
+         <font>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
    </children>
