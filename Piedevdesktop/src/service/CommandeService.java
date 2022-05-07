@@ -61,7 +61,7 @@ public class CommandeService implements IService<Commande> {
             ps.setInt(3, t.getCommande_e_c_id());
             ps.setInt(4, t.getCommande_m_c_id());
             ps.setInt(5, t.getCommmande_t_c_id());
-
+ps.setInt(6, t.getId());
             ps.executeUpdate();
 
         } catch (SQLException ex) {

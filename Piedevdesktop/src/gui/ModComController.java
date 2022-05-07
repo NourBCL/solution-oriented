@@ -37,6 +37,10 @@ public class ModComController implements Initializable {
     private Button update;
          CommandeService sv = new CommandeService();
 Commande c;
+    @FXML
+    private ComboBox<?> z;
+    @FXML
+    private ComboBox<?> x;
     /**
      * Initializes the controller class.
      */
@@ -73,7 +77,9 @@ c = p ;
                     + "3ak3ek 7ala m3ak");
             alert.show();
         ((Stage) update.getScene().getWindow()).close();
+        
     }
+     
     }
     
 }

@@ -7,7 +7,11 @@ package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -15,6 +19,15 @@ import javafx.fxml.Initializable;
  * @author omaro
  */
 public class AjoutComController implements Initializable {
+
+    @FXML
+    private TextField a;
+    @FXML
+    private ComboBox<?> c;
+    @FXML
+    private ComboBox<?> d;
+    @FXML
+    private DatePicker b;
 
     /**
      * Initializes the controller class.
