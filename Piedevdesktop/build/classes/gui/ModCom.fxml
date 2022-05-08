@@ -15,7 +15,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#23801c" height="413.0" layoutX="403.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <DatePicker fx:id="ct" layoutX="65.0" layoutY="181.0" />
       <TextField fx:id="ad" layoutX="65.0" layoutY="118.0" />
-      <Button fx:id="update" layoutX="448.0" layoutY="295.0" mnemonicParsing="false" onAction="#update" prefHeight="43.0" prefWidth="110.0" text="editt" />
+      <Button fx:id="update" layoutX="448.0" layoutY="295.0" mnemonicParsing="false" onAction="#update" prefHeight="43.0" prefWidth="110.0" text="edit" />
       <TextField fx:id="od" editable="false" layoutX="65.0" layoutY="58.0" />
       <Label layoutX="65.0" layoutY="30.0" text="ID" />
       <Label layoutX="65.0" layoutY="89.0" text="address" />

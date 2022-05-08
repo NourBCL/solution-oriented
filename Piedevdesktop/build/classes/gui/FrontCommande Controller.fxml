@@ -142,7 +142,7 @@
                                           <Insets left="40.0" right="40.0" />
                                        </padding>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="350.0" text="actions">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="171.0" text="actions">
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin>
@@ -150,6 +150,11 @@
                                           <Insets left="40.0" right="40.0" />
                                        </padding>
                                     </Label>
+                                    <JFXButton fx:id="add" buttonType="RAISED" onAction="#ajout" prefHeight="31.0" prefWidth="124.0" ripplerFill="#a14141" text="Ajouter">
+                                       <padding>
+                                          <Insets bottom="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </JFXButton>
                                  </children>
                               </HBox>
                            </children>
