@@ -17,14 +17,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import service.CommandeService;
 import util.Smsapi;
 
 /**
@@ -44,6 +49,8 @@ public class AfficheCommandeController implements Initializable {
     private Button pay;
     
     private Commande commande;
+    @FXML
+    private Button del;
     
     
    
@@ -116,5 +123,22 @@ Price price = Price.create(priceParams);
         } catch (Exception ex) {
             Logger.getLogger(AfficheCommandeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void delete(ActionEvent event) {
+       Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure !");
+        //alert.show();
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == (ButtonType.OK)) {
+          
+            CommandeService sv = new  CommandeService();
+            //Commande r = sv.recuperer(String.valueOf(p.getId()));
+            sv.supprimer(commande.getId());
+
+            }
     }
 }

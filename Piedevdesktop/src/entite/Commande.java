@@ -27,12 +27,13 @@ public class Commande {
         this.id = id;
     }
 
-    public Commande(String adresse_destination, int commande_e_c_id, int commande_m_c_id, int commmande_t_c_id) {
-        this.adresse_destination = adresse_destination;
-        this.commande_e_c_id = commande_e_c_id;
-        this.commande_m_c_id = commande_m_c_id;
-        this.commmande_t_c_id = commmande_t_c_id;
-    }
+//    public Commande(String adresse_destination, Date date_commande, int commande_e_c_id, int commande_m_c_id, int commmande_t_c_id) {
+//        this.adresse_destination = adresse_destination;
+//        this.date_commande= date_commande;
+//        this.commande_e_c_id = commande_e_c_id;
+//        this.commande_m_c_id = commande_m_c_id;
+//        this.commmande_t_c_id = commmande_t_c_id;
+//    }
     
 
     public String getAdresse_destination() {

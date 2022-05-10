@@ -5,6 +5,7 @@
  */
 package gui;
 
+import entite.Commande;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +41,9 @@ public class Start extends Application {
      */
     public static void main(String[] args) {
        launch(args);
-//       CommandeService cs = new CommandeService();
+//      CommandeService cs = new CommandeService();
+//     Commande t = cs.ajouter("gafsa",,,,);
+//      cs.ajouter(t);
 //       System.out.println(cs.recuperer());
 
     //Smsapi.sendSMS("Test de SMS");

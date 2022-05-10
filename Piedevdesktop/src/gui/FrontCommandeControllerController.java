@@ -44,7 +44,9 @@ public class FrontCommandeControllerController implements Initializable {
 private   List<Commande> ls = new ArrayList<>();
     @FXML
     private JFXButton add;
-private List<Commande> coms (){
+    @FXML
+    private JFXButton comm;
+    private List<Commande> coms (){
 return sv.recuperer();
 }
     /**
@@ -52,24 +54,24 @@ return sv.recuperer();
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         ls.addAll(coms());
-               for(int i =0;i <ls.size();i++)
-               {
-                   FXMLLoader fxmlloader = new FXMLLoader();
-                   fxmlloader.setLocation(getClass().getResource("Commande.fxml"));
-                   
-                   try {
-                   
-                   HBox hbox = fxmlloader.load();
-                   CommandeController cocon= fxmlloader.getController();
-                  cocon.SetData(ls.get(i));
-                  comlay.getChildren().add(hbox);
-                         
-                          ; }
-               catch(IOException e)
-               {e.printStackTrace();
-               }
-               }
+//         ls.addAll(coms());
+//               for(int i =0;i <ls.size();i++)
+//               {
+//                   FXMLLoader fxmlloader = new FXMLLoader();
+//                   fxmlloader.setLocation(getClass().getResource("Commande.fxml"));
+//                   
+//                   try {
+//                   
+//                   HBox hbox = fxmlloader.load();
+//                   CommandeController cocon= fxmlloader.getController();
+//                  cocon.SetData(ls.get(i));
+//                  comlay.getChildren().add(hbox);
+//                         
+//                          ; }
+//               catch(IOException e)
+//               {e.printStackTrace();
+//               }
+//               }
 
       
         // TODO
@@ -82,6 +84,34 @@ return sv.recuperer();
         stage.setTitle("Ajouter une Commande");
         stage.setScene(scene);
         stage.show(); 
+    }
+
+    @FXML
+    private void comm(ActionEvent event) {
+       ls.clear();
+        ls.addAll(coms());
+         System.out.println(ls);
+          comlay.getChildren().clear();
+               for(int i =0;i <ls.size();i++)
+               {
+                   FXMLLoader fxmlloader = new FXMLLoader();
+                   fxmlloader.setLocation(getClass().getResource("Commande.fxml"));
+                   
+                   try {
+                   
+                   HBox hbox = fxmlloader.load();
+                   CommandeController cocon= fxmlloader.getController();
+                   
+                  cocon.SetData(ls.get(i));
+                  
+                  comlay.getChildren().add(hbox);
+                         
+                          ; }
+               catch(IOException e)
+               {e.printStackTrace();
+               }
+               }
+      
     }
     
 }

@@ -81,11 +81,6 @@ public void SetData(Commande commande){
         }
     }
 
-    @FXML
-    private void supprimer(ActionEvent event) {
-
-        
-    }
 
     @FXML
     private void afficher(ActionEvent event) {

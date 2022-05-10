@@ -38,7 +38,7 @@
             <Insets left="5.0" right="5.0" />
          </HBox.margin>
       </Button>
-      <Button fx:id="de" mnemonicParsing="false" onAction="#supprimer" prefHeight="31.0" prefWidth="110.0" text="delete">
+      <Button fx:id="de" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" text="delete">
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>

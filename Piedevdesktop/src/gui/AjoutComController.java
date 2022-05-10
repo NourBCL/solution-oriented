@@ -67,9 +67,14 @@ public class AjoutComController implements Initializable {
                     + "zid 7wija l rabi ");
             alert.show();
         } else {
-            e.setAdresse_destination(a.getText());
-            e.setDate_commande(java.sql.Date.valueOf(b.getValue()));
-            sv.ajouter(e);
+//            e.setAdresse_destination(a.getText());
+//            e.setDate_commande(java.sql.Date.valueOf(b.getValue()));
+//            e.setCommande_e_c_id(1);
+//            e.setCommande_m_c_id(1);
+//            e.setCommmande_t_c_id(1);
+ 
+               Commande e = new Commande(a.getText(),java.sql.Date.valueOf(b.getValue()),1,1,1); 
+sv.ajouter(e);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succesful");
             alert.setHeaderText(null);

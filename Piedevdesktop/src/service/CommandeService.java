@@ -83,7 +83,7 @@ ps.setInt(6, t.getId());
             preparedStmt.setInt(1, id);
             preparedStmt.execute();
             System.out.println("commande "
-                    + "+ number " + id + " has been deleted !");
+                    + " number " + id + " has been deleted !");
 //            return true;
         } catch (SQLException ex) {
             System.err.println("Ga3ga3 ma5edmetich!");
