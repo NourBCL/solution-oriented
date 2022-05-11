@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.BackRestaurantController">
+   <children>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="640.0" prefWidth="1025.0" style="-fx-background-color: #f2e8cf;">
+         <children>
+            <TextField fx:id="inputNom1" layoutX="94.0" layoutY="54.0" />
+            <Button fx:id="btnAjouter1" layoutX="412.0" layoutY="266.0" mnemonicParsing="false" onAction="#AddResto" text="Ajouter" />
+            <Label layoutX="41.0" layoutY="58.0" text="Nom" />
+            <Button fx:id="modfiier1" layoutX="348.0" layoutY="266.0" mnemonicParsing="false" onAction="#modifierResto" text="Modifier" />
+            <TextField fx:id="inputNum" layoutX="94.0" layoutY="88.0" />
+            <DatePicker fx:id="inputeOuv" layoutX="94.0" layoutY="126.0" prefHeight="25.0" prefWidth="149.0" />
+            <DatePicker fx:id="inputFer" layoutX="94.0" layoutY="164.0" prefHeight="25.0" prefWidth="149.0" />
+            <Button layoutX="94.0" layoutY="202.0" mnemonicParsing="false" onAction="#importerImg" prefHeight="25.0" prefWidth="149.0" text="Importer image" />
+            <ComboBox fx:id="region" layoutX="94.0" layoutY="241.0" prefWidth="150.0" />
+            <Label layoutX="40.0" layoutY="92.0" text="Num" />
+            <Label layoutX="40.0" layoutY="130.0" text="Ouverture" />
+            <Label layoutX="40.0" layoutY="168.0" text="Fermeture" />
+            <Label layoutX="40.0" layoutY="206.0" text="Image" />
+            <Label layoutX="40.0" layoutY="245.0" text="Region" />
+            <ImageView fx:id="img_view1" fitHeight="150.0" fitWidth="200.0" layoutX="279.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

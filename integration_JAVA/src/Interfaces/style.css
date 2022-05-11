@@ -1,0 +1,52 @@
+.add-btn{
+    -fx-background-color: #b5794e;
+    -fx-background-radius: 100;
+}
+.add-btnn{
+    -fx-background-color: #ffe32b;
+    -fx-background-radius: 100;
+}
+.add-btn2{
+    -fx-background-color: #cc692f;
+    -fx-background-radius: 100;
+}
+.profile-layout{
+    -fx-background-color : #6fbf73;
+    -fx-background-radius : 0 0 50 50 ;
+}
+.white-backgroud{
+    -fx-background-color :#ffffff;
+}
+
+.most-contacted-layout{
+    -fx-background-color: #ffea29;
+    -fx-background-radius : 0 50 50 50;
+}
+
+
+
+
+.sidebarItem{
+    -fx-cursor: hand;
+
+}
+
+
+.sidebarItem:hover{
+    -fx-background-color: rgba(188, 71, 73, 0.2);
+    -fx-border-color: WHITE;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.cardItem {
+    -fx-effect : dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}

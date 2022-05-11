@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="MainJavaFX.jnlp">
+  <information>
+    <title>MainJavaFX</title>
+    <vendor>GhAlone</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="MainJavaFX.jar" size="17531321" download="eager" />
+    <jar href="lib\AnimateFX-1.2.1.jar" size="94267" download="eager" />
+    <jar href="lib\TrayTester.jar" size="52070" download="eager" />
+    <jar href="lib\commons-io-2.11.0.jar" size="327135" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
+    <jar href="lib\itextpdf-5.5.9.jar" size="2287148" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
+    <jar href="lib\jfoenix-8.0.2.jar" size="2442326" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\spring-security-crypto-3.1.2.release.jar" size="41154" download="eager" />
+    <jar href="lib\stripe-java-20.116.0.jar" size="5569321" download="eager" />
+    <jar href="lib\twilio-7.9.1-jar-with-dependencies.jar" size="7531656" download="eager" />
+    <jar href="lib\zxing-core-1.7.jar" size="352719" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="MainJavaFX" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="Interfaces.MainJavaFX"  name="MainJavaFX" />
+  <update check="always"/>
+</jnlp>

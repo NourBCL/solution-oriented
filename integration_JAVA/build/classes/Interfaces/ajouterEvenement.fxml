@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="729.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.AjouterEvenementController">
+   <children>
+      <Label layoutX="341.0" layoutY="123.0" prefHeight="35.0" prefWidth="251.0" text="Ajouter evenement" textFill="#76b28e">
+         <font>
+            <Font name="Sitka Text Bold" size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom" alignment="TOP_RIGHT" layoutX="384.0" layoutY="189.0" prefHeight="35.0" prefWidth="251.0" promptText="nom de l'evenement" style="-fx-background-radius: 10;" />
+      <TextField fx:id="description" alignment="TOP_RIGHT" layoutX="384.0" layoutY="255.0" prefHeight="120.0" prefWidth="251.0" promptText="Description" style="-fx-background-radius: 10;" />
+      <ImageView fx:id="imageaff" fitHeight="96.0" fitWidth="130.0" layoutX="506.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="402.0" layoutY="423.0" mnemonicParsing="false" onAction="#upload" prefHeight="41.0" prefWidth="76.0" styleClass="add-btn2" stylesheets="@../css/style.css" text="upload" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="650.0" layoutY="597.0" mnemonicParsing="false" onAction="#ajouterEvenement" prefHeight="54.0" prefWidth="180.0" styleClass="add-btn3" stylesheets="@../css/style.css" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="date_deb" layoutX="830.0" layoutY="189.0" prefHeight="35.0" prefWidth="278.0" promptText="Date debut" />
+      <DatePicker fx:id="date_fin" layoutX="830.0" layoutY="282.0" prefHeight="41.0" prefWidth="278.0" promptText="Date Fin" />
+      <TextField fx:id="prix" layoutX="830.0" layoutY="375.0" prefHeight="42.0" prefWidth="123.0" promptText="Prix" style="-fx-background-radius: 10;" />
+      <ComboBox fx:id="category" layoutX="971.0" layoutY="375.0" prefHeight="41.0" prefWidth="137.0" promptText="Categorie" style="-fx-background-radius: 10; -fx-background-color: #ffe32b;" />
+      <AnchorPane prefHeight="89.0" prefWidth="1280.0" style="-fx-background-color: #386641;">
+         <children>
+            <Pane prefHeight="42.0" prefWidth="1280.0" />
+            <Label layoutX="37.0" prefHeight="87.0" prefWidth="218.0" styleClass="menuBack" text="Menu" textFill="#f9f9f9">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/list-light.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="89.0" prefHeight="640.0" prefWidth="255.0" style="-fx-background-color: #6a994e;">
+         <children>
+            <VBox layoutX="11.0" layoutY="40.0" prefHeight="569.0" prefWidth="256.0">
+               <children>
+                  <JFXButton fx:id="acceuil" alignment="BASELINE_LEFT" onAction="#acceuilback" onMouseClicked="#gotoRestau" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Acceuil" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/fork-knife-bold.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" onAction="#changeUser" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Utilisateurs" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" onAction="#openEvenements" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Evenement" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/globe-hemisphere-west-bold.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" onMouseClicked="#goRegion" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Region" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" onMouseClicked="#gotoRestau" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Restaurants" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/fork-knife-bold.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="transport" alignment="BASELINE_LEFT" onAction="#transport" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Transport" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets left="-10.0" />
+   </padding>
+</AnchorPane>

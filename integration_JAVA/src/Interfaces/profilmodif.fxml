@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="729.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.modifprofilcontroller">
+   <children>
+      <BorderPane fx:id="bp" prefHeight="729.0" prefWidth="1280.0">
+         <top>
+            <AnchorPane prefHeight="89.0" prefWidth="1280.0" style="-fx-background-color: #386641;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="42.0" prefWidth="1280.0" />
+                  <Label layoutX="37.0" prefHeight="87.0" prefWidth="218.0" styleClass="menuBack" text="Menu" textFill="#f9f9f9">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="640.0" prefWidth="255.0" style="-fx-background-color: #6a994e;" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutY="72.0" prefHeight="569.0" prefWidth="256.0">
+                     <children>
+                        <JFXButton alignment="BASELINE_LEFT" onAction="#changeUser" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Profil" textFill="#f9f9f9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Evenement" textFill="#f9f9f9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/globe-hemisphere-west-bold.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Region" textFill="#f9f9f9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Restaurants" textFill="#f9f9f9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/fork-knife-bold.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" prefHeight="61.0" prefWidth="278.0" styleClass="sidebarItem" stylesheets="@../../../../../../Downloads/mokki/molka/src/GUI/style.css" text="Transport" textFill="#f9f9f9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/mokki/molka/src/GUI/images/list-light.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane fx:id="ap" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2e8cf;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="acpane" layoutX="-1.0" prefHeight="641.0" prefWidth="1024.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="202.0" layoutY="76.0" prefHeight="41.0" prefWidth="620.0" text="Modifier profil" textFill="#222020">
+                           <font>
+                              <Font name="Arial Bold" size="42.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txt_nom" layoutX="308.0" layoutY="183.0" prefHeight="41.0" prefWidth="394.0" promptText="nom" />
+                        <TextField fx:id="txt_prenom" layoutX="309.0" layoutY="237.0" prefHeight="41.0" prefWidth="394.0" promptText="prenom" />
+                        <TextField fx:id="txt_email" layoutX="310.0" layoutY="351.0" prefHeight="41.0" prefWidth="394.0" promptText="email" />
+                        <TextField fx:id="txt_num" layoutX="309.0" layoutY="293.0" prefHeight="41.0" prefWidth="394.0" promptText="num" />
+                        <Button layoutX="343.0" layoutY="441.0" mnemonicParsing="false" onAction="#modifier" prefHeight="33.0" prefWidth="324.0" style="-fx-background-color: #6088a4;" styleClass="button2" stylesheets="@../../../../../../Desktop/GestionUtilisateur_DESKTOP/Gestion%20utilisateur_desktop/src/BrainNovation-GestUser/src/view/style.css" text="CONFIRMER MODIFICATION" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children></Pane>
+                  <Label fx:id="id_lab" layoutX="216.0" layoutY="95.0" textFill="#170357">
+                     <font>
+                        <Font name="Tahoma Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lid" layoutX="383.0" layoutY="113.0" visible="false" />
+                  <TextField fx:id="role" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="140.0" layoutY="444.0" scaleShape="false" visible="false" />
+                  <TextField fx:id="passe" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="160.0" layoutY="475.0" scaleShape="false" visible="false" />
+                  <TextField fx:id="img" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="123.0" layoutY="92.0" scaleShape="false" visible="false" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
