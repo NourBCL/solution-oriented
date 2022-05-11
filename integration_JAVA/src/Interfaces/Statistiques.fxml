@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1025.0" style="-fx-background-color: #f2e8cf;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaces.StatistiquesController">
+   <children>
+      <BarChart fx:id="barChart" layoutX="14.0" layoutY="38.0" prefHeight="580.0" prefWidth="551.0" title="Rating des restaurants">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xBarChart" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yBarChart" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <PieChart fx:id="pieChart" layoutX="565.0" layoutY="53.0" prefHeight="539.0" prefWidth="450.0" title="Nombre des restaurants/région" />
+   </children>
+</AnchorPane>

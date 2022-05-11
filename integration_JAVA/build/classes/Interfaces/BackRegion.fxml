@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Interfaces.BackRegionController">
+    <stylesheets>
+        <URL value="@backregion.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="lab" layoutX="226.0" layoutY="139.0" prefHeight="17.0" prefWidth="149.0" />
+      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="10.0" prefHeight="357.0" prefWidth="533.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Untitled Tab 1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="inputNom" layoutX="94.0" layoutY="54.0" />
+                        <Button fx:id="openFile" layoutX="94.0" layoutY="92.0" mnemonicParsing="false" onAction="#selectfile" prefHeight="25.0" prefWidth="149.0" text="Importer image" />
+                        <Button fx:id="btnAjouter" layoutX="179.0" layoutY="188.0" mnemonicParsing="false" onAction="#AddRegion" text="Ajouter" />
+                        <Label layoutX="30.0" layoutY="58.0" text="Nom" />
+                        <Label layoutX="30.0" layoutY="96.0" text="Image" />
+                        <ImageView fx:id="img_view" fitHeight="150.0" fitWidth="200.0" layoutX="267.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="modfiier" layoutX="115.0" layoutY="188.0" mnemonicParsing="false" onAction="#modifierRegion" text="Modifier" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Untitled Tab 2">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tabRegion" editable="true" layoutX="29.0" layoutY="19.0" prefHeight="291.0" prefWidth="413.0">
+                           <columns>
+                              <TableColumn fx:id="colonne_nom" prefWidth="216.0" text="Nom" />
+                              <TableColumn fx:id="colonne_image" prefWidth="204.0" text="ImagePath" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="supp" layoutX="454.0" layoutY="19.0" mnemonicParsing="false" onAction="#suppRegion" prefHeight="25.0" prefWidth="74.0" text="Supprimer" />
+                        <Button fx:id="rec" layoutX="454.0" layoutY="58.0" mnemonicParsing="false" onAction="#recupererRegion" prefHeight="25.0" prefWidth="73.0" text="Recuperer" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
