@@ -5,13 +5,15 @@
  */
 package entite;
 
+import java.util.Date;
+
 /**
  *
  * @author omaro
  */
 public class CommandeE {
     private int id;
-           private String  date_creation;
+           private Date  date_creation;
 
     public int getId() {
         return id;
@@ -21,7 +23,7 @@ public class CommandeE {
         this.id = id;
     }
 
-    public String getDate_creation() {
+    public Date getDate_creation() {
         return date_creation;
     }
 
@@ -30,7 +32,7 @@ public class CommandeE {
         return "CommandeE{" + "id=" + id + ", date_creation=" + date_creation + ", address_destination=" + address_destination + '}';
     }
 
-    public void setDate_creation(String date_creation) {
+    public void setDate_creation(Date date_creation) {
         this.date_creation = date_creation;
     }
 
@@ -42,7 +44,7 @@ public class CommandeE {
         this.address_destination = address_destination;
     }
 
-    public CommandeE(String date_creation, String address_destination) {
+    public CommandeE(Date date_creation, String address_destination) {
         this.date_creation = date_creation;
         this.address_destination = address_destination;
     }
@@ -50,7 +52,7 @@ public class CommandeE {
     public CommandeE() {
     }
 
-    public CommandeE(int id, String date_creation, String address_destination) {
+    public CommandeE(int id, Date date_creation, String address_destination) {
         this.id = id;
         this.date_creation = date_creation;
         this.address_destination = address_destination;

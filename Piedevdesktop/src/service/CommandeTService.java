@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import entite.CommandeT;
+import entite.Transport;
 import java.sql.Connection;
+import java.util.Date;
 import util.MyDB;
 /**
  *
@@ -20,19 +22,25 @@ import util.MyDB;
 public class CommandeTService  implements IService<CommandeT>{
     Connection cnx ;
 
-    public CommandeTService(Connection cnx) {
-        this.cnx = cnx;
+    public CommandeTService() {
+        cnx = MyDB.getInstance().getConnection();
     }
     @Override
     public void ajouter(CommandeT t) {
-        try {
-            String req = "insert into commande_t (adresse_destination,date_commande)"+"values('"+t.getAddress_destination()+"','"+t.getDate_creation()+"')";
-            Statement st = cnx.createStatement() ;
-            st.executeUpdate(req);
-            
+       
+             try {
+            String req = "insert into commande_t(date_creation,address_destination) Values(?,?)";
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setString(2, t.getAddress_destination());
+            st.setDate(1, (java.sql.Date) (Date) t.getDate_creation());
+          
+            st.executeUpdate();
+            System.out.println("commande ajouté");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());        }
-    }
+            System.out.println(ex.getMessage());
+        
+            
+    }}
 
     @Override
     public void modifier(CommandeT t) {
@@ -41,8 +49,7 @@ String req = "update commande_t set date_commande =? ,adresse_destination =?  wh
         try {
             PreparedStatement ps =cnx.prepareStatement(req);
             ps.setString(2, t.getAddress_destination());
-            ps.setString(1, t.getDate_creation());
-      
+ ps.setDate(1, (java.sql.Date) t.getDate_creation());      
 
             ps.executeUpdate();
 
@@ -83,10 +90,7 @@ String req = "update commande_t set date_commande =? ,adresse_destination =?  wh
             Statement st = cnx.createStatement();
             ResultSet rs =  st.executeQuery(req);
             while (rs.next()){
-            CommandeT p =new CommandeT();
-            p.setId(rs.getInt(1));
-            p.setAddress_destination(rs.getString("nom"));
-            p.setDate_creation(rs.getString("prenom"));
+         CommandeT p = new CommandeT(rs.getInt("id"), rs.getDate("date_creation"),rs.getString("address_destination"));
            
             pers.add(p);
             
@@ -101,6 +105,8 @@ String req = "update commande_t set date_commande =? ,adresse_destination =?  wh
     public CommandeT recuperer(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+public CommandeT GetById(int id) throws SQLException {
+        return recuperer().stream().filter(e -> e.getId()== id).findFirst().get();
+    }
    
 }

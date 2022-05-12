@@ -161,5 +161,9 @@ public class TransportService /*implements iservice<Transport>*/ {
         Statement stm = cnx.createStatement();
         stm.executeUpdate(req);
     }
+     
+    public Transport GetById(int id) throws SQLException {
+        return AfficherAllTransport().stream().filter(e -> e.getId()== id).findFirst().get();
+    }
 
 }

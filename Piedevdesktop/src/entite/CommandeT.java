@@ -5,24 +5,26 @@
  */
 package entite;
 
+import java.sql.Date;
+
 /**
  *
  * @author omaro
  */
 public class CommandeT {
     private int id ;
-    private String  date_creation ;
+    private Date  date_creation ;
     private String address_destination;
 
     public CommandeT() {
     }
 
-    public CommandeT(String date_creation, String address_destination) {
+    public CommandeT(Date date_creation, String address_destination) {
         this.date_creation = date_creation;
         this.address_destination = address_destination;
     }
 
-    public CommandeT(int id, String date_creation, String address_destination) {
+    public CommandeT(int id, Date date_creation, String address_destination) {
         this.id = id;
         this.date_creation = date_creation;
         this.address_destination = address_destination;
@@ -36,11 +38,11 @@ public class CommandeT {
         this.id = id;
     }
 
-    public String getDate_creation() {
+    public Date getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(String date_creation) {
+    public void setDate_creation(Date date_creation) {
         this.date_creation = date_creation;
     }
 
